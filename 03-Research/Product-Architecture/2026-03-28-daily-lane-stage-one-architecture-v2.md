@@ -351,12 +351,98 @@ signal pool 当前不承担：
 
 ---
 
-## 九、后续真正值得继续问的问题
+## 九、给 Arc 的 design brief（执行入口）
+
+如果接下来要由 Arc 基于当前文档继续写 implementation design，可直接按下面这份简化 brief 开始。
+
+### 1. Phase 1 要做什么
+
+- 实现最小闭环：`lane -> signal -> signal pool`
+- 第一阶段只落一条样板 lane：`github-watch`
+- signal 主承载形式为 markdown signal files
+- signal pool 为 lane-first、按天归档的文件系统结构
+
+### 2. Phase 1 明确不做什么
+
+- 不做 candidate / brief / document 输出层
+- 不做 object registry / watch registry
+- 不做 signal 层去重 / 合并
+- 不做 AI 驱动的 lane 决策
+- 不做独立 materialize / normalize 层
+- 不做浏览产品层
+
+### 3. lane 实现原则
+
+- lane 是精心设计、可重复、可审计的稳定脚本
+- 语言不限，shell / Python 均可
+- lane 直接产出 signal 文件
+- 排错依赖脚本日志，不单独设计 run 记录层
+
+### 4. `github-watch` 的第一阶段 scope
+
+同时保留三类 signal：
+
+- `release`
+- `changelog`
+- `README`
+
+但工程落地顺序明确为：
+
+1. 先 `release`
+2. 再 `changelog`
+3. 最后 `README`
+
+### 5. signal file 最低约束
+
+- 每条 signal 一个 markdown 文件
+- frontmatter 必须机器可解析
+- frontmatter 至少包含：
+  - `type`
+  - `lane`
+  - `source`
+  - `url`
+  - `fetched_at`
+  - `repo`（或等价对象标识）
+  - `title`
+- 正文原始证据优先
+- evidence 内嵌优先
+
+### 6. signal pool / state 约束
+
+推荐目录骨架：
+
+```text
+signals/
+  github-watch/
+    state/
+      <repo-state-files>
+    YYYY-MM-DD/
+      index.md
+      signals/
+        <signal-files>
+      evidence/
+        <evidence-files>
+```
+
+其中：
+- `state/` 用于保存 changelog / README 的上次快照基线
+- `index.md` 只做纯索引，但不能退化成毫无信息的裸文件名列表
+
+### 7. 最低验收标准
+
+- 跑通 release signal 采集
+- 正确落到 signal pool
+- 生成当天 `index.md`
+- 具备 changelog / README 所需 `state/`
+- 再继续补 changelog signal
+- 最后补 README signal
+
+## 十、后续真正值得继续问的问题
 
 接下来更值得继续推进的，不再是“收不收 release/changelog/README”，而是：
 
 1. markdown signal files 的最小 metadata 协议如何定义
-2. signal pool 的目录组织是 `date-first` 还是 `lane/date hybrid`
+2. signal pool 的目录组织如何在实现中落稳
 3. evidence 文件与 signal 文件如何关联最稳
 4. `github-watch` 作为样板 lane，最小实现边界如何收紧
 5. 将来从 signal pool 长出 candidate / brief 层时，如何避免反向污染 signal 层
