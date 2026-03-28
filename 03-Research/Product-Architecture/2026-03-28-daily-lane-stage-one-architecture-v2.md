@@ -446,3 +446,133 @@ signals/
 3. evidence 文件与 signal 文件如何关联最稳
 4. `github-watch` 作为样板 lane，最小实现边界如何收紧
 5. 将来从 signal pool 长出 candidate / brief 层时，如何避免反向污染 signal 层
+
+---
+
+## 十一、四条 lane 的当前盘点
+
+截至 2026-03-28，贵平明确的目标不是只做 `github-watch` 一条 lane，而是让此前已经以脚本方式跑过的几类信息入口，逐步继承到这套新的 lane-first / signal-first 系统里。
+
+当前明确的四条 lane 是：
+
+1. `github-watch`
+   - 已实现 Phase 1 样板版本
+   - 当前承担长期跟踪型 GitHub 信号收集
+   - 已验证 `release / changelog / README` 这类结构化或半结构化来源如何进入 signal pool
+
+2. `github-discovery`
+   - 对应 GitHub Trending、新项目发掘与追踪
+   - 本质更偏 discovery lane，而不是长期对象 watch lane
+   - 后续设计时需要特别警惕它滑向 candidate / 排序 / 推荐层
+
+3. `x-watchlist`
+   - 对应 X 上指定 watch list 的监控
+   - 更像“固定来源列表”的长期跟踪型 lane
+   - 与 `github-watch` 相比，来源形态不同，但“白名单对象 → 稳定收集”的思路是相通的
+
+4. `x-feed`
+   - 对应 X Feed 自动刷流
+   - 输入开放度更高、噪音更大、边界更容易漂移
+   - 最容易不小心越过 signal 层，提前滑向 candidate / 去噪 / AI 筛选
+
+5. `product-hunt-watch`
+   - 对应 Product Hunt 网站的追踪
+   - 来源单一、结构相对规整
+   - 非常适合作为 `github-watch` 之后的第二条 lane 样板
+
+### 说明
+
+这里虽然列出了 5 个名字，但本质上是“`github-watch` 已完成 + 另外 4 类待继承入口”里的产品盘点。若按这轮对话里用户列举的“接下来要继续做的四条 lane”理解，可视为：
+
+- `github-discovery`
+- `x-watchlist`
+- `x-feed`
+- `product-hunt-watch`
+
+也就是在 `github-watch` 之外，还要把另外四类脚本化来源逐步接进同一套 signal system。
+
+---
+
+## 十二、推荐实现顺序
+
+当前最合理的顺序不是按“重要性”排，而是按：
+
+- 复用现有骨架的难度
+- 是否容易验证 lane-first 抽象真的成立
+- 是否容易不小心越界到 Phase 2
+
+基于这个标准，当前推荐顺序是：
+
+1. `product-hunt-watch`
+2. `x-watchlist`
+3. `x-feed`
+4. `github-discovery`
+
+### 1. 为什么先做 `product-hunt-watch`
+
+这是当前最合适的第二条 lane，因为它：
+
+- 来源单一
+- 结构相对简单
+- 不像 X 那样容易牵扯复杂登录态、刷流策略、噪音控制
+- 也不像 GitHub trending / 新项目发现那样天然贴近“候选项”与“推荐层”
+
+更重要的是，它适合作为：
+
+> **第一条非 GitHub release 型、且可以先不依赖 `state/` 的 lane 样板。**
+
+如果 `product-hunt-watch` 能顺利接入，说明当前这套系统并不是只对 `github-watch` 特化，而是真能承载第二种来源形态。
+
+### 2. 为什么 `x-watchlist` 放在 `product-hunt-watch` 后面
+
+`x-watchlist` 虽然也属于明确来源列表型 lane，但相比 Product Hunt，仍更容易遇到：
+
+- 登录态 / API / 采集通道稳定性问题
+- 文本、线程、转推、媒体等内容形态差异
+- 同一账号高频更新导致的信号密度问题
+
+所以它适合在第二条 lane 骨架验证成功之后再做。
+
+### 3. 为什么 `x-feed` 不宜太早做
+
+`x-feed` 是当前最容易失控的一条 lane，因为它更接近开放输入流，而不是固定对象监控。它的问题不是“能不能抓”，而是：
+
+- 噪音如何接受
+- 信号密度如何控制
+- 不做 AI 筛选时如何保持 lane 仍然有价值
+- 如何避免它偷偷长成 candidate / ranking / summary 层
+
+因此它不适合作为第二条 lane 样板。
+
+### 4. 为什么 `github-discovery` 放最后
+
+虽然 `github-discovery` 仍然属于 GitHub，但它和 `github-watch` 的本质不一样。它更偏：
+
+- discovery
+- trending / ranking
+- 新项目判断
+- 候选项倾向
+
+也因此最容易越过当前 Phase 1 的边界，滑向“候选发现系统”而不是“signal 收集系统”。
+
+所以它更适合放到：
+
+- `github-watch` 已经证明长期跟踪型 lane 可行
+- `product-hunt-watch` 已经证明 stateless / 列表型 lane 可行
+- `x-watchlist` / `x-feed` 已经验证社交流输入如何接入
+
+之后再做。
+
+---
+
+## 十三、接下来 brainstorm 的焦点
+
+既然当前推荐下一条 lane 是 `product-hunt-watch`，那后续 brainstorm 最值得明确的，不是泛泛讨论四条 lane，而是把 Product Hunt 这一条收成一个最小、稳定、可继承到现有系统里的实现边界。
+
+也就是重点回答：
+
+1. `product-hunt-watch` 的 signal 类型第一版只收什么
+2. Product Hunt 第一版是否需要 `state/`，还是先做 stateless lane
+3. Product Hunt 的 signal file frontmatter 最小字段里，需要哪些 source-specific 字段
+4. `index.md` 在 Product Hunt lane 下最低应该呈现哪些信息
+5. 如何明确它只做 signal 收集，而不滑向推荐、排序和日报候选层
