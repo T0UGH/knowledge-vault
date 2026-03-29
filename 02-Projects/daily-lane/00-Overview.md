@@ -28,3 +28,6 @@
 ### Pipelines
 - `2026-03-29-signal-to-content-pipelines.md`
 - `2026-03-29-daily-briefing-dual-agent-loop.md`
+
+### PRDs
+- `PRDs/2026-03-29-index-redesign-prd-for-arc.md`
