@@ -418,8 +418,85 @@ OpenClaw 的能力允许多 session，但从机制稳定性看，日报这个问
 
 ---
 
-## 十二、一句话版结论
+## 十二、`index.md` 的前置重设计
+
+随着“cron 第一版只喂各 lane `index.md`”拍定，`index.md` 的角色也不再只是归档索引，而必须升级为：
+
+> **agent 可导航入口**
+
+这里有几条明确边界：
+
+- lane 层仍然只是**稳定脚本**
+- index redesign **不允许引入 AI**
+- index 不是 candidate 层，也不是日报层
+- index 只负责更好地暴露已有 signal，帮助 Editor / Reviewer 更快找到该看的原始文件
+
+### 当前判断
+
+基于现有 data repo 的抽样检查：
+
+- `x-feed` / `x-following` 已经接近可用，但导航性仍偏弱
+- `github-watch` / `product-hunt-watch` 目前明显不够支撑“只喂 index”这套工作流
+- `github-trending-weekly` 的 signal 正文本身信息足够 rich，也适合补强 index
+
+因此，日报内容层第一版真正开始前，index 补强应视为一个前置步骤。
+
+## 十三、index redesign 的当前定义
+
+### 1. 采用“公共底座 + lane 自定义附加字段”
+
+不做：
+
+- 所有 lane 完全一套死模板
+- 各 lane 完全各写各的、毫无共性
+
+而是：
+
+- 公共底座统一“导航功能”
+- lane 自定义字段保留 lane 语义
+
+### 2. 公共底座每条 signal 的最小字段
+
+当前已拍定：
+
+- `type`
+- `title`
+- `time`
+- `link`
+- `1 句导航提示`
+
+这里不强行统一一个抽象 `object` 字段名，而是按 lane 自然表达：
+
+- GitHub 用 `repo`
+- Product Hunt 用 `product`
+- X 用 `author`
+
+也就是说，统一的是“这里要告诉 agent 这条 signal 主要挂在哪个对象上”，而不是统一抽象命名。
+
+### 3. 导航提示必须强 A
+
+导航提示的生成原则已经明确拍定：
+
+> **只能从现有 signal 的结构化字段或正文里，用稳定脚本摘取；不允许 AI 生成。**
+
+允许的做法包括：
+
+- 取 frontmatter 字段
+- 取固定 section 的第一句
+- 取 bullet 列表第一条
+- 做稳定的截断、清洗、去换行
+
+不允许的做法包括：
+
+- AI 重写
+- AI 摘要
+- AI 生成更像人话的导航提示
+- lane 层任何形式的 AI 编辑判断
+
+---
+
+## 十四、一句话版结论
 
 截至 2026-03-29，日报 pipeline 的第一版最合理机制是：
 
-> 不先建设显式规则预筛系统，而是在 lane-first / signal-first 的框架下，采用“两个 subagent + 一个 cron”的最小闭环：cron 只喂各 lane `index.md`；Editor 与 Reviewer 都可按需回查原始 signal；日报先只产出按 lane 展开的完整 markdown，并以信息完整、不怕长为优先原则。
+> 不先建设显式规则预筛系统，而是在 lane-first / signal-first 的框架下，采用“两个 subagent + 一个 cron”的最小闭环：cron 只喂各 lane `index.md`；Editor 与 Reviewer 都可按需回查原始 signal；日报先只产出按 lane 展开的完整 markdown，并以信息完整、不怕长为优先原则；为支撑这套工作流，`index.md` 需要先按“公共底座 + lane 自定义字段”的方式重设计，且全程保持脚本化、无 AI。
