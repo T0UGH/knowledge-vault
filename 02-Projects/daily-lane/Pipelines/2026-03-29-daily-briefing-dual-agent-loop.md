@@ -307,8 +307,69 @@ OpenClaw 的能力允许多 session，但从机制稳定性看，日报这个问
 
 ---
 
-## 九、一句话版结论
+## 九、当前实现形态的进一步收敛
+
+在继续讨论后，这套机制又进一步收紧成一个更适合第一版落地的形态：
+
+> **两个 subagent + 一个 cron**
+
+也就是：
+
+- **Subagent A / Editor**
+  - 负责看当天各 lane 输入
+  - 做筛选、归纳、成稿
+
+- **Subagent B / Reviewer**
+  - 负责检查漏项、重复、证据不足、推荐理由是否成立
+  - 给出 pass / revise 判断
+
+- **一个 cron**
+  - 负责每天定时触发
+  - 收集当天输入
+  - 调 Editor
+  - 调 Reviewer
+  - 如果被打回，则再让 Editor 重做一次
+  - 第二次审核后无论结果如何都结束
+  - 完成最终交付
+
+这里最关键的一点是：
+
+> **cron 负责调度，不负责写日报；Reviewer 负责验收，不负责代写。**
+
+这比“多 agent 自由协作”更轻，也更容易止损。
+
+## 十、为什么这版更适合作为第一版
+
+### 1. 够轻
+
+当前目标不是做一个通用多 agent 平台，而只是把日报内容层跑起来。
+
+因此：
+
+- 一个 Editor
+- 一个 Reviewer
+- 一个 cron orchestrator
+
+已经足够。
+
+### 2. 责任清楚
+
+这版分工非常明确：
+
+- Editor 写
+- Reviewer 审
+- cron 跑流程
+
+不会出现 agent 之间边界糊掉的问题。
+
+### 3. 止损容易硬控
+
+最多一次打回这个约束，更适合由 cron 显式掌控，而不是交给子 agent 自发协商。
+
+---
+
+## 十一、一句话版结论
 
 截至 2026-03-29，日报 pipeline 的第一版最合理机制是：
 
-> 不先建设显式规则预筛系统，而是在 lane-aware briefing 的框架下，采用 Agent 1 负责筛选归纳成稿、Agent 2 负责审核评分与最多一次打回的双 agent 编辑闭环；在 OpenClaw 中，这最自然的落点是由父 orchestrator session 通过 `sessions_spawn` 调度两个子 session，并由父层显式控制唯一一次回环。
+> 不先建设显式规则预筛系统，而是在 lane-aware briefing 的框架下，采用“两个 subagent + 一个 cron”的最小闭环：Editor 负责筛选归纳成稿，Reviewer 负责审核评分与最多一次打回，cron 负责定时触发、流程控制与最终交付。
