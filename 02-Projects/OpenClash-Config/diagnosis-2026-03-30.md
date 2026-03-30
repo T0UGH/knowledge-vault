@@ -162,3 +162,51 @@ MATCH,极连云
 - DNS 与连接路径更自洽
 - 配置更透明、可回滚、可验证
 - 后续可以沉淀出一版适合贵平的家用 OpenClash for AI 模板
+
+## 六、2026-03-30 第二轮配置改动
+
+本轮继续基于 `rook-clash.yaml` 做**小步迭代**，没有重写整份配置，只新增了一组 **AI 专项显式规则**，用于避免 Claude / OpenAI / Codex 相关流量仅依赖 `MATCH,极连云` 兜底生效。
+
+新增的显式规则包括：
+
+- `anthropic.com`
+- `claude.ai`
+- `claudeusercontent.com`
+- `claudeusercontent.net`
+- `claude-api.com`
+- `claudecontentmoderation.com`
+- `openai.com`
+- `chatgpt.com`
+- `oaistatic.com`
+- `oaiusercontent.com`
+- `oaiusercontent.net`
+- `auth0.com`
+- `clerk.com`
+- `challenges.cloudflare.com`
+
+### 本轮改动的意义
+
+1. **把 AI 服务从“靠 MATCH 兜底”升级为“明确受控”**
+   - 更清楚知道 Claude / OpenAI / ChatGPT / Codex 相关链路会被显式送入 `极连云`
+
+2. **降低依赖链误伤风险**
+   - 登录、静态资源、验证链路不再只是“希望它们最后被代理”，而是直接纳入规则
+
+3. **保持最小修改原则**
+   - 没有重写现有 rules 大盘
+   - 只是在 `rules:` 起始位置插入一小段 AI 专项规则
+
+### 当前状态
+
+截至本轮，`rook-clash.yaml` 的方向已经比原始 `j.yaml` 更接近“面向 AI 服务的家用 OpenClash 配置”：
+
+- `dns.enable: true`
+- `enhanced-mode: fake-ip`
+- 已补基础 `fake-ip-filter`
+- 已补 AI 专项显式规则
+
+后续仍可继续观察：
+
+- AI 服务是否更稳定
+- fake-ip 是否带来局域网副作用
+- 是否还需要继续收紧 DNS / fallback 行为
