@@ -42,6 +42,24 @@ agent:main:main
 - heartbeat session 有真实 runtime
 - `requestHeartbeatNow()` 能真正触发消费 system event
 
+## 当前 MVP 路由策略（已更新）
+
+当前实现已从“测试期强制写死 main”进一步收口为：
+
+1. 如果配置了 `AGM_FORCED_SESSION_KEY` → 用显式配置
+2. 否则如果有 runtime session binding → 用 binding
+3. 再否则默认回退到：
+
+```text
+agent:main:main
+```
+
+也就是说，MVP 现在的正式策略已经变成：
+
+> **默认发到 main session，但保留配置覆盖能力。**
+
+这比之前单纯依赖 forced session key 更接近真实用户可用形态，也更符合后续产品化方向。
+
 ## 已拿到的有效证据
 
 Hex 最终交付的关键 transcript 证据：
