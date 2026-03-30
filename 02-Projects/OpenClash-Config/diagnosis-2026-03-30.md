@@ -263,3 +263,82 @@ MATCH,极连云
 - 这些增强规则是否引入额外副作用
 - 是否仍需继续精简或收紧 `fallback` / `fallback-filter`
 - 是否需要把 Apple / Microsoft / 其他跨境服务进一步与 AI 服务解耦
+
+## 八、2026-03-30 第四轮增强（Claude 专用二跳链式代理）
+
+本轮开始不再只是补规则，而是基于 MetaCubeX / Mihomo 官方 `dialer-proxy` 机制，在 `rook-clash.yaml` 中为 **Claude 专门建立二跳链式代理**。
+
+### 目标链路
+
+仅对 Claude / Anthropic 相关流量生效：
+
+**客户端 → OpenClash → 第一层极连云 SG → 第二层美国静态 IP → Claude**
+
+### 本轮新增结构
+
+#### 1. 新增第二层美国静态 IP 节点
+
+```yaml
+- { name: "Claude-US-SOCKS5", type: socks5, server: 107.180.144.40, port: 45001, ..., dialer-proxy: "Claude-Dialer" }
+```
+
+含义：
+
+- `Claude-US-SOCKS5` 不直接从本地/路由器出网
+- 而是通过 `Claude-Dialer` 这个第一层组去建立连接
+
+#### 2. 新增第一层 SG 组
+
+```yaml
+- { name: "Claude-Dialer", type: select, proxies: ['SG | 新加坡 | 01', ..., 'SG | 新加坡 | 10'] }
+```
+
+含义：
+
+- Claude 二跳链的第一层固定从新加坡节点中选
+- 当前组内放入了现有 SG 节点，便于后续手动切换
+
+#### 3. 新增 Claude 专用出站组
+
+```yaml
+- { name: "Claude-Chain", type: select, proxies: ["Claude-US-SOCKS5", DIRECT] }
+```
+
+含义：
+
+- 所有 Claude 相关规则统一指向 `Claude-Chain`
+- 默认预期应选 `Claude-US-SOCKS5`
+
+### 本轮规则调整
+
+把下列 Claude / Anthropic 相关域名从 `极连云` 改为 `Claude-Chain`：
+
+- `anthropic.com`
+- `claude.ai`
+- `claudeusercontent.com`
+- `claudeusercontent.net`
+- `claude-api.com`
+- `claudecontentmoderation.com`
+
+### 本轮改动的意义
+
+1. **把 Claude 从“普通代理”升级成“专用链式代理”**
+   - Claude 相关流量不再与普通 OpenAI / Codex 流量共用相同出站策略
+
+2. **满足更强的地区画像控制需求**
+   - 对外目标站点更接近只看到第二层美国静态 IP
+   - 本地/运营商层面更接近只看到第一层 SG
+
+3. **继续保持 DNS 统一由 `rook-clash.yaml` 管理**
+   - 没有把 DNS 单独拆到 `claude-proxy.yaml`
+   - 仍依赖当前的 `dns.enable: true` + `fake-ip` 方向来降低分裂风险
+
+### 当前注意事项
+
+- `Claude-Chain` 与 `Claude-Dialer` 是新加的组，后续在 OpenClash 面板中需要确认默认选项是否正确（尤其是 `Claude-Chain` 应指向 `Claude-US-SOCKS5`）。
+- `Claude-Dialer` 当前组内放入了 SG 节点集合，而不是硬编码单一 SG 节点，便于后续按连通性切换。
+- 这轮只是完成结构接入，后续仍应验证：
+  - Claude 实际出口是否为美国静态 IP
+  - 运营商侧可见出口是否为 SG
+  - DNS 与链式代理行为是否一致
+  - 是否需要进一步把 Claude 登录/验证相关域名补得更细
