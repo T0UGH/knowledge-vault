@@ -210,3 +210,56 @@ MATCH,极连云
 - AI 服务是否更稳定
 - fake-ip 是否带来局域网副作用
 - 是否还需要继续收紧 DNS / fallback 行为
+
+## 七、2026-03-30 第三轮增强（文章增强版 AI 依赖规则）
+
+本轮继续在 `rook-clash.yaml` 上做**小步增强**，目标不是重写配置，而是补齐前一轮未覆盖的 AI 依赖链规则，使之更接近《如何让你的 Claude 活得更久：网络篇》中的 AI 分流思路。
+
+### 本轮新增规则
+
+新增的增强规则包括：
+
+- `sora.com`
+- `openaiapi-site.azureedge.net`
+- `stripe.com`
+- `stripe.network`
+- `recaptcha.net`
+- `hcaptcha.com`
+- `turnstile.com`
+- `DOMAIN-KEYWORD,openai`
+- `DOMAIN-KEYWORD,chatgpt`
+- `DOMAIN-KEYWORD,codex`
+- `DOMAIN-KEYWORD,sora`
+
+### 本轮改动的意义
+
+1. **补齐 AI 依赖链外围服务**
+   - 不只覆盖 Claude / OpenAI 主域，还把支付、验证、挑战链路和部分兜底 keyword 补进来。
+
+2. **让 Codex 具备更明确的受控规则**
+   - 前一轮 Codex 仍更多依赖 OpenAI 主域和最终 `MATCH` 兜底；本轮补上 `DOMAIN-KEYWORD,codex` 后，表达意图更明确。
+
+3. **更接近文章里的“AI 专项链路”思路**
+   - 当前配置开始从“通用翻墙配置 + AI 可用”向“家用 OpenClash for AI”过渡。
+
+### 当前状态更新
+
+截至第三轮，`rook-clash.yaml` 已完成三层增强：
+
+1. **DNS 闭环修正**
+   - `dns.enable: true`
+   - `enhanced-mode: fake-ip`
+
+2. **基础兼容保护**
+   - 已补 `fake-ip-filter`
+
+3. **AI 服务显式分流**
+   - 主链路域名已补
+   - 增强依赖与 keyword 规则已补
+
+### 后续仍需观察
+
+- Claude / ChatGPT / Codex 是否比原配置更稳定
+- 这些增强规则是否引入额外副作用
+- 是否仍需继续精简或收紧 `fallback` / `fallback-filter`
+- 是否需要把 Apple / Microsoft / 其他跨境服务进一步与 AI 服务解耦
