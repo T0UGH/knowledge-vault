@@ -207,11 +207,89 @@ notifications:
 
 ---
 
-## 六、一句话收口
+## 六、关于 bootstrap / install 脚本的当前设计判断
+
+本轮进一步收口出的一个方向是：后续可以增加一个 **非交互式 bootstrap/install 脚本**，目标不是做万能安装器，而是把 AGM/OpenClaw 推进到“最小可用（至少能收通知）”状态。
+
+当前对这个脚本的边界判断如下：
+
+### 1. 目标状态
+脚本执行完成后，应达到：
+- 环境满足
+- agm 已安装
+- OpenClaw plugin 已安装
+- 已写入最小默认配置
+- 默认通知发到 `main`
+- 至少能收通知
+
+### 2. 输入方式
+脚本应为 **非交互式**，主要给 agent / 自动化流程用，不依赖人类逐步输入。
+
+当前倾向由环境变量/参数提供最小输入，例如：
+- `AGM_SELF_ID`
+- `AGM_SELF_REPO_PATH`
+- 可选 `AGM_CONFIG_PATH`
+
+### 3. 对系统依赖的策略
+对系统级依赖：
+- `git`
+- `node`
+- `npm`
+- `openclaw`
+
+当前判断为：
+> **只检查，不自动安装。**
+
+缺少任一关键依赖时，脚本应明确失败并退出，而不是尝试帮用户做系统层安装。
+
+### 4. 对 AGM 自身的职责
+脚本可以负责：
+- 安装 `@t0u9h/agent-git-mail`
+- 安装 `@t0u9h/openclaw-agent-git-mail`
+- 写 AGM 默认配置
+
+但当前不建议让脚本负责：
+- 自动 clone mailbox repo
+- 自动创建 remote repo
+- 自动配置联系人/通讯录
+- 自动发现所有 session
+
+### 5. 这轮只保证“能收通知”，不保证“立即可发”
+当前对 bootstrap 的目标收口为：
+> **先做到最小可用（receive-ready），不把联系人/address-book 初始化塞进第一版脚本。**
+
+也就是说：
+- 执行完脚本后，系统至少能收通知
+- 但给别人发信所需的 contact/address-book 配置，可以后续再补
+
+### 6. 一个重要约束：脚本必须 self-safe，避免 OpenClaw 自杀式安装
+这是本轮讨论中新增的关键设计约束。
+
+如果这个脚本由 OpenClaw/agent 自己执行，而脚本又粗暴地：
+- 覆盖当前配置
+- reload/restart 当前 gateway
+- 重装并立即切换运行时依赖
+
+就可能导致当前会话中断或环境自毁。
+
+因此当前判断是：
+
+> **bootstrap/install 脚本必须满足 self-safe / idempotent 原则。**
+
+具体应满足：
+- 默认不自动重启 OpenClaw / gateway
+- 重复执行应尽量 no-op
+- 已初始化时应快速返回 success/no-op
+- 只补 AGM 自己最小配置，不大范围覆盖现有 OpenClaw 主配置
+- 不因执行脚本导致当前 session 中断
+
+这意味着脚本应更像一个“无害 bootstrap”，而不是“强控制安装器”。
+
+## 七、一句话收口
 
 当前 AGM 的核心链路已经能跑，问题已经从“功能能不能用”转移到了：
 
-> **配置语义是否清楚、联系人模型是否成立、缺配置时是否可诊断。**
+> **配置语义是否清楚、联系人模型是否成立、缺配置时是否可诊断，以及 bootstrap 是否能安全把系统推进到最小可用。**
 
 因此，MVP 增补版最值得做的不是大自动化，而是：
 
@@ -219,3 +297,4 @@ notifications:
 2. 补通讯录 / contact 语义
 3. 补薄 preflight / guardrail
 4. 保持默认 main 路由
+5. 设计一个 self-safe 的非交互式 bootstrap 脚本
