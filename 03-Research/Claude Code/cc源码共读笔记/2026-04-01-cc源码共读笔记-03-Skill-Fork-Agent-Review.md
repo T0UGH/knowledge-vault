@@ -1,5 +1,5 @@
 ---
-title: cc源码共读笔记 04｜Skill / Fork / Agent / Review
+title: cc源码共读笔记 03｜Skill / Fork / Agent / Review
 date: 2026-04-01
 tags:
   - claude-code
@@ -12,7 +12,7 @@ status: in-progress
 source_repo: https://github.com/T0UGH/cc
 ---
 
-# cc源码共读笔记 04｜Skill / Fork / Agent / Review
+# cc源码共读笔记 03｜Skill / Fork / Agent / Review
 
 记录时间：2026-04-01
 对应源码仓：`~/workspace/cc`

@@ -23,18 +23,17 @@ source_repo: https://github.com/T0UGH/cc
 
 - `00` 学习路线
 - `01` Skill 总图
-- `02` Skill frontmatter 字段速查
-- `03` Skill frontmatter 字段速查（humanized）
-- `04` Skill / Fork / Agent / Review
-- `05` 环境变量有效性校验
+- `02` Skill frontmatter 字段速查（humanized）
+- `03` Skill / Fork / Agent / Review
+- `04` 环境变量有效性校验
 
 ## 阅读顺序建议
 
 1. 先看 `00`，建立整体学习顺序
 2. 再看 `01`，建立 skill 的总体心智模型
-3. 然后看 `02` / `03`，把 frontmatter 细节补齐
-4. 再看 `04`，理解 skill、fork、agent、subagent 的边界
-5. 最后看 `05`，作为源码核对类专题示例
+3. 然后看 `02`，把 frontmatter 细节补齐
+4. 再看 `03`，理解 skill、fork、agent、subagent 的边界
+5. 最后看 `04`，作为源码核对类专题示例
 
 ## 后续扩展建议
 
