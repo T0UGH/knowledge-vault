@@ -1,0 +1,221 @@
+---
+title: Claude Code 系统学习路线
+date: 2026-04-01
+tags:
+  - claude-code
+  - learning-path
+  - source-reading
+  - skills
+status: open
+source_repo: https://github.com/T0UGH/cc
+---
+
+# Claude Code 系统学习路线
+
+记录时间：2026-04-01
+对应源码仓：`~/workspace/cc`
+
+## 背景
+
+希望系统性学习 Claude Code 代码仓，不是随便翻几个文件，而是建立一套有顺序的共学路线。目标不是一次性读完所有目录，而是先建立心智模型，再逐层深入。
+
+同时，贵平明确补充了一个偏好：
+
+> **虽然可以给完整学习顺序，但实际最想先学的是 skill。**
+
+所以这份路线既保留全局顺序，也要允许实际执行时从 skill 相关部分先切入。
+
+---
+
+## 总体原则
+
+不按目录顺序读，而按“建立心智模型”的顺序读。
+
+优先级应是：
+
+1. 先知道系统是什么
+2. 再知道一次交互怎么跑
+3. 再知道工具和 skill 怎么接进来
+4. 再看 session / 权限 / telemetry / bridge 等更深层结构
+
+避免一上来扎进遥测、风控、MCP 或零散 utility 文件，导致只有局部知识，没有整体感。
+
+---
+
+## 全局学习路线（完整版）
+
+### 第 0 阶段：建立地图
+
+目标：知道这个项目是什么、入口在哪、有哪些大块。
+
+建议先看：
+
+- `README.md`
+- `package.json`
+- `RESTORED_FROM_SOURCEMAP.md`
+- `src/main.tsx`
+- `src/cli/print.ts`
+
+要回答：
+
+- 这是一个怎样的程序形态（CLI / TUI / agent runtime / SDK 混合体）
+- 主入口在哪
+- 主循环在哪
+- 输入输出壳子长什么样
+
+---
+
+### 第 1 阶段：主流程
+
+目标：搞清楚一次用户输入是怎么进入系统、怎么触发模型和工具、怎么返回输出的。
+
+重点文件：
+
+- `src/main.tsx`
+- `src/screens/REPL.tsx`
+- `src/QueryEngine.ts`
+- `src/utils/processUserInput/processUserInput.ts`
+- `src/utils/processUserInput/processTextPrompt.ts`
+- `src/services/tools/toolExecution.ts`
+
+---
+
+### 第 2 阶段：状态与会话
+
+目标：理解 session、resume、conversation state 的组织方式。
+
+重点文件：
+
+- `src/utils/session*.ts`
+- `src/utils/sessionState.ts`
+- `src/utils/sessionStorage.ts`
+- `src/utils/sessionStart.ts`
+- `src/utils/sessionRestore.ts`
+- `src/assistant/sessionHistory.ts`
+
+---
+
+### 第 3 阶段：工具系统
+
+目标：理解 Claude Code 为什么能像 agent 一样读文件、改文件、跑命令、调 MCP。
+
+重点文件：
+
+- `src/tools/`
+- `src/Tool.ts`
+- `src/tools.ts`
+- `src/services/tools/toolExecution.ts`
+- `src/utils/tool*`
+
+---
+
+### 第 4 阶段：权限与执行边界
+
+目标：搞清楚安全机制、权限判断、命令执行边界。
+
+重点文件：
+
+- `src/utils/permissions/`
+- `src/utils/shell/`
+- `src/utils/bash/`
+- `src/services/policyLimits/`
+
+---
+
+### 第 5 阶段：身份、OAuth、遥测、归因
+
+目标：理解账号体系、attribution header、fingerprint、telemetry。
+
+重点文件：
+
+- `src/services/oauth/`
+- `src/constants/oauth.ts`
+- `src/utils/fingerprint.ts`
+- `src/constants/system.ts`
+- `src/services/analytics/`
+
+---
+
+### 第 6 阶段：高级能力
+
+目标：理解 MCP、bridge、remote、plugins、tasks、team memory 这些更平台化的能力。
+
+重点文件：
+
+- `src/services/mcp/`
+- `src/bridge/`
+- `src/services/teamMemorySync/`
+- `src/plugins/`
+- `src/tasks/`
+- `src/remote/`
+
+---
+
+## 实际共学顺序（按贵平兴趣调整）
+
+虽然完整路线如上，但当前应尊重一个更关键的偏好：
+
+> **贵平其实最想先学 skill。**
+
+所以实际执行时，不必机械从入口开始，而可以改成：
+
+### 优先路线 A：先学 skill
+
+建议先切这条：
+
+1. `src/tools/SkillTool/`
+2. `src/services/skills/`（若仓内存在对应实现层）
+3. `src/skills/`
+4. skill 发现 / 加载 / 注册相关逻辑
+5. skill 与 prompt / tool / system prompt 的连接点
+
+重点要回答的问题：
+
+- Claude Code 里的 skill 是什么抽象
+- skill 和普通 tool 的边界是什么
+- skill 是 prompt 模板、工作流定义，还是更像插件
+- skill 在 runtime 中是如何被发现、加载、注入和调用的
+- skill 与 system prompt / tool availability / slash command 的关系是什么
+
+### 再回补主链路
+
+学完 skill 后，再回补：
+
+1. `package.json`
+2. `src/main.tsx`
+3. `src/screens/REPL.tsx`
+4. `src/QueryEngine.ts`
+
+这样做的好处是：
+
+- 先满足真实兴趣点
+- 更容易有持续学习动力
+- 再回头看主链路时，会带着“skill 是怎么插进去的”这个问题读代码，理解反而更深
+
+---
+
+## 建议的共学方式
+
+最有效的方式不是一次看很多文件，而是：
+
+> **每次只挑 1–2 个文件，由助手解释这个文件在系统中的位置、它解决什么问题、关键结构是什么、哪些地方值得重点读。**
+
+推荐输出格式：
+
+1. 这个文件在整个系统中的位置
+2. 先看哪几个类型 / 函数 / 导出
+3. 它和哪些上游 / 下游模块相连
+4. 读完后应得到什么结论
+5. 有哪些容易误读的点
+
+---
+
+## 当前建议
+
+如果下一步正式开始学习，最合理的起点应改成：
+
+> **先学 skill。**
+
+优先把 skill 当作第一个专题，而不是按原本路线先从 package/main 开始。
+
+这不是推翻全局路线，而是对“学习动力”和“真实兴趣点”的一次优先级调整。
