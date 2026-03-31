@@ -1,4 +1,4 @@
-> 来源：<https://github.com/instructkr/claude-code>
+> From: https://github.com/instructkr/claude-code
 
 # Claude Code 封号机制深度探查报告
 
@@ -6,7 +6,7 @@
 
 ## 一、核心结论
 
-> [!NOTE]
+> [!IMPORTANT]
 > Claude Code 构建了一套**企业级用户追踪和行为分析系统**，通过 Device ID（永久标识）+ 环境指纹（40+ 维度）+ 行为遥测（640+ 事件类型）形成完整的用户画像。封号并非单一触发，而是多维度综合判定。
 
 ### 封号最可能的 5 大原因
@@ -29,19 +29,22 @@ Claude Code 通过以下标识符**跨会话永久追踪用户**：
 
 | 标识符 | 生成方式 | 存储位置 | 生命周期 |
 | --- | --- | --- | --- |
-| Device ID | `randomBytes(32).toString('hex')` | `~/.claude/config.json` | **永久**，除非手动删除 |
-| Account UUID | OAuth 登录时服务端下发 | `~/.claude/config.json` | 绑定账号 |
+| Device ID | `randomBytes(32).toString('hex')` | `~/.claude.json` | **永久**，除非手动删除 |
+| Account UUID | OAuth 登录时服务端下发 | `~/.claude.json` | 绑定账号 |
 | Organization UUID | OAuth 登录时下发 | 同上 | 绑定组织 |
 | Session ID | `randomUUID()` 每次会话生成 | 内存 | 单次会话 |
 | Email | OAuth 或 `git config user.email` | 同上 | 绑定身份 |
 
-> [!NOTE] Device ID 是 256 位随机值，首次运行时生成并**永久存储**。它是所有事件上报的核心标识，Anthropic 可通过它精确关联同一设备上的所有活动。
+> [!WARNING]
+> Device ID 是 256 位随机值，首次运行时生成并**永久存储**。它是所有事件上报的核心标识，Anthropic 可通过它精确关联同一设备上的所有活动。
 
 ### 2.2 消息内容指纹（Fingerprint）
 
 源码位置：`src/utils/fingerprint.ts`
 
-    算法：SHA256( "59cf53e54c78" + 首条消息[4] + 首条消息[7] + 首条消息[20] + 版本号 )[:3]
+```plaintext
+算法：SHA256( "59cf53e54c78" + 首条消息[4] + 首条消息[7] + 首条消息[20] + 版本号 )[:3]
+```
 
 这个 3 字符指纹被嵌入到：
 
@@ -53,21 +56,24 @@ Claude Code 通过以下标识符**跨会话永久追踪用户**：
 
 ### 2.3 每次 API 请求携带的身份信息
 
-    HTTP Headers:
-      x-app: cli
-      User-Agent: claude-cli/2.x.x (external, cli)
-      X-Claude-Code-Session-Id: {SESSION_UUID}
-      x-anthropic-billing-header: cc_version=2.x.x.{FINGERPRINT}; cc_entrypoint=cli
-      x-client-request-id: {REQUEST_UUID}
+```plaintext
+HTTP Headers:
+  x-app: cli
+  User-Agent: claude-cli/2.x.x (external, cli)
+  X-Claude-Code-Session-Id: {SESSION_UUID}
+  x-anthropic-billing-header: cc_version=2.x.x.{FINGERPRINT}; cc_entrypoint=cli
+  x-client-request-id: {REQUEST_UUID}
 
-    Request Body metadata:
-      user_id: JSON 编码的 Device ID + Account UUID + Session ID
+Request Body metadata:
+  user_id: JSON 编码的 Device ID + Account UUID + Session ID
+```
 
 ---
 
 ## 三、环境指纹采集（40+ 维度）
 
-> [!NOTE] Claude Code 在启动时对用户环境进行**大规模枚举**，以下信息全部上报至服务端。
+> [!CAUTION]
+> Claude Code 在启动时对用户环境进行**大规模枚举**，以下信息全部上报至服务端。
 
 ### 3.1 系统级信息
 
@@ -162,10 +168,7 @@ Claude Code 通过环境变量和文件探测自动识别运行环境：
 
 ### 4.1 三路并发上报架构
 
-<figure>
-<img src="board_GvJpwgtmUhFcDobzBMcl62KRgzh.drawio" alt="board_GvJpwgtmUhFcDobzBMcl62KRgzh" />
-<figcaption aria-hidden="true">board_GvJpwgtmUhFcDobzBMcl62KRgzh</figcaption>
-</figure>
+<whiteboard token="VxX9wMHMxhEw0kbv9JVc8Rn4nrh" type="blank"/>
 
 ### 4.2 第一方事件日志（最核心）
 
@@ -188,36 +191,122 @@ Claude Code 通过环境变量和文件探测自动识别运行环境：
 | `tengu_cancel` | 取消操作 | 低 |
 | `tengu_auto_mode_*` | 自动模式使用 | 中 - 自动化检测 |
 
+实际数据:
+
+```json
+ {
+      // ===== 事件头 =====
+      "event_type": "ClaudeCodeInternalEvent",     // 事件大类
+
+      "event_data": {
+          // ===== 事件基础信息 =====
+          "event_name": "tengu_config_cache_stats", // 事件名：配置缓存统计
+          "event_id": "ed1cae38-01a8-44dd-...",     // 事件唯一 ID
+          "client_timestamp": "2026-03-22T10:26:10.747Z",  // 客户端时间戳
+
+          // ===== 用户身份标识（核心追踪字段）=====
+          "device_id": "eab29b910fcc91bxxxxxxxxx8f3c3e6d53d06",
+                                                     // 你的永久设备 ID（256 位）
+          "session_id": "8c503d21-2d92-...",         // 本次会话 ID
+          "email": "xxx@gmail.com",              // 你的邮箱（直接明文上报）
+          "auth": {
+              "organization_uuid": "b2c3112d-...",   // 组织 UUID
+              "account_uuid": "7616b4d3-..."         // 账户 UUID
+          },
+
+          // ===== 客户端信息 =====
+          "model": "claude-opus-4-6[1m]",           // 使用的模型
+          "user_type": "external",                   // 用户类型（非内部员工）
+          "entrypoint": "cli",                       // 入口点
+          "is_interactive": true,                    // 交互模式
+          "client_type": "cli",                      // 客户端类型
+          "betas": "claude-code-20250219,oauth-2025-04-20,...",  // 启用的 Beta 特性
+
+          // ===== 环境指纹（50+ 维度）=====
+          "env": {
+              "platform": "darwin",                  // macOS
+              "platform_raw": "darwin",              // 原始平台
+              "arch": "arm64",                       // Apple Silicon
+              "node_version": "v24.3.0",             // Node.js 版本
+              "terminal": "tmux",                    // 终端类型
+              "package_managers": "npm,pnpm",        // 安装了哪些包管理器
+              "runtimes": "deno,node",               // 安装了哪些运行时
+              "is_running_with_bun": true,           // 是否用 Bun 运行
+              "is_ci": false,                        // 非 CI 环境
+              "is_claubbit": false,
+              "is_github_action": false,             // 非 GitHub Actions
+              "is_claude_code_action": false,
+              "is_claude_ai_auth": true,             // 使用 Claude.ai OAuth 认证
+              "is_claude_code_remote": false,        // 非远程模式
+              "is_conductor": false,
+              "is_local_agent_mode": false,
+              "deployment_environment": "unknown-darwin",
+              "version": "2.1.81",                   // Claude Code 版本
+              "version_base": "2.1.81",
+              "build_time": "2026-03-20T21:26:18Z",  // 构建时间
+              "vcs": "git"                           // 版本控制系统
+          },
+
+          // ===== 进程资源监控（Base64 解码后）=====
+          "process": {
+              "uptime": 22.29,                       // 进程已运行 22 秒
+              "rss": 391266304,                      // 内存占用 373MB
+              "heapTotal": 52228096,                 // 堆总大小 50MB
+              "heapUsed": 133928806,                 // 堆已用 128MB
+              "external": 88280115,                  // 外部内存 84MB
+              "arrayBuffers": 23265130,              // ArrayBuffer 22MB
+              "constrainedMemory": 51539607552,      // 受限内存 48GB（你的总内存）
+              "cpuUsage": {
+                  "user": 1814859,                   // 用户态 CPU 微秒
+                  "system": 325661                   // 内核态 CPU 微秒
+              },
+              "cpuPercent": 3.80                     // CPU 使用率 3.8%
+          },
+
+          // ===== 额外元数据（Base64 解码后）=====
+          "additional_metadata": {
+              "rh": "a1eebab6bdf541b1",             // 你的 Git 仓库 remote hash
+              "cache_hits": 2534,                    // 缓存命中次数
+              "cache_misses": 6,                     // 缓存未命中次数
+              "hit_rate": 0.9976                     // 命中率 99.76%
+          }
+      }
+  }
+
+```
+
 ### 4.3 每个事件附带的元数据
 
-    核心字段:
-      session_id          - 会话 ID
-      device_id           - 设备 ID（永久）
-      account_uuid        - 账户 UUID
-      organization_uuid   - 组织 UUID
-      subscription_type   - 订阅类型（pro/max/enterprise/team）
-      rate_limit_tier     - 速率限制等级
-      model               - 使用的模型
-      version             - 客户端版本
-      platform            - 操作系统
-      arch                - CPU 架构
-      entrypoint          - 入口点（cli/sdk/bridge）
-      is_interactive      - 是否交互模式
-      is_ci               - 是否 CI 环境
+```plaintext
+核心字段:
+  session_id          - 会话 ID
+  device_id           - 设备 ID（永久）
+  account_uuid        - 账户 UUID
+  organization_uuid   - 组织 UUID
+  subscription_type   - 订阅类型（pro/max/enterprise/team）
+  rate_limit_tier     - 速率限制等级
+  model               - 使用的模型
+  version             - 客户端版本
+  platform            - 操作系统
+  arch                - CPU 架构
+  entrypoint          - 入口点（cli/sdk/bridge）
+  is_interactive      - 是否交互模式
+  is_ci               - 是否 CI 环境
 
-    环境指纹（env 对象）:
-      terminal            - 终端类型
-      package_managers     - 包管理器
-      runtimes            - 运行时
-      is_docker           - Docker 环境
-      deployment_env      - 部署环境类型
-      linux_distro_*      - Linux 发行版信息
+环境指纹（env 对象）:
+  terminal            - 终端类型
+  package_managers     - 包管理器
+  runtimes            - 运行时
+  is_docker           - Docker 环境
+  deployment_env      - 部署环境类型
+  linux_distro_*      - Linux 发行版信息
 
-    进程资源（Base64 编码）:
-      uptime              - 进程运行时间
-      rss                 - 内存占用
-      heapUsed            - 堆内存使用
-      cpuPercent          - CPU 使用率
+进程资源（Base64 编码）:
+  uptime              - 进程运行时间
+  rss                 - 内存占用
+  heapUsed            - 堆内存使用
+  cpuPercent          - CPU 使用率
+```
 
 ### 4.4 Datadog 上报
 
@@ -267,7 +356,8 @@ Claude Code 通过环境变量和文件探测自动识别运行环境：
 
 ## 五、服务端远程控制机制
 
-> [!NOTE] Anthropic 可通过以下机制**远程控制客户端行为**，无需用户知情。
+> [!WARNING]
+> Anthropic 可通过以下机制**远程控制客户端行为**，无需用户知情。
 
 ### 5.1 Policy Limits（组织级策略限制）
 
@@ -317,10 +407,7 @@ Claude Code 通过环境变量和文件探测自动识别运行环境：
 
 ### 6.1 身份关联检测（账号共享）
 
-<figure>
-<img src="board_VneSwuBqUhs5yPbRSgkleAGtgOd.drawio" alt="board_VneSwuBqUhs5yPbRSgkleAGtgOd" />
-<figcaption aria-hidden="true">board_VneSwuBqUhs5yPbRSgkleAGtgOd</figcaption>
-</figure>
+<whiteboard token="E7c5wDiCPhIHgmbXHYTcRlERnJb" type="blank"/>
 
 **检测依据**：
 
@@ -334,11 +421,11 @@ Claude Code 通过环境变量和文件探测自动识别运行环境：
 
 **检测链路**：
 
-1.  每次 API 请求上报 `tengu_api_success`，包含 token 用量和模型
+1. 每次 API 请求上报 `tengu_api_success`，包含 token 用量和模型
 
-2.  服务端按 `account_uuid` + `subscription_type` + `rate_limit_tier` 聚合
+1. 服务端按 `account_uuid` + `subscription_type` + `rate_limit_tier` 聚合
 
-3.  超出配额阈值 → 429 错误 → 继续违规 → 触发封号
+1. 超出配额阈值 → 429 错误 → 继续违规 → 触发封号
 
 **上报的关键指标**：
 
@@ -391,10 +478,7 @@ API 请求中包含 `anti_distillation: ["fake_tools"]`，检测是否有人用 
 
 ## 七、完整数据流向全景图
 
-<figure>
-<img src="board_NmbxwEmjDhgXB0bs2MalE3Usg6f.drawio" alt="board_NmbxwEmjDhgXB0bs2MalE3Usg6f" />
-<figcaption aria-hidden="true">board_NmbxwEmjDhgXB0bs2MalE3Usg6f</figcaption>
-</figure>
+<whiteboard token="Wv8Lw91prhnfWBbnkHEcozsEnsC" type="blank"/>
 
 ---
 
@@ -444,7 +528,7 @@ API 请求中包含 `anti_distillation: ["fake_tools"]`，检测是否有人用 
 
 | 文件/目录 | 内容 | 建议 |
 | --- | --- | --- |
-| `~/.claude/config.json` | Device ID + 账户信息 | 删除 `userID` 字段可重置设备标识 |
+| `~/.claude.json` | Device ID + 账户信息 | 删除 `userID` 字段可重置设备标识 |
 | `~/.claude/telemetry/` | 失败的遥测事件缓存 | 定期清理 |
 | `~/.claude/.credentials.json` | 明文凭证（Keychain 不可用时） | 确保 Keychain 可用 |
 | `~/.claude/projects/` | 完整对话历史 | 定期清理敏感会话 |
@@ -463,4 +547,5 @@ Claude Code 的数据采集体系可以总结为**三层模型**：
 
 这三层数据通过三条通道（1P API + Datadog + GrowthBook）实时上报，服务端拥有对每个用户**完整的使用画像**，可以从多个维度检测异常并触发封号决策。
 
-> [!NOTE] 最安全的做法：使用 Bedrock/Vertex 第三方提供商（自动禁用所有分析），或设置`DISABLE_TELEMETRY=1` + 控制使用频率 + 一人一号。
+> [!TIP]
+> 最安全的做法：使用 Bedrock/Vertex 第三方提供商（自动禁用所有分析），或设置`DISABLE_TELEMETRY=1` + 控制使用频率 + 一人一号。
