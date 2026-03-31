@@ -1,5 +1,5 @@
 ---
-title: Claude Code Skill frontmatter 字段速查
+title: cc源码共读笔记 02｜Skill frontmatter 字段速查
 date: 2026-04-01
 tags:
   - claude-code
@@ -10,7 +10,7 @@ status: done
 source_repo: https://github.com/T0UGH/cc
 ---
 
-# Claude Code Skill frontmatter 字段速查
+# cc源码共读笔记 02｜Skill frontmatter 字段速查
 
 记录时间：2026-04-01
 对应源码仓：`~/workspace/cc`
