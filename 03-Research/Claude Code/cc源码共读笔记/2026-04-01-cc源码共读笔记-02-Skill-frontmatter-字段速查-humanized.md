@@ -176,7 +176,18 @@ disable-model-invocation: true
 context: fork
 ```
 
-源码里目前明确识别的是 `fork`。
+这里现在要记得更准确一点：
+
+> `context: fork` 不是“轻量切个分支”，而是 **这个 skill 不在当前主对话里 inline 展开，而是起一个独立 subagent 去执行**。
+
+也就是说：
+
+- `inline`：把 skill 内容直接展开进当前对话
+- `fork`：把这次 skill 扔给一个独立子 agent 跑，拥有单独上下文和 token budget
+
+所以看到 `context: fork`，脑子里不要先想到“模式切换”，而要先想到：
+
+> **这是执行形态切到 subagent 了。**
 
 ### `agent`
 
@@ -184,7 +195,20 @@ context: fork
 agent: researcher
 ```
 
-更像多 agent / 特定 agent 场景里的字段。
+这个字段现在也可以说得更准：
+
+> `agent` 不是普通 inline skill 的装饰字段，**它主要是给 `context: fork` skill 用的，用来指定 fork 出来的子 agent 类型。**
+
+更直接一点：
+
+- 如果 skill 是 inline，`agent` 基本没什么存在感
+- 如果 skill 是 fork，`agent` 才真正决定“由哪类子 agent 来跑”
+- 不写的话，会回退到默认 agent type（当前看到的是 `general-purpose`）
+
+所以可以把它记成：
+
+> **`context` 决定要不要另起一个子 agent。**  
+> **`agent` 决定这个子 agent 用什么类型。**
 
 ### `hooks`
 
@@ -206,6 +230,18 @@ shell:
 ```
 
 和 skill 里的 shell 行为有关。这个先别乱碰，等把 skill runtime 再看深一点再说。
+
+### 关于 `fork` 和 `agent` 的最短记忆版
+
+如果以后只想 10 秒想起来，记这一组就够了：
+
+- **skill**：任务方法 / SOP
+- **context: fork**：这次不要在主线程 inline 做，起一个 subagent 去做
+- **agent**：这个 subagent 用什么角色类型
+
+一句话压缩就是：
+
+> **`context` 决定“要不要分身去做”，`agent` 决定“分出去的是谁”。**
 
 ---
 
