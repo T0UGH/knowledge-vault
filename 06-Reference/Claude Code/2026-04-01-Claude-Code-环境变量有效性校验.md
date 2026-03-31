@@ -1,0 +1,260 @@
+---
+title: Claude Code 环境变量有效性校验
+date: 2026-04-01
+tags:
+  - claude-code
+  - source-reading
+  - telemetry
+  - privacy
+  - env
+status: done
+source_repo: https://github.com/T0UGH/cc
+---
+
+# Claude Code 环境变量有效性校验
+
+记录时间：2026-04-01
+对应源码仓：`~/workspace/cc`
+
+## 背景
+
+围绕《Claude Code 封号机制深度探查报告》，重点核对了文中提到的几类环境变量，想确认两件事：
+
+1. 这些环境变量在源码里是否真的生效
+2. 它们的作用边界到底是什么，尤其是“影响客户端行为”与“降低封号风险”是不是同一回事
+
+本次结论基于对以下源码文件的直接阅读：
+
+- `src/utils/privacyLevel.ts`
+- `src/services/analytics/config.ts`
+- `src/services/api/bootstrap.ts`
+- 补充参考：`src/constants/system.ts`
+- 补充参考：`src/services/analytics/metadata.ts`
+
+---
+
+## 一句话结论
+
+> 文中提到的几个关键环境变量，**源码上看确实会生效**，能影响 Claude Code 的客户端行为；
+> 但它们主要影响的是 **telemetry / 非必要流量 / provider 选择**，**不等于“隐身”**，也不能直接推出“足以规避风控或封号”。
+
+---
+
+## 已确认有效的环境变量
+
+### 1. `DISABLE_TELEMETRY=1`
+
+**结论：有效。**
+
+源码依据：`src/utils/privacyLevel.ts`
+
+逻辑：
+
+- `DISABLE_TELEMETRY` 会把隐私级别切到 `no-telemetry`
+- `isTelemetryDisabled()` 在 `no-telemetry` 与 `essential-traffic` 两种级别都会返回 true
+
+进一步影响：
+
+- `src/services/analytics/config.ts` 中的 `isAnalyticsDisabled()` 会因此返回 true
+- 会关闭 analytics / telemetry 相关逻辑
+
+代码注释给出的语义是：
+
+- 禁用 Datadog
+- 禁用 1P events
+- 禁用 feedback survey
+
+**边界：**
+
+- 这不等于关闭所有网络流量
+- 这也不等于核心 API 请求就不再带客户端归因信息
+
+---
+
+### 2. `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1`
+
+**结论：有效，而且比 `DISABLE_TELEMETRY=1` 更强。**
+
+源码依据：`src/utils/privacyLevel.ts`
+
+逻辑：
+
+- `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` 会把隐私级别切到 `essential-traffic`
+
+代码注释明确写了：
+
+- `essential-traffic` = **ALL nonessential network traffic disabled**
+- 包括：telemetry、auto-updates、grove、release notes、model capabilities 等
+
+在 `src/services/api/bootstrap.ts` 中也能看到真实用法：
+
+- 如果 `isEssentialTrafficOnly()` 为 true，则直接跳过 bootstrap API 请求
+
+**边界：**
+
+- 这不是“离线模式”
+- 核心对话/API 请求仍然需要发，不然 Claude Code 无法工作
+- 它的意义是**减少非必要流量面**，不是完全消除身份暴露
+
+---
+
+### 3. `CLAUDE_CODE_USE_BEDROCK=1`
+
+**结论：有效。**
+
+源码依据：`src/services/analytics/config.ts`
+
+逻辑：
+
+- 若设置 `CLAUDE_CODE_USE_BEDROCK`，`isAnalyticsDisabled()` 会返回 true
+
+这说明：
+
+- 在 Bedrock provider 路径下，Claude Code 自己的 analytics 会被关闭
+
+**边界：**
+
+- 这并不等于 AWS 那侧没有日志、审计、计费或监控
+- 它更准确的含义是：**Anthropic first-party analytics 侧减少/关闭**，而不是全链路匿名
+
+---
+
+### 4. `CLAUDE_CODE_USE_VERTEX=1`
+
+**结论：有效。**
+
+源码依据同上：`src/services/analytics/config.ts`
+
+逻辑与 Bedrock 一样：
+
+- 在 Vertex provider 路径下，analytics disabled
+
+**边界同上。**
+
+---
+
+### 5. `CLAUDE_CODE_USE_FOUNDRY=1`
+
+**结论：有效。**
+
+这条在文章里未必强调，但源码里同样存在：
+
+- `src/services/analytics/config.ts`
+
+说明 Foundry 也被纳入“第三方 provider -> 关闭 analytics”这套逻辑里。
+
+---
+
+## 重要边界：有效 ≠ 足以规避风控
+
+这是这轮阅读里最重要的校准点。
+
+这些环境变量的确会生效，但它们生效的层面主要是：
+
+- telemetry
+- nonessential traffic
+- provider 路径
+- 一部分客户端行为
+
+它们**不是**下面这些结论的直接证据：
+
+- “设了之后就能隐身”
+- “设了之后就不再暴露客户端身份”
+- “设了之后就能显著规避封号”
+
+---
+
+## 为什么说它们不等于“隐身”
+
+因为从已读源码看，Claude Code 还有其他归因机制：
+
+### attribution header 仍然是关键变量
+
+参考：`src/constants/system.ts`
+
+已确认：
+
+- 客户端会构造 `x-anthropic-billing-header`
+- header 中含有：
+  - `cc_version`
+  - `cc_entrypoint`
+  - fingerprint
+- 某些条件下还有 native attestation 相关占位字段 `cch=00000`
+
+这说明：
+
+> 即使关闭 telemetry，也不等于核心 API 请求就不再携带客户端归因信息。
+
+所以正确理解应该是：
+
+- 这些环境变量能**减少上报面**
+- 但不代表能**抹掉核心请求身份特征**
+
+---
+
+## 更准确的实际结论
+
+### 可以确认的
+
+1. 文章中提到的关键环境变量，源码上大多确实生效
+2. `DISABLE_TELEMETRY=1` 会关闭 telemetry/analytics 相关逻辑
+3. `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` 会进一步关闭非必要网络请求
+4. Bedrock / Vertex / Foundry 路径会让 Claude Code 自身 analytics disabled
+
+### 不能直接推出的
+
+1. 这些变量足以避免被识别为官方客户端
+2. 这些变量足以显著降低风控概率
+3. 这些变量能消除 attribution header / 指纹 / 核心请求归因
+4. “关闭 telemetry” 与 “不被封号” 存在直接因果关系
+
+---
+
+## 个人判断
+
+如果只问“这些环境变量有没有用”，答案是：
+
+> **有用，而且是源码级确认的有用。**
+
+但如果问“靠这些变量能不能保命”，答案是：
+
+> **不能这么理解。**
+
+它们更像：
+
+- 减少额外暴露面
+- 关闭一部分 analytics / 非必要流量
+- 让客户端更克制
+
+而不是：
+
+- 一键匿名
+- 一键绕过风控
+
+---
+
+## 可操作记忆版
+
+### 真有效
+
+- `DISABLE_TELEMETRY=1` → 关 telemetry
+- `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` → 关更多非必要网络
+- `CLAUDE_CODE_USE_BEDROCK=1` → 走 Bedrock，并关闭 Claude Code 自己的 analytics
+- `CLAUDE_CODE_USE_VERTEX=1` → 同理
+- `CLAUDE_CODE_USE_FOUNDRY=1` → 同理
+
+### 不要误解成
+
+- “这样就完全匿名了”
+- “这样就不会被风控了”
+- “这样 attribution header/fingerprint 也没了”
+
+---
+
+## 后续可继续核对
+
+如果以后要继续深挖，可优先看：
+
+- `src/services/analytics/metadata.ts`：到底哪些环境信息会进入 metadata
+- `src/services/analytics/firstPartyEventLoggingExporter.ts`：这些事件最终如何发出
+- `src/constants/system.ts`：attribution header 与 attestation 细节
