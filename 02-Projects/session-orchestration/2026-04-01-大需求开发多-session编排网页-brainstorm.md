@@ -363,3 +363,124 @@ status: brainstorming
 - 甚至在必要时回到更早的 design 层
 
 因此，整张图的回流结构不是固定单回路，而是一个带条件分流的多层回流系统。
+
+## 文字版 wireframe v1
+
+### 页面总结构
+- 顶部：标题 / 副标题 / 简短说明
+- 中部：纵向 6 层主图
+- 底部：图例 / 执行体说明 / 连线说明 / human manual execution 注释
+
+### Layer 1 — Demand / Intent
+- 一句话需求（起点）
+
+### Layer 2 — Design Convergence Loop
+- Brainstorm 初版 Design
+- 多路问题发现（agent review / human review / 同事飞书评论 / 带 design 探索其他服务代码）
+- 评论整合与逐条讨论
+- 技术评审
+- 带问题继续找答案
+- 最终版 Design
+
+这一层的重点是第一组大回环：
+- design → 多路找问题 → 逐条讨论 → 技术评审 / 新问题 → 带问题继续找答案 → 更新 design → 再循环
+
+### Layer 3 — Agent / Task Split
+- 跨仓任务拆解
+- Repo Agent A
+- Repo Agent B
+- Rule Engine Config Agent
+- Human Manual Task（例如 web 操作、登录/点击/确认等 agent 不适合直接完成的任务）
+
+### Layer 4 — Agent Plan Loops
+每个 agent 内部都存在一套 plan 回环：
+- Claude Code Plan
+- Codex Review Plan
+- Planner 不接受点
+- Human ↔ Planner Discussion
+- Plan Revision
+- Reviewer Gate
+
+这一层的重点是：
+- reviewer 不是提建议而已，而是阶段出口判断者
+- 人不是纯旁观者，而是参与关键分歧讨论
+
+### Layer 5 — Implementation Loop + Global Reviewer Loop
+#### 单 agent 实现回环
+- New Codex Coding Session
+- Parallel Review Cluster
+  - Claude Code Review 1
+  - Claude Code Review 2
+  - Codex Review
+  - Mira Review 1
+  - Mira Review 2
+- Coder Summarizes Reviews
+- Rebut / Accept / Modify
+- Code Revision
+
+#### 跨 agent 的整体 reviewer 回环
+- Global Reviewer
+- Cross-Agent Issue Detection
+- Global Revision Loop
+
+这一层的重点是：
+- 局部收敛不代表整体收敛
+- 代码实现后仍需系统级整体 reviewer 从跨 agent 视角继续回环
+
+### Layer 6 — Verification / Conditional Return
+- Integration
+- Testing
+- Real Run Validation
+- Conditional Return Router
+
+这一层的重点是：
+- 验证失败后的回流路径不是固定的
+- 会按问题性质回到不同层级：实现 agent / 大 reviewer / planner / 甚至更早 design 层
+
+### Human 的双重角色
+#### 1. Controller
+- 定目标
+- 参与设计讨论
+- 参与 planner 分歧讨论
+- 参与整体判断
+
+#### 2. Manual Executor
+- 承接部分不适合 agent 的任务
+- 重要人工任务单独成节点
+- 次要人工介入用 badge / 小标记表示
+
+### 节点规则
+#### Agent session 节点
+显示：
+- session 名称
+- 执行体
+- 产出物
+
+#### Human manual task 节点
+- 用于承接重要人工操作
+
+#### Human intervention 标记
+- 用于表示某些节点需要人工介入，但不足以单独成节点
+
+### 连线规则
+至少区分：
+- 主推进线
+- 并行展开线
+- 回环线
+- 汇总线
+- 条件回流线
+
+### 执行体视觉编码建议
+- Claude Code：蓝色系
+- Codex：绿色系
+- Mira：紫色系
+- Human：中性偏金/灰
+- Reviewer Gate / Global Reviewer：高对比强调色
+
+### 当前状态
+目前已完成 brainstorm + 文字版 wireframe v1，**还没有进入网页实现**。
+后续如果继续推进，下一步应补：
+- 更接近最终页面的 wireframe v2
+- 标题 / 副标题候选
+- 是否采用单文件静态 HTML 原型或接入现有项目
+- 正式 spec / plan / implementation
