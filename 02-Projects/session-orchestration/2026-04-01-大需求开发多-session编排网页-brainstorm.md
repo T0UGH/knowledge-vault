@@ -275,3 +275,15 @@ status: brainstorming
 - 讨论完修正 plan，再进入下一轮 review
 
 这种回环模式使得每个 agent 的 plan 都经过充分的异构 review 和人机讨论后才进入实现。
+
+### Step 9：是否过关、是否进入下一步，由 reviewer 判断
+在这套 agent 内部回环里，reviewer 不只是提建议，而是承担了阶段出口的判断角色。
+
+也就是说：
+- planner 负责出 plan、吸收讨论、持续修正
+- reviewer 负责判断 plan 是否已经足够清晰、合理、可以过关
+- 人负责参与关键分歧讨论与取舍
+
+因此，是否收敛、是否可以继续往下走，不由 planner 单独决定，而是**由 reviewer 判断**。
+
+这使得 reviewer 在整个流程中不仅是“审稿人”，更像是每个 agent 回环里的质量闸门。
