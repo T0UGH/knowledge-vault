@@ -243,12 +243,35 @@ status: brainstorming
 - 已经吸收了关键问题与约束
 - 可以作为后续 plan / implementation 的稳定起点
 
-## 当前状态
-目前只完成 brainstorm 和设计方向收敛，**还没有进入实现**。
-后续如果继续推进，下一步应补：
-- design 收敛后的后续阶段（例如 plan / implementation / validation）
-- 更完整的阶段划分
-- 具体 session 列表
-- session 之间的连接关系
-- 页面标题 / 副标题候选
-- 网页布局草图与实现方案
+### Step 7：跨仓任务拆解 / agent 拆分
+当最终版 design 已经跨多个代码仓库时，下一步是让 Claude Code 帮助拆解 agent，实质上就是拆解任务。
+
+拆分维度：
+- **两个 for 仓库**：按仓库维度拆，每个仓库各自对应一个 agent
+- **一个 for 规则引擎配置**：按专项能力维度拆，拉出横切的规则引擎配置作为独立 agent
+
+这一步的本质：
+- 把跨仓设计，变成可并行执行的多 agent 任务图
+- 不是按单一维度拆，而是按仓库 + 按能力混合拆
+
+### Step 8：每个 agent 内部跑一套 plan → review 回环
+拆完 agent 之后，不是直接执行。
+
+每个 agent 内部各自跑一套小回环：
+
+1. **Claude Code 出 plan**
+2. **Codex review plan**（异构 agent review）
+3. **Planner（Claude Code）说哪些它不接受**
+4. **人与 planner 讨论这些不接受的部分**
+5. **修正 plan**
+6. **再跑一轮回环...**
+
+这个回环会跑多轮，直到 planner 和人都对这个 plan 满意。
+
+关键点：
+- 不是 Codex 直接决定接受或拒绝
+- 不是人直接拍板
+- 而是 planner 主动提出“我不接受”，再由人和 planner 一起讨论
+- 讨论完修正 plan，再进入下一轮 review
+
+这种回环模式使得每个 agent 的 plan 都经过充分的异构 review 和人机讨论后才进入实现。
