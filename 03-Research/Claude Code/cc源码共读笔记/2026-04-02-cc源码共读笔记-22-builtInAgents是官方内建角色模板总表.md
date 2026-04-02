@@ -14,6 +14,7 @@ source_files:
   - /Users/haha/.openclaw/workspace/cc/src/tools/AgentTool/built-in/verificationAgent.ts
   - /Users/haha/.openclaw/workspace/cc/src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts
 status: done
+source_url: https://feishu.cn/docx/SrAYdyR4Qoj8Eyx7qgCcg5qrnOd
 ---
 
 # Claude Code 源码共读笔记 22：builtInAgents 是官方内建角色模板总表
