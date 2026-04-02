@@ -41,6 +41,7 @@ source_repo: https://github.com/T0UGH/cc
 - `17` ToolSearchTool 是工具发现层
 - `18` 主循环在编排一次完整 agent 回合
 - `19` runAgent 是把 agent 组装成可运行体的装配线
+- `20` forkSubagent 是在同一上下文里分叉出 worker
 
 ## 阅读顺序建议
 
