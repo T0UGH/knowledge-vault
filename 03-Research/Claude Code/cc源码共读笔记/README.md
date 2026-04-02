@@ -26,6 +26,19 @@ source_repo: https://github.com/T0UGH/cc
 - `02` Skill frontmatter 字段速查（humanized）
 - `03` Skill / Fork / Agent / Review
 - `04` 环境变量有效性校验
+- `05` Tool 总图与 BashTool 入口
+- `06` Claude Code tools 总览
+- `07` Tool 体系总览
+- `08` 主循环里 tool 怎么被接住
+- `09` 从 query 到 tool-call 的连接处
+- `10` BashTool 不是跑个 shell 这么简单
+- `11` FileReadTool 统一读取入口
+- `12` FileEditTool 是受控修改原语
+- `13` FileWriteTool 是整文件覆盖原语
+- `14` GrepTool 是结构化内容搜索原语
+- `15` AgentTool 不是再开一个 agent 这么简单
+- `16` SkillTool 是把 skill 接进 runtime 的桥
+- `17` ToolSearchTool 是工具发现层
 
 ## 阅读顺序建议
 
