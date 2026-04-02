@@ -43,6 +43,7 @@ source_repo: https://github.com/T0UGH/cc
 - `19` runAgent 是把 agent 组装成可运行体的装配线
 - `20` forkSubagent 是在同一上下文里分叉出 worker
 - `21` loadAgentsDir 是 agent 定义层的总入口
+- `22` builtInAgents 是官方内建角色模板总表
 
 ## 阅读顺序建议
 
