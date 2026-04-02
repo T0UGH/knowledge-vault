@@ -40,6 +40,7 @@ source_repo: https://github.com/T0UGH/cc
 - `16` SkillTool 是把 skill 接进 runtime 的桥
 - `17` ToolSearchTool 是工具发现层
 - `18` 主循环在编排一次完整 agent 回合
+- `19` runAgent 是把 agent 组装成可运行体的装配线
 
 ## 阅读顺序建议
 
