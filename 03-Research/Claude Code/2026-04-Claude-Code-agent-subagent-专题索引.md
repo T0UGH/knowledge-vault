@@ -147,6 +147,11 @@ flowchart LR
 
 定位：站在服务端工程师视角，讨论 subagent 的适用边界与判断标准。
 
+### 4. built-in 和 custom subagent 怎么分工
+- [[07-Posts/WeChat/2026-04-built-in-和-custom-subagent-怎么分工]]
+
+定位：讨论官方 built-in 与自定义 custom subagent 的迁移框架与分工边界。
+
 ---
 
 ## 五、当前这一组内容回答了哪些问题
