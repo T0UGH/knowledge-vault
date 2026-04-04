@@ -442,17 +442,17 @@ Available profiles: mt, rk
 
 ---
 
-## Phase 8：Bootstrap 收尾 + 双 Profile E2E
+## Phase 8：Bootstrap 收尾 + Docker 隔离 E2E
 
-**目标：** 形成真正可用的新模型，并完成 MT/Hex 双 profile 验证。
+**目标：** 形成真正可用的新模型，并在隔离测试环境中完成 MT/Hex 双 profile 验证。
 
 ### 任务
 - [ ] `bootstrap.ts` 改成 profile-aware
 - [ ] `bootstrap` 写入 `profiles.<name>`，不覆盖其他 profile
 - [ ] 初始化 self repo 到 `~/.agm/profiles/<profile>/self`
 - [ ] 不再要求 `--self-local-repo-path`
-- [ ] 跑 MT 单 profile E2E
-- [ ] 跑 MT / Hex 双 profile E2E
+- [ ] 在 Docker 隔离环境中跑 MT 单 profile E2E
+- [ ] 在 Docker 隔离环境中跑 MT / Hex 双 profile E2E
 
 ### E2E 最少验证链路
 1. `agm --profile mt send --to hex ...`
@@ -460,10 +460,17 @@ Available profiles: mt, rk
 3. `agm --profile hex reply ...` 回给 MT
 4. `mt` / `hex` 的 event log / checkpoint / state 完全隔离
 
+### 测试纪律（必须遵守）
+- **E2E 默认必须在 Docker 隔离环境中执行**
+- **禁止使用本机常驻 HappyClaw / OpenClaw 实例作为完成验收依据**
+- 本机常驻实例最多只可用于临时探索或人工调试，**不计入完成声明**
+- 如果确实需要使用常驻实例侧验证，必须先停下相关实例，并等待贵平明确拍板后才能操作
+- 未经贵平明确确认，不允许直接上手测本机常驻实例
+
 ### 关键判断
-- **Phase 1/2 完成后可开始先跑 MT profile 验证**
-- **Phase 6 完成后可开始 MT / Hex 双 daemon 并存验证**
-- **Phase 8 完成后视为 profile 模型主链闭环**
+- **Phase 1/2 完成后可开始先跑 MT profile 的单元/集成验证**
+- **Phase 6 完成后可开始准备 Docker 化双 profile E2E 环境**
+- **Phase 8 完成且 Docker E2E 跑通后，才视为 profile 模型主链闭环**
 
 ---
 
@@ -506,6 +513,8 @@ Available profiles: mt, rk
 - [ ] Hex daemon 检测并触发
 - [ ] Hex 回复 MT 成功
 - [ ] 两边的 event log / checkpoint 文件互不污染
+- [ ] 以上 E2E 全部在 Docker 隔离环境中完成
+- [ ] 未把本机常驻 HappyClaw / OpenClaw 实例作为验收依据
 
 ---
 
@@ -528,6 +537,9 @@ Available profiles: mt, rk
 
 ### 风险 6：范围漂移到迁移兼容
 本轮最容易被错误拉宽的范围是“顺手兼容旧模型”或“补迁移脚本”。这会显著提高复杂度，并削弱新模型边界。**本轮不纳入。**
+
+### 风险 7：把本机常驻实例误当成正式验收环境
+如果直接使用本机正在运行的 HappyClaw / OpenClaw 做 E2E，很容易把历史状态、真实路由、手工配置和运行时噪音误判成实现正确。**默认禁止**把常驻实例作为完成验收依据；如确有必要，必须先停实例并等待贵平明确判断。
 
 ---
 
