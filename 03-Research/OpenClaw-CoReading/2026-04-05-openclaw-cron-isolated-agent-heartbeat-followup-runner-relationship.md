@@ -352,4 +352,4 @@ followup-runner 的本质是：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/OoZUdQep8oLgrAxVr3Zcl1Eunph`)
-- Vault git sync: in progress
+- Vault git sync: done (`b5d9884 add OpenClaw co-reading note: cron-isolated-agent-heartbeat-followup-runner`)
