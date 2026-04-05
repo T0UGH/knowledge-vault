@@ -349,4 +349,4 @@ OpenClaw 明显不是这么扁平。
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/LpHKdoGYeoP2JgxkFpNczkEOnaf`)
-- Vault git sync: in progress
+- Vault git sync: done (`86ea68b add OpenClaw co-reading note: tool-execution-model`)
