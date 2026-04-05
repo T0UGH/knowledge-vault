@@ -373,4 +373,4 @@ OpenClaw 没有为 heartbeat 单独造一套 agent engine，而是：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/VPSUdOEZXovpJtx6sp7ceT0gnyf`)
-- Vault git sync: in progress
+- Vault git sync: done (`f1d4228 add OpenClaw co-reading note: heartbeat-mechanism-for-long-running-assistant`)
