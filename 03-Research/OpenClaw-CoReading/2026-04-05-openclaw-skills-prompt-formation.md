@@ -347,4 +347,4 @@ if (snapshotPrompt) {
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/Lvbsdm11roSOQRxUBOScqyaanwf`)
-- Vault git sync: in progress
+- Vault git sync: done (`63767ea add OpenClaw co-reading note: skills-prompt-formation`)
