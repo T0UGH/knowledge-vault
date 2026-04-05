@@ -378,4 +378,4 @@ OpenClaw 没有偷懒把所有东西都塞进一个 JSON 文件里。
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/ENHJddxdLogdNKxQkKkc4p34nWb`)
-- Vault git sync: in progress
+- Vault git sync: done (`bcef799 add OpenClaw co-reading note: session-runtime`)
