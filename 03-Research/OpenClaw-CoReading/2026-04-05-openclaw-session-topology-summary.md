@@ -291,4 +291,4 @@ agent:main:<mainKey>                ← 主干 root / main session
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/IcJ4decEiooYBZxR8MpcbcoSnJe`)
-- Vault git sync: in progress
+- Vault git sync: done (`8c2ad43 add OpenClaw co-reading note: session-topology-summary`)
