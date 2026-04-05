@@ -385,4 +385,4 @@ OpenClaw 的很多能力天然耦合：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/JJRPdUBtxoJxiJxBAZjcOvJgnpb`)
-- Vault git sync: in progress
+- Vault git sync: done (`6fed39e add OpenClaw co-reading note: long-running-assistant-vs-claude-code`)
