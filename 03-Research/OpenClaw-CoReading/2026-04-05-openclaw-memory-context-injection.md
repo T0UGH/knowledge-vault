@@ -366,4 +366,4 @@ OpenClaw 至少在这个方向上是清醒的。
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/KeZHdyx6RoGfEMx40Hmcf6XLnMg`)
-- Vault git sync: in progress
+- Vault git sync: done (`f745984 add OpenClaw co-reading note: memory-context-injection`)
