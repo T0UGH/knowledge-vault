@@ -370,4 +370,4 @@ OpenClaw 更不是这样。
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/I359dbOgCo4cVvxPHM3cu9PBnFc`)
-- Vault git sync: in progress
+- Vault git sync: done (`e8487dc add OpenClaw co-reading note: commands-mode-vs-embedded-run-mode`)
