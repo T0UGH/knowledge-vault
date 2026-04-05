@@ -395,4 +395,4 @@ OpenClaw 的这套更偏：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/T4dIdw5Elo8CPoxIKf7cs89OnV7`)
-- Vault git sync: in progress
+- Vault git sync: done (`778386a add OpenClaw co-reading note: subagent-lifecycle`)
