@@ -386,4 +386,4 @@ OpenClaw 不是。它把 delivery context 放进 session 里，作为后续 outb
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/IkwtdL5HWobvcpxePuEc9gNznCg`)
-- Vault git sync: in progress
+- Vault git sync: done (`2be0e56 add OpenClaw co-reading note: gateway-routing`)
