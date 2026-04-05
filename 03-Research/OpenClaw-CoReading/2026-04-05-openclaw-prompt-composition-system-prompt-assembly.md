@@ -448,4 +448,4 @@ OpenClaw 当然也有这些，但它更核心的是：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/Ea1Bd1u1zovoPyxs1m1cfluSnM2`)
-- Vault git sync: in progress
+- Vault git sync: done (`8869e7d add OpenClaw co-reading note: prompt-composition-system-prompt-assembly`)
