@@ -322,4 +322,4 @@ OpenClaw 不一样。它先有：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/ToMZd37byomBOyxxqftcDoGen3f`)
-- Vault git sync: in progress
+- Vault git sync: done (`77b4b7a add OpenClaw co-reading note: plugin-channel-architecture`)
