@@ -359,4 +359,4 @@ active continuation 包括三种形态：
 - Term explanation: done
 - Humanizer: done (light pass)
 - Feishu publish: done (`https://feishu.cn/docx/OIemdnLfuoVLJmxJhFCclpy6nVg`)
-- Vault git sync: in progress
+- Vault git sync: done (`96ea76c add OpenClaw co-reading note: minimal-closure-long-running-assistant-runtime`)
