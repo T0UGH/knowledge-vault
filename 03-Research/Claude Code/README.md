@@ -16,6 +16,7 @@ aliases:
 - Claude Code 源码共读、runtime 结构理解、agent / subagent / skill / tool 主线分析
 - 围绕 Claude Code 的工程判断、实践文章、专题索引与方法论沉淀
 - 与使用边界、架构抽象、工程迁移有关的高价值研究笔记
+- 也吸收了早期放在 `02-Projects/Claude-Code` 下的项目化讨论与团队知识设计笔记
 
 ## Boundary
 - 这里是 **Claude Code 研究主库**，不是个人行动清单
