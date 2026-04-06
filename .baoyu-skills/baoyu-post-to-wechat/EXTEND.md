@@ -1,5 +1,3 @@
-default_theme: default
-default_publish_method: api
-default_author: 平哥
-need_open_comment: 1
-only_fans_can_comment: 0
+# Moved to user-scoped canonical config:
+# ~/.baoyu-skills/baoyu-post-to-wechat/EXTEND.md
+# Keep project-level overrides here only when you intentionally want repo-specific behavior.
