@@ -12,6 +12,10 @@
 - 过滤 / 去重 / 打分 / 排序 属于概念独立的一层，但暂不急着开工
 - 运行纪律层（diagnose / check-config / mock / status）是近期优先方向
 - 后续准备从 shell-first runtime 迁向 **Python CLI**
+- **Signal Engine 第一版职责只到 collect**：collect / normalize / signal / index / state / diagnose / status / config-check / mock；不做 filtering / ranking / synthesis
+- 输出策略：**保留现有 Markdown/signal 产物，同时补一个很薄的 `run.json`**
+- `run.json` 定位为 **run-level manifest / 运行收据**，不是第二套 signal 内容系统
+- `run.json` 第一版规则：**每 lane 每日一份、覆盖写、成功失败都写**
 
 ## 当前讨论焦点
 
@@ -142,6 +146,18 @@ Signal Engine 的核心 domain 层，集中处理：
 
 ### 推荐 CLI 形态（第一版）
 
+已拍板的一级命令树：
+
+```bash
+signal-engine collect
+signal-engine diagnose
+signal-engine status
+signal-engine lanes
+signal-engine config
+```
+
+推荐交互形态：
+
 ```bash
 signal-engine collect --lane github-watch
 signal-engine collect --lane x-feed --date 2026-04-06
@@ -155,9 +171,32 @@ signal-engine config check
 - `collect / diagnose / status` 是一级动作
 - `lane` 是目标对象
 
+### `run.json`（第一版最小字段）
+
+按 lane-run 粒度写，例如：
+- `signals/github-watch/2026-04-06/run.json`
+- `signals/x-feed/2026-04-06/run.json`
+
+第一版最小字段已拍板为：
+- `lane`
+- `date`
+- `status`
+- `started_at`
+- `finished_at`
+- `warnings`
+- `errors`
+- `summary.repos_checked`
+- `summary.signals_written`
+- `summary.signal_types`
+- `artifacts.index_file`
+- `artifacts.signal_files`
+
 ### 第一批迁移建议
 
-1. `x-feed`
+此前的难度排序仍然成立，但**第一批实施范围已收窄为：只迁 `x-feed`**。
+
+当前迁移优先级参考：
+1. `x-feed`（第一批）
 2. `x-following`
 3. `github-trending-weekly`
 4. `github-watch`
@@ -176,10 +215,23 @@ signal-engine config check
 
 > 先别做 opencli；先做一个稳的 Python collect CLI。
 
-## 待定事项
+## 仍未确定的问题
 
-- 仓库路径 / repo 名称
-- CLI 命令结构细节
-- 首批迁移 lane 的实施顺序
+### 近期待定
+- 仓库路径 / repo 名称（代码仓而不是 Obsidian 项目名）
 - 旧 `daily-lane` 与新项目的过渡方式
-- processing layer 未来何时启动
+- `x-feed` 第一批迁移时，旧输出协议需要 100% 兼容到什么程度
+- `diagnose / status / config-check / mock` 四者的第一版详细边界
+
+### 中期待定
+- `x-following` 何时进入第二批迁移
+- `github-trending-weekly` 何时进入后续迁移
+- `github-watch` 何时作为核心 stateful lane 迁移
+- 是否以及何时引入 command registry / adapter metadata
+
+### 明确暂缓
+- processing layer 何时启动
+- filtering / dedupe / ranking 的正式落地时机
+- 总 run manifest
+- attempts 历史
+- plugin / dynamic loading / 过重平台化能力
