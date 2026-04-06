@@ -5,6 +5,10 @@
 这是从 `daily-lane` 演进出来的新方向项目入口。
 
 当前共识：
+当前仓库：
+- 本地：`/Users/haha/workspace/signal-engine`
+- GitHub：`https://github.com/T0UGH/signal-engine`
+
 - 新项目名称：**Signal Engine**
 - lane 后续定位为 **collect engine**
 - 日报生成仍然交给 agent
