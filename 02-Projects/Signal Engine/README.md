@@ -6,10 +6,13 @@
 
 当前共识：
 当前仓库：
-- 本地：`/Users/haha/workspace/signal-engine`
-- GitHub：`https://github.com/T0UGH/signal-engine`
+- 本地：`/Users/haha/workspace/signals-engine`
+- GitHub：`https://github.com/T0UGH/signals-engine`
+- 关联旧实现线：`/Users/haha/workspace/daily-lane`
+- 关联数据仓：`/Users/haha/workspace/daily-lane-data`
 
 - 新项目名称：**Signal Engine**
+- 这是贵平需要长期持续推进的一条核心项目线，不是一次性话题
 - lane 后续定位为 **collect engine**
 - 日报生成仍然交给 agent
 - collect 层只做好 collect，不承担候选裁剪式决策
@@ -20,6 +23,12 @@
 - 输出策略：**保留现有 Markdown/signal 产物，同时补一个很薄的 `run.json`**
 - `run.json` 定位为 **run-level manifest / 运行收据**，不是第二套 signal 内容系统
 - `run.json` 第一版规则：**每 lane 每日一份、覆盖写、成功失败都写**
+
+## 长期记忆点
+
+- 以后提到 `signals` 项目，默认优先联想到这一组仓：`signals-engine` / `daily-lane` / `daily-lane-data`
+- `signals-engine` 是新抽象/新主线；`daily-lane` + `daily-lane-data` 仍是当前重要实现与运行资产
+- 讨论、诊断、设计和推进时，默认把它当长期项目持续跟踪
 
 ## 当前讨论焦点
 
