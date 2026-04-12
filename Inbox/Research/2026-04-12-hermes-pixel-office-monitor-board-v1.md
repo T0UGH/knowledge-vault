@@ -704,78 +704,10 @@ subagent 应作为全局支持对象，而不是 Hermes 特性。
 - 当前 activity 摘要
 - 最近 subagent 活动
 
-## 统一协议 v0：建议字段方向
+## 统一协议 v0：字段方向已以下面的正式 schema 为准
 
-### Runtime
-
-建议至少包含：
-
-- `runtime_id`
-- `runtime_type`
-- `display_name`
-- `machine_id`
-- `workspace_id`
-- `status`
-- `model`
-- `model_provider`
-- `model_display`
-- `model_source`
-- `current_activity`
-- `context_usage`
-- `token_usage`
-- `cost_estimate`
-- `last_seen_at`
-
-其中模型字段建议明确区分：
-
-- `model`：规范化后的模型标识（如 `anthropic/claude-sonnet-4`）
-- `model_provider`：提供方（如 `anthropic` / `openai` / `zai`）
-- `model_display`：给前端直接展示的短标签（如 `Claude Sonnet 4` / `GPT-5.4`）
-- `model_source`：模型信息来源（如 `session` / `config` / `runtime_observed`）
-
-原因：
-
-> 这个看板里，“每个 agent 当前实际在用什么模型”是一级信息，不应该只作为附带字段模糊处理。
-
-### Channel
-
-建议至少包含：
-
-- `channel_id`
-- `runtime_id`
-- `channel_type`
-- `label`
-- `is_active`
-- `last_activity_at`
-- `session_count`
-
-### Subagent
-
-建议至少包含：
-
-- `subagent_id`
-- `parent_runtime_id`
-- `parent_task_id`
-- `label`
-- `status`
-- `current_activity`
-- `started_at`
-
-### Activity
-
-建议统一为：
-
-- `kind`
-  - `idle`
-  - `reading`
-  - `writing`
-  - `tool_call`
-  - `waiting_input`
-  - `waiting_approval`
-  - `blocked`
-  - `error`
-- `summary`
-- `raw_type`（可选）
+前文的早期字段草案已废弃。
+后续如引用协议字段，统一以 **Agent Runtime Monitor Protocol v0（正式字段草案）** 一节为准。
 
 ## 采集与安全边界的最终拍板
 
@@ -1140,9 +1072,9 @@ runtime 直接对应一个 profile / `HERMES_HOME`。
 | `runtime.runtime_type` | 固定为 `hermes` |
 | `runtime.display_name` | profile 名，如 `default` / `backend` / `frontend` |
 | `runtime.machine_id` | 对应 machine |
-| `runtime.workspace_id` | V0 可用 profile 名或 workspace 配置生成 |
-| `runtime.connected` | `gateway_state.json` + 本地文件可读性联合判断 |
-| `runtime.status` | 由 gateway/session/activity 综合推断 |
+| `runtime.workspace_label` | V0 直接使用 profile 名或展示用 workspace 名 |
+| `runtime.reachability_state` | hub 基于最近 snapshot/heartbeat 推导，不由 adaptor 直接判定 |
+| `runtime.work_state` | 由 gateway/session/activity 综合推断 |
 | `runtime.last_activity_at` | 最近活跃 session / message / tool 时间 |
 | `runtime.uptime_seconds` | 有 PID/start_time 时可推断，否则为空 |
 | `runtime.capabilities` | 至少包含 `channels`, `cost_tracking`; 若探测到 delegation，则含 `subagents` |
@@ -1181,13 +1113,13 @@ V0 建议 activity 优先从以下信号组合得出：
 
 建议映射规则：
 
-| Hermes信号 | 协议 `activity.kind` | 说明 |
+| Hermes信号 | 协议字段 | 说明 |
 |---|---|---|
-| 最近有读类 tool（read/search/browser 等） | `reading` | 可直接映射阅读态 |
-| 最近有 terminal / patch / write / code 类 tool | `writing` / `tool_call` | 视摘要内容决定 |
-| 正在等待 clarify / approval | `waiting_input` / `waiting_approval` | 从交互型工具或等待态推断 |
-| gateway 活着但近期无活动 | `idle` | 默认闲置 |
-| 日志或状态里出现异常 | `error` / `blocked` | 有明确错误才升格 |
+| 最近有读类 tool（read/search/browser 等） | `activity.kind=reading` + `work_state=active` | 可直接映射阅读态 |
+| 最近有 terminal / patch / write / code 类 tool | `activity.kind=writing/tool_call` + `work_state=active` | 视摘要内容决定 |
+| 正在等待 clarify / approval | `activity.kind=waiting_input/waiting_approval` + `work_state=waiting` | 从交互型工具或等待态推断 |
+| gateway 活着但近期无活动 | `work_state=idle` | 默认闲置 |
+| 日志或状态里出现异常 | `work_state=blocked/error` + optional `activity.kind=blocked/error` | 有明确错误才升格 |
 
 `activity.summary` 建议优先用：
 
@@ -1262,7 +1194,7 @@ runtime_id + ":" + platform + ":" + chat_id + ":" + thread_id(optional)
 
 | 协议字段 | Hermes来源 / 生成方式 |
 |---|---|
-| `channel.channel_id` | `platform:chat_id[:thread_id]` |
+| `channel.channel_id` | 固定为 `runtime_id + ":" + platform + ":" + chat_id + optional(":" + thread_id)` |
 | `channel.runtime_id` | 当前 profile 对应 runtime |
 | `channel.channel_type` | `chat_type` |
 | `channel.platform` | `origin.platform` |
@@ -1325,22 +1257,23 @@ V0 设计判断：
 | `subagent.updated_at` | 最近观察时间 |
 | `subagent.ephemeral` | V0 默认 `true` |
 
-### 11. Hermes -> `runtime.status`
+### 11. Hermes -> `reachability_state` / `work_state`
 
-建议 runtime 状态由多信号综合推断：
+建议 runtime 的可达性与工作态分开推断：
 
-| 条件 | `runtime.status` |
+| 条件 | 协议字段 |
 |---|---|
-| collector 超时未上报（hub 层判断） | `offline` |
-| gateway 有明显错误 / 日志异常 | `error` / `blocked` |
-| 最近有读类 activity | `reading` |
-| 最近有执行类 activity | `active` |
-| 最近处于 clarify / approval 等等待态 | `waiting` |
-| 在线但近期无活动 | `idle` |
+| collector 超时未上报（hub 层判断） | `reachability_state=offline` |
+| collector 最近刚恢复，但超过 freshness 窗口 | `reachability_state=stale` |
+| collector 正常持续上报 | `reachability_state=online` |
+| gateway 有明显错误 / 日志异常 | `work_state=error` 或 `blocked` |
+| 最近有读类/执行类 activity | `work_state=active` |
+| 最近处于 clarify / approval 等等待态 | `work_state=waiting` |
+| 在线但近期无活动 | `work_state=idle` |
 
 关键点：
 
-> `runtime.status` 是面向看板的稳定状态，不要求完全等于 Hermes 内部瞬时细节。
+> 运行态的“可达性”和“工作态”必须拆开，不能继续压成一个泛 `status`。
 
 ### Hermes adaptor v0 的边界
 
@@ -1496,13 +1429,13 @@ V0 建议只做 3 个主要视图。
    - 全部 channel 列表
    - 每个 channel 的最近活动时间
 
-4. sessions
+4. session summaries
    - 当前 active session
    - 最近若干 session 摘要
 
 5. subagents
    - 当前 subagent 数量
-   - 每个 subagent 的 label / status / activity
+   - 每个 subagent 的 label / work_state / activity
 
 ### 页面 3：channel 详情视图
 
@@ -1628,7 +1561,8 @@ V0 我建议至少支持这些过滤器：
 
 - 按 machine 过滤
 - 按 runtime_type 过滤
-- 按 status 过滤
+- 按 `reachability_state` 过滤
+- 按 `work_state` 过滤
 - 只看有 subagent 的 runtime
 - 只看 active / blocked / waiting
 
@@ -1696,7 +1630,7 @@ V0 应该坚持这条边界：
 - runtime 人物
 - channel 附属对象
 - subagent 分身
-- 模型 / activity / status 三元组
+- 模型 / activity / work_state 三元组
 
 这几个核心视觉元素先稳定下来。
 
@@ -1881,6 +1815,7 @@ V0 可以先只做“当前态 + 最近 N 份 snapshot”。
 ```json
 {
   "ok": true,
+  "state_version": 42,
   "generated_at": "2026-04-12T13:20:05Z",
   "machines": [...],
   "runtimes": [...],
@@ -1924,7 +1859,8 @@ V0 可以先只做“当前态 + 最近 N 份 snapshot”。
 
 - `machine_id`
 - `runtime_type`
-- `status`
+- `reachability_state`
+- `work_state`
 - `has_subagents`
 - `model`
 
@@ -1970,7 +1906,7 @@ V0 可以先只做“当前态 + 最近 N 份 snapshot”。
 - machine 列表
 - runtime_type 列表
 - model 列表
-- status 枚举
+- `reachability_state` / `work_state` 枚举
 
 但这一接口 **不属于 V0 最小实现**。
 V0 可以先由前端基于 `/board/state` 本地派生过滤项，待主链路稳定后再单独补齐。
@@ -2002,10 +1938,12 @@ V0 不建议把整个 snapshot 每次全量推给前端。
 ```json
 {
   "type": "runtime.updated",
+  "state_version": 43,
   "sent_at": "2026-04-12T13:20:12Z",
   "payload": {
     "runtime_id": "macmini-a:backend",
-    "status": "active",
+    "reachability_state": "online",
+    "work_state": "active",
     "model_display": "Claude Sonnet 4",
     "activity": {
       "kind": "tool_call",
