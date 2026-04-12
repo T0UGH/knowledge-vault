@@ -11,6 +11,8 @@ tags:
 
 # Hermes 图表 skill 安装与用途对照
 
+仓库：<https://github.com/markdown-viewer/skills>
+
 ## 结论
 
 这批从 `markdown-viewer/skills` repo 装进来的 15 个 skill，本质上是 **给 Hermes 补齐常见图表/可视化表达能力**。
@@ -114,6 +116,23 @@ npx skills add . --skill <name> --agent '*' --copy -y
 2. 确认目标 skill 的目录完整，包含 `SKILL.md`
 3. 把目标 skill 安装到当前 Hermes 可见目录 `~/.hermes/skills/`
 4. 再用 `skill_view(<name>)` 做可见性验证
+
+一个最小可用流程可以写成：
+
+```bash
+# 先在本地拿到仓库
+ git clone https://github.com/markdown-viewer/skills.git
+
+# 以 mermaid 为例，把 skill 复制到 Hermes 可见目录
+mkdir -p ~/.hermes/skills
+cp -R skills/mermaid ~/.hermes/skills/
+
+# 验证目录完整
+test -f ~/.hermes/skills/mermaid/SKILL.md && echo ok
+
+# 最终以运行时可见性为准
+# 在 Hermes 里执行：skill_view("mermaid")
+```
 
 核心判断：
 
