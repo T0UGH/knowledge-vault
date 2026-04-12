@@ -1018,3 +1018,313 @@ V0 不追求一次抽象完所有差异。
 - `session.metadata`
 
 承载过渡期私货，但主看板只依赖公共字段。
+
+## Hermes Adaptor v0（统一协议映射草案）
+
+这一节回答的问题是：
+
+> 现有 Hermes 数据结构，如何干净映射到 Agent Runtime Monitor Protocol v0？
+
+结论先说：
+
+- **Hermes 很适合作为第一号 adaptor**
+- 因为它天然已经有：
+  - runtime/profile 边界
+  - channel/source 边界
+  - session 持久化
+  - token / cost / tool usage 数据
+  - gateway 运行态
+- 但也有几个缺口：
+  - “当前正在跑什么命令”不一定总能从结构化字段直接拿到
+  - subagent 目前更多是推断层，不是完整的一等状态表
+  - “当前实际模型”有时要从 session 和 config 联合判断
+
+### Hermes adaptor 的输入源
+
+建议 V0 只读这些文件/数据源：
+
+| Hermes 数据源 | 用途 |
+|---|---|
+| `state.db` | session / message / token / tool / model / cost 主来源 |
+| `gateway_state.json` | gateway alive / stopped / platform 连接态 |
+| `sessions/sessions.json` | channel/source/session 上下文索引 |
+| `channel_directory.json` | 已知 channel 列表与展示标签 |
+| `config.yaml` | 默认模型、provider、压缩/内存等运行配置 |
+| `logs/gateway.log` | 补充最近 activity 和响应时序（可选） |
+| `logs/errors.log` | 错误态和 blocked/error 归因（可选） |
+
+V0 不建议一开始就深挖所有 log，只把 log 作为补充源。
+
+### 映射单位
+
+在 Hermes adaptor 里，我建议这样定义映射单位：
+
+- **machine** = 当前这台运行 collector 的机器
+- **runtime** = 一个 `HERMES_HOME` / profile
+- **channel** = `SessionSource(platform, chat_id, thread_id)` 维度
+- **session** = `state.db.sessions.id`
+- **subagent** = `delegate_task` / 子任务观察到的临时实体
+
+### 1. Hermes -> `machine`
+
+来源：collector 本机环境。
+
+| 协议字段 | Hermes来源 / 生成方式 |
+|---|---|
+| `machine.machine_id` | collector 配置里的稳定 ID，不直接依赖 hostname |
+| `machine.machine_name` | collector 配置或本机 hostname |
+| `machine.hostname` | 系统 hostname |
+| `machine.os` | 本机 OS |
+| `machine.arch` | 本机 CPU 架构 |
+| `machine.last_seen_at` | 快照生成时间 |
+| `machine.network_zone` | collector 配置，如 `home` |
+
+### 2. Hermes -> `runtime`
+
+runtime 直接对应一个 profile / `HERMES_HOME`。
+
+如果一台机器只跑一个默认 profile，就一个 runtime。
+如果一台机器上有多个 profiles，就每个 profile 各报一个 runtime。
+
+| 协议字段 | Hermes来源 / 生成方式 |
+|---|---|
+| `runtime.runtime_id` | `machine_id + profile_name` 或 `machine_id + HERMES_HOME hash` |
+| `runtime.runtime_type` | 固定为 `hermes` |
+| `runtime.display_name` | profile 名，如 `default` / `backend` / `frontend` |
+| `runtime.machine_id` | 对应 machine |
+| `runtime.workspace_id` | V0 可用 profile 名或 workspace 配置生成 |
+| `runtime.connected` | `gateway_state.json` + 本地文件可读性联合判断 |
+| `runtime.status` | 由 gateway/session/activity 综合推断 |
+| `runtime.last_activity_at` | 最近活跃 session / message / tool 时间 |
+| `runtime.uptime_seconds` | 有 PID/start_time 时可推断，否则为空 |
+| `runtime.capabilities` | 至少包含 `channels`, `cost_tracking`; 若探测到 delegation，则含 `subagents` |
+
+### 3. Hermes -> `model*`
+
+模型信息必须作为一级字段认真映射。
+
+优先级建议：
+
+1. **当前活跃 session 的 `sessions.model`**
+2. `config.yaml` 的默认模型配置
+3. 无法确认时填 `unknown`
+
+| 协议字段 | Hermes来源 / 生成方式 |
+|---|---|
+| `runtime.model` | 当前活跃 session 的 `sessions.model`，否则 config 默认模型 |
+| `runtime.model_provider` | 从 model / billing_provider / config.provider 归一化得到 |
+| `runtime.model_display` | 对 `runtime.model` 做展示层短名映射 |
+| `runtime.model_source` | `session` / `config` / `unknown` |
+
+判断原则：
+
+> 看板里展示的模型，应尽量回答“现在这个 agent 真正在用什么模型”，不是只展示默认配置。
+
+### 4. Hermes -> `activity`
+
+这是 Hermes adaptor 最关键的推断层。
+
+V0 建议 activity 优先从以下信号组合得出：
+
+1. 最近活跃 session 的最新 assistant/tool message
+2. 最近活跃 tool call
+3. gateway log 最近事件
+4. 无结构化活动时退化为 idle / waiting
+
+建议映射规则：
+
+| Hermes信号 | 协议 `activity.kind` | 说明 |
+|---|---|---|
+| 最近有读类 tool（read/search/browser 等） | `reading` | 可直接映射阅读态 |
+| 最近有 terminal / patch / write / code 类 tool | `writing` / `tool_call` | 视摘要内容决定 |
+| 正在等待 clarify / approval | `waiting_input` / `waiting_approval` | 从交互型工具或等待态推断 |
+| gateway 活着但近期无活动 | `idle` | 默认闲置 |
+| 日志或状态里出现异常 | `error` / `blocked` | 有明确错误才升格 |
+
+`activity.summary` 建议优先用：
+
+- 当前 tool 名 + 摘要
+- 最近命令的展示版
+- 当前 channel/任务上下文的短语义
+
+例如：
+
+- `Reading README.md`
+- `Running pytest tests/tools`
+- `Waiting for clarify`
+- `Reviewing channel: #backend-bugs`
+
+### 5. Hermes -> `context_usage`
+
+Hermes 没有一个天然“上下文占用百分比”单字段，因此 V0 需要估算。
+
+建议：
+
+- 先基于当前活跃 session 的 token 使用量估算
+- 再结合模型上下文窗口大小，算出 `percent`
+
+来源：
+
+- `sessions.input_tokens`
+- `sessions.output_tokens`
+- `sessions.cache_read_tokens`
+- `sessions.cache_write_tokens`
+- 模型上下文长度（可来自配置或模型元数据映射）
+
+如果拿不到准确窗口：
+
+- `percent` 可为空
+- 但至少给出 `band`
+
+### 6. Hermes -> `token_usage`
+
+这块 Hermes 很强，基本可直接映射。
+
+| 协议字段 | Hermes来源 |
+|---|---|
+| `input_tokens` | `sessions.input_tokens` |
+| `output_tokens` | `sessions.output_tokens` |
+| `cache_read_tokens` | `sessions.cache_read_tokens` |
+| `cache_write_tokens` | `sessions.cache_write_tokens` |
+| `reasoning_tokens` | `sessions.reasoning_tokens` |
+| `total_tokens` | 各项求和 |
+| `window_scope` | V0 推荐 `current_session` |
+
+### 7. Hermes -> `cost_estimate`
+
+也可较直接映射。
+
+| 协议字段 | Hermes来源 |
+|---|---|
+| `estimated_usd` | `sessions.estimated_cost_usd` |
+| `actual_usd` | `sessions.actual_cost_usd` |
+| `billing_provider` | `sessions.billing_provider` |
+| `status` | 根据 `cost_status` / 是否有 actual 推断 |
+| `window_scope` | `current_session` |
+
+### 8. Hermes -> `channel`
+
+Hermes 的 channel 粒度是成立的，来源主要是 `SessionSource` / `sessions.json` / `channel_directory.json`。
+
+建议 channel 唯一键：
+
+```text
+platform + chat_id + thread_id(optional)
+```
+
+| 协议字段 | Hermes来源 / 生成方式 |
+|---|---|
+| `channel.channel_id` | `platform:chat_id[:thread_id]` |
+| `channel.runtime_id` | 当前 profile 对应 runtime |
+| `channel.channel_type` | `chat_type` |
+| `channel.platform` | `origin.platform` |
+| `channel.label` | `chat_name` / `channel_directory` 展示名 |
+| `channel.topic` | `chat_topic` |
+| `channel.is_active` | 最近活动时间是否落入活跃窗口 |
+| `channel.status` | 最近 session/activity 综合推断 |
+| `channel.last_activity_at` | 最近关联 session/message 时间 |
+| `channel.session_count` | 该 channel 下 session 数 |
+| `channel.current_session_id` | 最近活跃 session |
+| `channel.current_activity` | 该 channel 最近活跃 activity |
+
+### 9. Hermes -> `session`
+
+Hermes 的 session 基本直接来自 `state.db.sessions`。
+
+| 协议字段 | Hermes来源 |
+|---|---|
+| `session.session_id` | `sessions.id` |
+| `session.runtime_id` | 当前 runtime |
+| `session.channel_id` | 从 `sessions.json`/origin 反查或 join 映射 |
+| `session.status` | `ended_at` 是否为空 + 最近活动推断 |
+| `session.model` | `sessions.model` |
+| `session.title` | `sessions.title` |
+| `session.started_at` | `sessions.started_at` |
+| `session.ended_at` | `sessions.ended_at` |
+| `session.message_count` | `sessions.message_count` |
+| `session.tool_call_count` | `sessions.tool_call_count` |
+| `session.activity` | 从该 session 最近 message/tool 提炼 |
+
+### 10. Hermes -> `subagent`
+
+这是 Hermes adaptor 里最需要诚实处理的一块：
+
+- Hermes 不是天然有一张“subagents”状态表
+- V0 只能做 **观察性映射**，不能假装它已经是一等对象
+
+建议 V0 先从这些信号推断：
+
+- `delegate_task` 调用
+- 父 session 的 delegation 观察
+- 子 session 与 parent_session_id / child_session_id 关系
+- 明确的 task / child agent 输出痕迹
+
+V0 设计判断：
+
+- **能观察到就上报临时 subagent**
+- **观察不到就不要伪造**
+
+| 协议字段 | Hermes来源 / 生成方式 |
+|---|---|
+| `subagent.subagent_id` | `child_session_id` 或 `parent_tool_id + child index` |
+| `subagent.parent_runtime_id` | 当前 runtime |
+| `subagent.parent_session_id` | 父 session |
+| `subagent.parent_task_id` | `delegate_task` 对应 tool/task ID |
+| `subagent.label` | 任务摘要 |
+| `subagent.status` | `active` / `waiting` / `done` / `error` |
+| `subagent.activity` | 最近 delegation 结果或子任务活动摘要 |
+| `subagent.started_at` | delegation 开始时间 |
+| `subagent.updated_at` | 最近观察时间 |
+| `subagent.ephemeral` | V0 默认 `true` |
+
+### 11. Hermes -> `runtime.status`
+
+建议 runtime 状态由多信号综合推断：
+
+| 条件 | `runtime.status` |
+|---|---|
+| collector 超时未上报（hub 层判断） | `offline` |
+| gateway 有明显错误 / 日志异常 | `error` / `blocked` |
+| 最近有读类 activity | `reading` |
+| 最近有执行类 activity | `active` |
+| 最近处于 clarify / approval 等等待态 | `waiting` |
+| 在线但近期无活动 | `idle` |
+
+关键点：
+
+> `runtime.status` 是面向看板的稳定状态，不要求完全等于 Hermes 内部瞬时细节。
+
+### Hermes adaptor v0 的边界
+
+V0 我建议明确只承诺这些能力：
+
+#### 承诺做到
+
+- profile -> runtime 的稳定映射
+- SessionSource -> channel 的稳定映射
+- 当前模型尽量准确上报
+- token / cost / gateway 状态稳定上报
+- activity 能给出可读摘要
+- subagent 能做基础观察型可视化
+
+#### 暂不承诺
+
+- 所有命令都能拿到完整结构化原文
+- subagent 生命周期百分百精确
+- 所有 runtime 状态都做到毫秒级实时
+- 复杂事件流重放
+
+### 我对 Hermes adaptor 的最终判断
+
+Hermes 足够适合作为第一号 adaptor，原因是：
+
+- 基础数据足够全
+- channel 维度天然存在
+- token / cost / model 都有落点
+- 适合先把统一协议跑通
+
+但也要接受一个现实：
+
+> Hermes adaptor v0 更像“高质量运行态归一化器”，不是“无损镜像层”。
+
+这没问题。V0 目标本来就不是一比一还原 Hermes 内部状态，而是给统一观察台喂一份 **稳定、可读、足够准** 的运行态视图。
