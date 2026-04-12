@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "461754048419008d",
+        "id": "709efcba70536c25",
         "type": "tabs",
         "children": [
           {
-            "id": "7e6799135ece08c9",
+            "id": "60456cc6bfb857be",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
         ]
@@ -160,7 +160,7 @@
       "bases:新建数据库": false
     }
   },
-  "active": "7e6799135ece08c9",
+  "active": "60456cc6bfb857be",
   "lastOpenFiles": [
     "03-Research/Tools/海外手机卡大汇总-2026-03-29.md",
     "海外手机卡大汇总-2026-03-29.md",
