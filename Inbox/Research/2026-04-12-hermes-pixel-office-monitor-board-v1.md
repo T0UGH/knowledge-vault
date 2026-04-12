@@ -515,3 +515,285 @@ V1 的安全边界应定义为：
 2. 办公室布局草图
 3. collector / hub API 草案
 4. V1 的状态字段定义
+
+## 设计升级：从 Hermes 专用看板升级为统一 Agent Runtime 观察台
+
+后续讨论后，产品定位进一步收口：
+
+> 这不应是一个只服务 Hermes 的专用看板，而应是一个面向多种 agent runtime 的统一运行态观察系统。
+
+Hermes 是第一种 adaptor，不是系统本体。
+
+### 为什么必须这么设计
+
+原因很直接：
+
+- 后续不只会接 Hermes
+- 还可能接 OpenClaw / Claude Code / Codex / 其他 agent runtime
+- 不同 agent 的原始数据结构不同，但“运行态语义”高度相似
+
+真正需要统一观察的是这些抽象对象：
+
+- 哪台机器在线
+- 哪个 runtime 在忙
+- 正在哪个 workspace / channel 忙
+- 当前 activity 是什么
+- 当前模型和资源占用如何
+- 有没有 subagent
+- 有没有卡住 / 等待 / 授权 / 报错
+
+因此系统应围绕“统一运行态协议”设计，而不是围绕 Hermes schema 设计。
+
+## 最终产品分层
+
+### 1. Protocol 层
+
+定义统一对象模型，不带 Hermes 私货。
+
+这层只定义：
+
+- `machine`
+- `runtime`
+- `workspace`
+- `channel`
+- `session`
+- `task`
+- `subagent`
+- `activity`
+- `resource_usage`
+- `snapshot/event`
+
+### 2. Adaptor 层
+
+每种 agent runtime 各自实现 adaptor，把自己的原始状态翻译为统一协议：
+
+- `hermes-adaptor`
+- `openclaw-adaptor`
+- `claude-code-adaptor`
+- `codex-adaptor`
+
+### 3. Collector 层
+
+部署在每台机器上。
+
+职责：
+
+- 调用本地 adaptor
+- 采集并归一化本机状态
+- 将快照 / 事件上报到云端 hub
+
+### 4. Hub + Board 层
+
+部署在云端。
+
+职责：
+
+- 接收统一协议数据
+- 维护实时态和历史态
+- 给前端办公室看板提供查询和推送接口
+
+一句话结构：
+
+```text
+local runtime -> adaptor -> collector -> cloud hub -> office board
+```
+
+## 最终视觉映射
+
+### 1. 人物 = runtime 实体
+
+人物不再绑定某一种产品，而是统一协议中的 `runtime`。
+
+这意味着：
+
+- Hermes runtime 是一个员工
+- OpenClaw runtime 也是一个员工
+- Claude Code runtime 也可以是一个员工
+
+不同 runtime 类型只通过工牌颜色 / badge / 小图标区分，而不是用不同页面体系。
+
+### 2. Channel = 可选子层
+
+不是所有 runtime 都有 channel 概念。
+
+因此 `channel` 必须是统一协议中的 **可选子层**，而不是强制所有 agent 都实现。
+
+- Hermes 天然有 channel / thread / session source 维度
+- 别的 agent 如果没有，就可以为空
+
+视觉上：
+
+- 人物本体 = runtime
+- channel = 人物周围的小工位 / 门牌 / 状态牌
+- 当前活跃 channel 高亮
+
+### 3. Subagent = 小分身
+
+subagent 应作为全局支持对象，而不是 Hermes 特性。
+
+因为：
+
+- OpenClaw 风格系统天然会有 subagent
+- Claude Code / Codex / 未来 agent runtime 也可能有 delegate / worker / child agent 概念
+
+视觉上：
+
+- subagent 是从主人物旁边临时出现的小分身
+- 带归属感
+- 完成任务后消失
+
+### 4. 机器 = 办公室分区
+
+为了避免全局大平层失控，建议：
+
+- 一台机器 = 一个办公室区域 / 楼层 / 房间
+- 同一台机器上的多个 runtime 共享这个区域
+- 机器离线时整个分区变暗
+
+## 最终页面结构
+
+### 页面 1：主看板
+
+目标：一眼看全局。
+
+内容：
+
+- 按机器分区的像素办公室
+- 每个 runtime 一个员工人物
+- 每个人物显示：
+  - 状态
+  - 当前 activity 摘要
+  - model
+  - context 档位
+- channel 作为附属对象
+- subagent 作为小分身
+
+### 页面 2：runtime 详情抽屉
+
+点击人物打开。
+
+内容：
+
+- runtime 类型（Hermes / OpenClaw / Claude Code / Codex）
+- machine
+- profile / workspace
+- 当前 model
+- 当前状态
+- 当前 activity
+- token / context / cost
+- 当前 channel 列表
+- subagent 列表
+
+### 页面 3：channel 详情
+
+只对支持 channel 的 runtime 提供。
+
+内容：
+
+- channel 标识
+- 最近活跃时间
+- 当前关联 session / task
+- 当前 activity 摘要
+- 最近 subagent 活动
+
+## 统一协议 v0：建议字段方向
+
+### Runtime
+
+建议至少包含：
+
+- `runtime_id`
+- `runtime_type`
+- `display_name`
+- `machine_id`
+- `workspace_id`
+- `status`
+- `model`
+- `current_activity`
+- `context_usage`
+- `token_usage`
+- `cost_estimate`
+- `last_seen_at`
+
+### Channel
+
+建议至少包含：
+
+- `channel_id`
+- `runtime_id`
+- `channel_type`
+- `label`
+- `is_active`
+- `last_activity_at`
+- `session_count`
+
+### Subagent
+
+建议至少包含：
+
+- `subagent_id`
+- `parent_runtime_id`
+- `parent_task_id`
+- `label`
+- `status`
+- `current_activity`
+- `started_at`
+
+### Activity
+
+建议统一为：
+
+- `kind`
+  - `idle`
+  - `reading`
+  - `writing`
+  - `tool_call`
+  - `waiting_input`
+  - `waiting_approval`
+  - `blocked`
+  - `error`
+- `summary`
+- `raw_type`（可选）
+
+## 采集与安全边界的最终拍板
+
+### 采集方式
+
+- 每台机器本地 collector 主动出站到云端
+- 不依赖家宽公网 IP
+- 不让 hub 直接访问家里机器
+
+### 访问方式
+
+- V1 看板访问：长随机 URL
+- V1 不做登录系统
+
+### 机器鉴权
+
+- collector -> hub 必须使用独立 token
+- token 绑定 machine_id
+- 支持轮换和吊销
+
+### 数据暴露原则
+
+默认只上传监控元数据，不上传：
+
+- 完整对话正文
+- prompt
+- 原始文件内容
+- 完整 shell 参数
+
+## 当前最终判断
+
+到这里，系统顶层定义已经明确：
+
+> 这是一个基于统一运行态协议的像素办公室观察台。
+> Hermes 是第一种 adaptor，不是产品边界。
+
+因此后续推进顺序建议固定为：
+
+1. 统一协议 v0
+2. Hermes adaptor v0
+3. collector / hub 数据链路
+4. 像素办公室前端映射
+5. 再引入第二种 agent adaptor 验证抽象是否稳定
