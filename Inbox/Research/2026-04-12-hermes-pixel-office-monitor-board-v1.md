@@ -1328,3 +1328,326 @@ Hermes 足够适合作为第一号 adaptor，原因是：
 > Hermes adaptor v0 更像“高质量运行态归一化器”，不是“无损镜像层”。
 
 这没问题。V0 目标本来就不是一比一还原 Hermes 内部状态，而是给统一观察台喂一份 **稳定、可读、足够准** 的运行态视图。
+
+## 办公室 UI 信息架构 v0
+
+这一节解决的问题是：
+
+> 统一协议和 Hermes adaptor 已经有了，前端到底该如何组织信息，才能既好看又真的可用？
+
+我的拍板是：
+
+- 它不是 Grafana，也不是游戏
+- 它是一个 **带空间隐喻的只读运行态观察台**
+- 主画面负责“扫全局”
+- 右侧抽屉负责“看细节”
+- channel 必须独立可见，但不能把主画面挤炸
+
+### 设计原则
+
+#### 1. 人物 = runtime，不是 session
+
+一个角色代表一个 runtime / profile / agent worker，而不是一次 session。
+
+原因：
+
+- session 太短，会导致画面抖动
+- runtime 才是用户真正持续观察的对象
+- session 更适合进入详情面板，而不适合占主舞台
+
+#### 2. channel 独立可见，但不是主角色
+
+channel 必须单独监控，但不能和 runtime 抢层级。
+
+因此：
+
+- runtime = 主人物
+- channel = 主人物周围的附属对象
+  - 小工位
+  - 小终端屏
+  - 门牌
+  - 任务卡
+
+#### 3. subagent 是临时分身
+
+subagent 在视觉上应表现为：
+
+- 从主人物旁边冒出来
+- 小一号
+- 带归属感
+- 完成后消失
+
+它不是永久工位员工，而是 runtime 当前拆出来的临时执行单元。
+
+#### 4. 机器必须有天然分区
+
+一台机器 = 一个办公室区域 / 楼层 / 房间。
+
+原因：
+
+- 多机混在一个开放大平层会失控
+- 机器边界是用户要看的一级信息
+- 离线/在线状态最好通过整个区域表达，而不是只靠小字
+
+### 页面结构
+
+V0 建议只做 3 个主要视图。
+
+### 页面 1：主看板（默认页）
+
+目标：
+
+- 一眼看出所有机器和所有 runtime 的整体运行态
+
+结构：
+
+- 页面主体是一个按机器分区的像素办公室
+- 每个机器分区里有若干人物（runtime）
+- 人物附近挂着 channel 附属对象
+- 若有 subagent，则在人物附近生成小分身
+- 页面右上角有全局状态条
+- 页面左上角有过滤与搜索入口
+
+#### 主看板必须回答的 6 个问题
+
+1. 哪台机器在线？
+2. 哪个 runtime 正在忙？
+3. 它现在在干什么？
+4. 当前在用什么模型？
+5. 它正在忙哪个 channel？
+6. 有没有 subagent / blocked / waiting？
+
+### 页面 2：runtime 详情抽屉
+
+触发：点击人物。
+
+目标：
+
+- 看清一个 runtime 的完整运行态，不离开主看板上下文
+
+位置：
+
+- 右侧滑出抽屉
+
+抽屉内容建议分 5 个区块：
+
+1. 基本身份
+   - runtime 名
+   - runtime_type
+   - machine
+   - workspace/profile
+
+2. 当前状态
+   - status
+   - 当前 activity
+   - 当前 model
+   - context / tokens / cost
+
+3. channels
+   - 当前 active channel
+   - 全部 channel 列表
+   - 每个 channel 的最近活动时间
+
+4. sessions
+   - 当前 active session
+   - 最近若干 session 摘要
+
+5. subagents
+   - 当前 subagent 数量
+   - 每个 subagent 的 label / status / activity
+
+### 页面 3：channel 详情视图
+
+触发：点击 channel 小牌 / 小终端。
+
+目标：
+
+- 把“同一个 agent 下多个 channel”这层彻底看清
+
+内容：
+
+- channel 名称 / 类型 / platform
+- 最近活动时间
+- 当前 session
+- 当前 activity
+- 当前 model（若能下钻到 session）
+- 最近 subagent 关联情况
+
+对于没有 channel 概念的 runtime，这个视图可以不存在。
+
+## 主看板信息密度设计
+
+### 1. 机器分区层
+
+每个机器分区显示：
+
+- 机器名
+- 在线/离线状态
+- runtime 数
+- 当前活跃 runtime 数
+- 简单聚合指标（可选）
+
+视觉建议：
+
+- 在线机器：正常亮度
+- 离线机器：整体变暗 + 灰化
+- 异常机器：边框/角标高亮
+
+### 2. 人物卡片层（runtime 主实体）
+
+每个人物附近只显示最核心的 4 类信息，避免过载：
+
+1. **状态**
+   - idle / active / reading / waiting / blocked / error
+
+2. **activity 摘要**
+   - 例如 `Reading README.md`
+   - 例如 `Running pytest`
+   - 例如 `Waiting for clarify`
+
+3. **模型短标签**
+   - 例如 `Claude Sonnet 4`
+   - 例如 `GPT-5.4`
+
+4. **context 档位**
+   - `L` / `M` / `H` / `!`
+   - 或者小进度条
+
+不建议把 token、cost、session 数全堆在人物头上。
+这些应该放到抽屉里。
+
+### 3. Channel 层
+
+channel 的主画面表现建议采用“附属牌”形式：
+
+每个 channel 至少显示：
+
+- label（短名）
+- active/idle 小状态
+- 最近 activity 小图标
+
+当前 active channel：
+
+- 发光
+- 有细连线连接到主人物
+- 或显示成“被占用的工位”
+
+#### 为什么不用“一 channel 一人物”
+
+因为那会带来三个问题：
+
+- 画面拥挤
+- runtime 与 channel 的语义混淆
+- runtime 多 channel 时难以表达主次关系
+
+所以 V0 固定为：
+
+> 人物是 runtime，channel 是附属对象。
+
+### 4. Subagent 层
+
+subagent 的画面规则建议固定：
+
+- 比主人物小一号
+- 颜色跟随父 runtime，但更浅
+- 只显示短 label 或工具图标
+- 最多在主画面显示 1~3 个
+- 再多则合并成计数徽标，如 `+4`
+
+否则一旦多 subagent 并发，主画面会失控。
+
+## 右侧抽屉信息优先级
+
+抽屉不是原始 JSON 展示器，仍然需要强排序。
+
+建议优先级：
+
+1. 当前状态与 activity
+2. 当前模型
+3. 当前 active channel
+4. 当前 tokens / context / cost
+5. 当前 subagents
+6. 最近 sessions
+7. 原始 metadata（折叠）
+
+也就是说：
+
+> 先回答“现在发生了什么”，再展示背景和统计。
+
+## 全局导航与过滤
+
+V0 我建议至少支持这些过滤器：
+
+- 按 machine 过滤
+- 按 runtime_type 过滤
+- 按 status 过滤
+- 只看有 subagent 的 runtime
+- 只看 active / blocked / waiting
+
+搜索建议支持：
+
+- runtime 名
+- machine 名
+- channel label
+- model_display
+
+## 状态视觉规范
+
+建议固定一套状态语义，别让颜色/动作乱飞。
+
+| 状态 | 含义 | 视觉建议 |
+|---|---|---|
+| `idle` | 在线但近期无活动 | 坐着/轻微闲逛 |
+| `active` | 正在执行 | 敲字/移动/工作动画 |
+| `reading` | 读/检索/分析中 | 看书/面向屏幕阅读姿态 |
+| `waiting` | 等待输入/授权/下游结果 | 省略号气泡/暂停态 |
+| `blocked` | 卡住但未必错误 | 黄色告警牌 |
+| `error` | 明确错误 | 红色异常牌 |
+| `offline` | collector/hub 视角不可见 | 整体灰化 |
+
+## 主画面布局建议
+
+我建议不用“大开放办公室”，而是 **分区办公室**。
+
+### 推荐布局
+
+- 一行或两行机器分区
+- 每个机器分区里：
+  - 2~6 个 runtime 工位
+  - 若干 channel 附属位
+  - 一个小聚合信息区
+
+### 不推荐布局
+
+- 所有机器和所有 runtime 混在同一个大房间
+- 让 channel 也占独立人物位
+- 让 session 进入主画面成为一级实体
+
+## V0 的 UI 成功标准
+
+如果这个 UI 设计是对的，用户打开后应该能在几秒内回答：
+
+- 哪台机器挂了
+- 哪个 runtime 在忙
+- 哪个 runtime 在等输入
+- 哪个 runtime 带着 subagent
+- 当前哪个 channel 最活跃
+- 每个 runtime 在用什么模型
+
+如果这些问题还需要频繁点进深层详情，说明主看板信息架构还不够好。
+
+## 我对 UI v0 的最终判断
+
+V0 应该坚持这条边界：
+
+> 主看板负责“扫一眼就知道怎么回事”，详情抽屉负责“点进去看清楚为什么”。
+
+因此最重要的不是做更多页面，而是把主看板上的：
+
+- 机器分区
+- runtime 人物
+- channel 附属对象
+- subagent 分身
+- 模型 / activity / status 三元组
+
+这几个核心视觉元素先稳定下来。
