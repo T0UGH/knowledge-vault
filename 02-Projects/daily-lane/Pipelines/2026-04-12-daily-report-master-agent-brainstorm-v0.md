@@ -334,3 +334,27 @@ skills 负责：
 - `signals-engine` 通过 `uvx` / CLI 作为外部能力被调用
 - Feishu 是主交付面
 - Obsidian 是最终日报归档层
+
+---
+
+## 当前停点：先停在够用骨架，避免过度设计
+
+这轮已经收到了足够支撑下一阶段设计的骨架，先不继续往更细的 schema、section 规则、细粒度 prompt 切分里钻。
+
+当前足够成立的骨架是：
+
+- 独立新仓库
+- runtime-agnostic 的主 agent + skills pack
+- 第一阶段宿主是 Hermes cronjob
+- 未来可切回 OpenClaw
+- 通过 `uvx` / CLI 调用 `signals-engine`
+- 仓库顶层可先理解为：`agent/`、`skills/`、`contracts/`、`templates/`、`helpers/`、`docs/`
+- `report-contract` 的第一原则是：**只要至少有一条有用内容，日报就成立**
+
+下一阶段如果继续推进，更适合进入：
+
+1. 正式 design/spec 收束
+2. 新仓库骨架与命名确认
+3. 再写 implementation plan
+
+而不是继续在 brainstorm 阶段把细节打磨到过深。
