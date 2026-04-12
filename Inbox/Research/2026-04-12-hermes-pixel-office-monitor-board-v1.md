@@ -812,3 +812,209 @@ subagent 应作为全局支持对象，而不是 Hermes 特性。
 3. collector / hub 数据链路
 4. 像素办公室前端映射
 5. 再引入第二种 agent adaptor 验证抽象是否稳定
+
+## Agent Runtime Monitor Protocol v0（正式字段草案）
+
+这一版先按 **snapshot-first** 设计。
+
+也就是：
+
+- V0 以“周期性状态快照”作为主数据面
+- event 流先作为可选增强，不作为系统成立前提
+- 前端主看板默认消费 snapshot
+
+### 顶层对象：`monitor_snapshot`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `protocol_version` | string | 是 | 当前协议版本，V0 固定为 `armp.v0` |
+| `snapshot_id` | string | 是 | 本次快照唯一 ID |
+| `collector_id` | string | 是 | 采集器实例 ID |
+| `collector_type` | string | 是 | 采集器类型，如 `hermes-collector` |
+| `generated_at` | string(ISO8601) | 是 | 快照生成时间 |
+| `machine` | object | 是 | 当前机器信息 |
+| `runtimes` | object[] | 是 | 本机所有 runtime 列表 |
+| `metrics` | object | 否 | 机器级聚合指标 |
+| `warnings` | string[] | 否 | 本次采集发现的告警/退化信息 |
+
+### 对象：`machine`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `machine_id` | string | 是 | 机器稳定标识 |
+| `machine_name` | string | 是 | 展示名 |
+| `hostname` | string | 否 | 本机 hostname |
+| `os` | string | 否 | 如 `macOS` / `Linux` |
+| `arch` | string | 否 | 如 `arm64` / `x86_64` |
+| `online` | boolean | 是 | 该快照里固定为 `true`，由 hub 结合心跳判断离线 |
+| `last_seen_at` | string(ISO8601) | 是 | 本机最近可见时间 |
+| `network_zone` | string | 否 | 如 `home` / `office` / `cloud` |
+| `labels` | string[] | 否 | 机器标签 |
+
+### 对象：`runtime`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `runtime_id` | string | 是 | runtime 稳定标识 |
+| `runtime_type` | string | 是 | 如 `hermes` / `openclaw` / `claude-code` |
+| `display_name` | string | 是 | 前端展示名 |
+| `machine_id` | string | 是 | 所属机器 |
+| `workspace_id` | string | 否 | 所属 workspace |
+| `status` | enum | 是 | `offline`/`idle`/`active`/`reading`/`waiting`/`blocked`/`error` |
+| `activity` | object | 否 | 当前活动对象 |
+| `model` | string | 否 | 规范化模型 ID |
+| `model_provider` | string | 否 | 模型提供方 |
+| `model_display` | string | 否 | 前端展示短名 |
+| `model_source` | string | 否 | 模型来源，如 `session` / `config` / `runtime_observed` |
+| `context_usage` | object | 否 | 上下文占用 |
+| `token_usage` | object | 否 | token 指标 |
+| `cost_estimate` | object | 否 | 成本估计 |
+| `connected` | boolean | 是 | runtime 是否可连接/可工作 |
+| `last_activity_at` | string(ISO8601) | 否 | 最近活动时间 |
+| `uptime_seconds` | integer | 否 | 运行时长 |
+| `workspace_label` | string | 否 | 展示用 workspace 名 |
+| `channels` | object[] | 否 | 支持 channel 时填写 |
+| `subagents` | object[] | 否 | 当前可见 subagent |
+| `sessions` | object[] | 否 | 当前活跃 session 摘要 |
+| `capabilities` | string[] | 否 | 如 `channels`, `subagents`, `cost_tracking` |
+| `metadata` | object | 否 | runtime 私有扩展 |
+
+### 对象：`activity`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `kind` | enum | 是 | `idle` / `reading` / `writing` / `tool_call` / `waiting_input` / `waiting_approval` / `blocked` / `error` |
+| `summary` | string | 是 | 给 UI 直接展示的摘要 |
+| `detail` | string | 否 | 更细说明，用于详情抽屉 |
+| `tool_name` | string | 否 | 当前工具名 |
+| `command_display` | string | 否 | 截断/脱敏后的命令摘要 |
+| `channel_id` | string | 否 | 当前 activity 关联的 channel |
+| `session_id` | string | 否 | 当前 activity 关联的 session |
+| `started_at` | string(ISO8601) | 否 | 活动开始时间 |
+| `updated_at` | string(ISO8601) | 否 | 最近更新时间 |
+| `raw_type` | string | 否 | 底层系统原始事件类型 |
+
+### 对象：`context_usage`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `percent` | number | 否 | 0-100 |
+| `band` | enum | 否 | `low` / `medium` / `high` / `critical` |
+| `window_tokens` | integer | 否 | 模型上下文窗口大小 |
+| `used_tokens` | integer | 否 | 已使用上下文 token |
+| `source` | string | 否 | 指标来源 |
+
+### 对象：`token_usage`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `input_tokens` | integer | 否 | 输入 token |
+| `output_tokens` | integer | 否 | 输出 token |
+| `cache_read_tokens` | integer | 否 | cache read |
+| `cache_write_tokens` | integer | 否 | cache write |
+| `reasoning_tokens` | integer | 否 | reasoning token |
+| `total_tokens` | integer | 否 | 聚合值 |
+| `window_scope` | string | 否 | 如 `current_session` / `rolling_1h` |
+
+### 对象：`cost_estimate`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `estimated_usd` | number | 否 | 估算成本 |
+| `actual_usd` | number | 否 | 实际成本（若已知） |
+| `billing_provider` | string | 否 | 计费提供方 |
+| `status` | string | 否 | `estimated` / `actual` / `unknown` |
+| `window_scope` | string | 否 | 指标窗口 |
+
+### 对象：`channel`
+
+> `channel` 是可选子层。只有 runtime 支持该概念时才上报。
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `channel_id` | string | 是 | channel 稳定标识 |
+| `runtime_id` | string | 是 | 所属 runtime |
+| `channel_type` | string | 是 | 如 `dm` / `group` / `thread` / `channel` |
+| `platform` | string | 否 | 如 `feishu` / `telegram` / `discord` |
+| `label` | string | 是 | 展示名 |
+| `topic` | string | 否 | 主题/描述 |
+| `is_active` | boolean | 是 | 当前是否活跃 |
+| `status` | enum | 否 | `idle` / `active` / `waiting` / `blocked` / `error` |
+| `last_activity_at` | string(ISO8601) | 否 | 最近活动时间 |
+| `session_count` | integer | 否 | 该 channel 下 session 数 |
+| `current_session_id` | string | 否 | 当前活跃 session |
+| `current_activity` | object | 否 | 当前 channel 活动 |
+| `metadata` | object | 否 | 平台私有扩展 |
+
+### 对象：`session`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `session_id` | string | 是 | session 唯一标识 |
+| `runtime_id` | string | 是 | 所属 runtime |
+| `channel_id` | string | 否 | 所属 channel |
+| `status` | enum | 是 | `active` / `waiting` / `ended` / `error` |
+| `model` | string | 否 | 当前 session 模型 |
+| `title` | string | 否 | session 标题 |
+| `started_at` | string(ISO8601) | 否 | 开始时间 |
+| `ended_at` | string(ISO8601) | 否 | 结束时间 |
+| `message_count` | integer | 否 | 消息数 |
+| `tool_call_count` | integer | 否 | 工具调用数 |
+| `activity` | object | 否 | 当前 session 活动 |
+
+### 对象：`subagent`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `subagent_id` | string | 是 | subagent 稳定标识 |
+| `parent_runtime_id` | string | 是 | 所属 runtime |
+| `parent_session_id` | string | 否 | 所属 session |
+| `parent_task_id` | string | 否 | 所属 task/tool |
+| `label` | string | 是 | 展示名 |
+| `status` | enum | 是 | `active` / `waiting` / `blocked` / `done` / `error` |
+| `activity` | object | 否 | 当前活动 |
+| `started_at` | string(ISO8601) | 否 | 开始时间 |
+| `updated_at` | string(ISO8601) | 否 | 最近更新时间 |
+| `ephemeral` | boolean | 否 | 是否临时实体 |
+
+### 对象：`metrics`
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---:|---|
+| `runtime_count` | integer | 否 | runtime 总数 |
+| `active_runtime_count` | integer | 否 | 活跃 runtime 数 |
+| `active_channel_count` | integer | 否 | 活跃 channel 数 |
+| `active_subagent_count` | integer | 否 | 活跃 subagent 数 |
+| `estimated_cost_usd` | number | 否 | 本快照窗口内总成本 |
+| `total_tokens` | integer | 否 | 本快照窗口内 token 总量 |
+
+## 兼容性与约束
+
+### 1. snapshot-first
+
+V0 先确保“没有 event 流，也能工作”。
+
+### 2. channel 是可选层
+
+- Hermes 这类有 source/channel 概念的系统应上报
+- 没有 channel 概念的 runtime 可以不填
+
+### 3. model 是一级字段
+
+后续 adaptor 必须尽力回答：
+
+> 这个 agent 当前实际在用哪个模型？
+
+如果拿不到，也要明确 `model_source=unknown`，而不是静默缺失。
+
+### 4. metadata 允许私有扩展
+
+V0 不追求一次抽象完所有差异。
+
+统一字段之外，允许：
+
+- `runtime.metadata`
+- `channel.metadata`
+- `session.metadata`
+
+承载过渡期私货，但主看板只依赖公共字段。
