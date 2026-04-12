@@ -538,6 +538,7 @@ Hermes 是第一种 adaptor，不是系统本体。
 - 哪个 runtime 在忙
 - 正在哪个 workspace / channel 忙
 - 当前 activity 是什么
+- **每个 agent 当前实际使用的模型是什么**
 - 当前模型和资源占用如何
 - 有没有 subagent
 - 有没有卡住 / 等待 / 授权 / 报错
@@ -709,11 +710,25 @@ subagent 应作为全局支持对象，而不是 Hermes 特性。
 - `workspace_id`
 - `status`
 - `model`
+- `model_provider`
+- `model_display`
+- `model_source`
 - `current_activity`
 - `context_usage`
 - `token_usage`
 - `cost_estimate`
 - `last_seen_at`
+
+其中模型字段建议明确区分：
+
+- `model`：规范化后的模型标识（如 `anthropic/claude-sonnet-4`）
+- `model_provider`：提供方（如 `anthropic` / `openai` / `zai`）
+- `model_display`：给前端直接展示的短标签（如 `Claude Sonnet 4` / `GPT-5.4`）
+- `model_source`：模型信息来源（如 `session` / `config` / `runtime_observed`）
+
+原因：
+
+> 这个看板里，“每个 agent 当前实际在用什么模型”是一级信息，不应该只作为附带字段模糊处理。
 
 ### Channel
 
