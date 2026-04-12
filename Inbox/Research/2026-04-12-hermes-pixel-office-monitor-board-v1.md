@@ -1651,3 +1651,443 @@ V0 应该坚持这条边界：
 - 模型 / activity / status 三元组
 
 这几个核心视觉元素先稳定下来。
+
+## Collector / Hub API 草案 v0
+
+这一节回答的问题是：
+
+> collector 怎么把状态发到云端 hub？
+> hub 又怎么把当前状态给办公室看板？
+
+V0 我建议采用：
+
+- **collector -> hub：HTTP snapshot 上报为主**
+- **hub -> board：REST 拉取 + WebSocket 推送结合**
+
+也就是：
+
+- 写入路径简单、稳定
+- 读取路径兼顾初始化与实时更新
+
+## 一、总体交互模型
+
+### 1. Collector 上报路径
+
+collector 周期性生成 `monitor_snapshot`，然后发给 hub：
+
+```text
+POST /api/v0/ingest/snapshots
+```
+
+V0 以 snapshot-first 为主，不要求 collector 先实现复杂 event 流。
+
+### 2. Board 读取路径
+
+前端办公室页面打开时：
+
+1. 先走 REST 拉当前全量状态
+2. 再连 WebSocket 收增量刷新
+
+这样能避免：
+
+- 页面首屏必须等事件流回放
+- WebSocket 断线后状态全丢
+
+## 二、Collector -> Hub API
+
+### 1. `POST /api/v0/ingest/snapshots`
+
+用途：
+
+- collector 上报一个完整快照
+
+#### 请求头
+
+| Header | 必填 | 说明 |
+|---|---:|---|
+| `Authorization: Bearer <collector_token>` | 是 | collector 身份验证 |
+| `Content-Type: application/json` | 是 | JSON body |
+| `X-Collector-Id` | 否 | collector 实例 ID，便于日志追踪 |
+
+#### 请求体
+
+- body 即 `monitor_snapshot`
+
+#### 约束
+
+- 单次 body 应控制在合理大小内
+- 若 snapshot 太大，collector 应先裁剪不必要 metadata
+- V0 不做分片上传
+
+#### 成功响应
+
+```json
+{
+  "ok": true,
+  "snapshot_id": "snap_20260412_xxx",
+  "received_at": "2026-04-12T13:20:00Z",
+  "next_poll_after_ms": 5000
+}
+```
+
+#### 失败响应
+
+```json
+{
+  "ok": false,
+  "error": {
+    "code": "INVALID_SNAPSHOT",
+    "message": "runtime_id is missing"
+  }
+}
+```
+
+### 2. `POST /api/v0/ingest/heartbeat`
+
+用途：
+
+- 可选心跳接口
+- 当 collector 暂时拿不到完整 snapshot 时，也能证明机器在线
+
+V0 可以先不实现，或者把 heartbeat 融入 snapshot 的时间戳逻辑。
+
+如果实现，建议 body：
+
+```json
+{
+  "collector_id": "collector-macmini-a",
+  "machine_id": "macmini-a",
+  "sent_at": "2026-04-12T13:20:00Z"
+}
+```
+
+### 3. `POST /api/v0/ingest/events`（预留）
+
+用途：
+
+- 为未来 event 流预留
+- V0 不作为必须实现项
+
+适合未来传：
+
+- subagent start/done
+- model switch
+- runtime error
+- channel active switch
+
+V0 先只保留接口位，不建议优先开发。
+
+## 三、Hub 认证与接入模型
+
+### 1. Collector 身份模型
+
+V0 建议：
+
+- 每台机器一个 `collector_token`
+- token 绑定：
+  - `machine_id`
+  - `collector_id`
+  - `allowed_runtime_types`
+
+#### 为什么不能只靠长随机 URL
+
+因为：
+
+- 长随机 URL 只适合浏览器访问
+- collector 是写入端，必须强鉴权
+- 否则任何人知道地址就能伪造状态
+
+### 2. Hub 侧持久化对象
+
+hub 接到 snapshot 后，应至少维护两层状态：
+
+#### 实时态（current state）
+
+供主看板使用：
+
+- 当前在线机器
+- 当前 runtime 状态
+- 当前 active channel
+- 当前 subagent
+
+#### 历史态（optional / compact history）
+
+供后续增强使用：
+
+- 最近若干 snapshot
+- runtime 状态切换记录
+- 错误/blocked 轨迹
+
+V0 可以先只做“当前态 + 最近 N 份 snapshot”。
+
+## 四、Board 读取 API
+
+### 1. `GET /api/v0/board/state`
+
+用途：
+
+- 前端首次加载时拉取整板当前状态
+
+#### 响应建议
+
+```json
+{
+  "ok": true,
+  "generated_at": "2026-04-12T13:20:05Z",
+  "machines": [...],
+  "runtimes": [...],
+  "channels": [...],
+  "subagents": [...],
+  "metrics": {...}
+}
+```
+
+#### 设计判断
+
+这里建议 hub 直接返回“已经平铺好的当前态”，不要让前端自己从原始 snapshot 拼装。
+
+也就是说：
+
+- ingest 层吃 snapshot
+- query 层吐 board-friendly state
+
+这是重要边界。
+
+### 2. `GET /api/v0/board/machines`
+
+用途：
+
+- 机器列表
+- 机器概览聚合
+
+适合：
+
+- 左侧机器导航
+- 顶部机器筛选器
+
+### 3. `GET /api/v0/board/runtimes`
+
+用途：
+
+- runtime 列表
+- 支持筛选
+
+建议支持 query 参数：
+
+- `machine_id`
+- `runtime_type`
+- `status`
+- `has_subagents`
+- `model`
+
+### 4. `GET /api/v0/board/runtimes/:runtime_id`
+
+用途：
+
+- runtime 详情抽屉数据
+
+返回内容建议包括：
+
+- runtime 基本信息
+- activity
+- model
+- context/tokens/cost
+- channels
+- sessions
+- subagents
+- metadata
+
+### 5. `GET /api/v0/board/channels/:channel_id`
+
+用途：
+
+- channel 详情视图
+
+返回内容建议包括：
+
+- channel 基本信息
+- 当前 session
+- 当前 activity
+- 最近活动时间
+- 关联 subagent 摘要
+
+### 6. `GET /api/v0/board/filters`
+
+用途：
+
+- 前端获取过滤项枚举
+
+返回如：
+
+- machine 列表
+- runtime_type 列表
+- model 列表
+- status 枚举
+
+这样前端就不需要自己扫全量数据再反推过滤项。
+
+## 五、Board 实时推送 API
+
+### `GET /api/v0/board/stream`（WebSocket）
+
+用途：
+
+- 给前端推送实时变化
+
+V0 不建议把整个 snapshot 每次全量推给前端。
+建议推送 **board_delta**。
+
+#### 推送消息类型建议
+
+| type | 用途 |
+|---|---|
+| `machine.updated` | 机器状态变更 |
+| `runtime.updated` | runtime 状态或模型变更 |
+| `channel.updated` | channel 状态变更 |
+| `subagent.updated` | subagent 出现/消失/变更 |
+| `board.metrics` | 全局聚合指标刷新 |
+| `board.resync_required` | 前端应重新拉整板状态 |
+
+#### 示例
+
+```json
+{
+  "type": "runtime.updated",
+  "sent_at": "2026-04-12T13:20:12Z",
+  "payload": {
+    "runtime_id": "macmini-a:backend",
+    "status": "active",
+    "model_display": "Claude Sonnet 4",
+    "activity": {
+      "kind": "tool_call",
+      "summary": "Running pytest tests/tools"
+    }
+  }
+}
+```
+
+#### 为什么需要 `board.resync_required`
+
+因为 V0 的前端如果丢了一段 delta，不值得做复杂补偿。
+
+更稳的做法是：
+
+- 检测到状态不一致或版本跳变
+- hub 直接告诉前端：重新调一次 `GET /board/state`
+
+## 六、Hub 内部状态组织建议
+
+虽然这是 API 草案，但内部结构会直接影响 API 是否干净。
+
+我建议 hub 内部至少有这几张逻辑表/缓存：
+
+### 1. `collectors`
+
+记录：
+
+- collector_id
+- machine_id
+- token_id
+- last_seen_at
+- last_snapshot_id
+- auth status
+
+### 2. `machine_current`
+
+当前机器态。
+
+### 3. `runtime_current`
+
+当前 runtime 态。
+
+### 4. `channel_current`
+
+当前 channel 态。
+
+### 5. `subagent_current`
+
+当前 subagent 态。
+
+### 6. `snapshot_history`
+
+最近 N 份 snapshot。
+
+V0 不一定真要做成数据库 6 张表，但逻辑上应该这么分。
+
+## 七、错误处理与退化策略
+
+### 1. collector 上报失败
+
+collector 收到非 2xx 时：
+
+- 本地记录失败次数
+- 指数退避重试
+- 不要立刻丢弃最近一次成功状态
+
+### 2. snapshot 部分字段缺失
+
+hub 不应整包拒绝，除非关键键缺失。
+
+#### 关键字段缺失才拒绝
+
+例如：
+
+- `protocol_version`
+- `snapshot_id`
+- `collector_id`
+- `machine.machine_id`
+- `runtime.runtime_id`
+
+#### 非关键字段缺失则降级接收
+
+例如：
+
+- `model_display`
+- `context_usage.percent`
+- `subagent.activity`
+
+### 3. 前端 WS 断线
+
+断线后策略：
+
+1. 自动重连
+2. 重连成功后重拉一次 `GET /board/state`
+
+而不是指望从断点续传 delta。
+
+## 八、V0 API 成功标准
+
+这套 API 如果设计对了，应该做到：
+
+### 对 collector
+
+- 上报逻辑简单
+- 不需要理解前端布局
+- 只要按协议吐 snapshot 即可
+
+### 对 hub
+
+- ingest 和 query 分层清楚
+- 能稳定维护当前态
+- 能给 board 返回可直接渲染的数据
+
+### 对前端
+
+- 首屏只要调一次 `GET /board/state`
+- 后续主要吃 WS delta
+- 需要时再调 runtime/channel 详情接口
+
+## 我对 API v0 的最终判断
+
+V0 不要贪，先保证这条链路稳定：
+
+> collector 定时上报 snapshot → hub 维护当前态 → board 拉全量 + 吃增量推送。
+
+这条链路一旦稳定，后面无论是：
+
+- 接第二种 agent adaptor
+- 加控制面
+- 加历史回放
+- 加告警
+
+都会顺很多。
