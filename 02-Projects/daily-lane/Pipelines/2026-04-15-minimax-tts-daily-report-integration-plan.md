@@ -174,7 +174,7 @@ outputs/audio-reports/YYYY-MM-DD.json
   "text": "这里是一段处理后的日报朗读文本",
   "stream": false,
   "voice_setting": {
-    "voice_id": "先用官方现成中文音色",
+    "voice_id": "Chinese (Mandarin)_Soft_Girl",
     "speed": 1,
     "vol": 1,
     "pitch": 0,
