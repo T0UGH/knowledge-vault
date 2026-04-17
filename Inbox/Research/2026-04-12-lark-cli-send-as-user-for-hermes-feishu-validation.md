@@ -199,9 +199,56 @@ lark-cli im +messages-send --as user --chat-id "oc_CHAT_ID" --text "AGM user-sen
 
 那么 `lark-cli send as user` 是当前最值得验证的一条非侵入式路线。
 
-## 后续待办（未展开）
+## 2026-04-17 实测补充：给 MT 真实会话发送成功
 
-后面真要继续推进，下一步最值钱的不是继续读源码，而是：
-- 怎么拿到 Hermes bot 的 `open_id` 或目标 `chat_id`
-- Hermes 当前飞书 bot 对来自该用户的消息是否会进入目标主会话
-- 这条路在 token 生命周期、安全性、部署复杂度上是否可接受
+这条链路后来已经做了实测，不再只是“值得验证”，而是**已验证通过**。
+
+### 关键识别值
+- MT 真实历史 p2p 会话 `chat_id`：`oc_b3c40399b83d73e55b604309e886796a`
+- MT 对端 `open_id`：`ou_ebf786ff86b8c8d3c8d0b830706fc376`
+- 当前 Rook 会话 `chat_id`（容易混淆，不要误发）：`oc_7da2b33bca4bfaa5aa20021b69e4a25f`
+
+### 发送前状态
+- `lark-cli auth status` 显示当前身份为 `王贵平`
+- `tokenStatus = valid`
+- `lark-cli auth check --scope 'im:message.send_as_user'` 返回 `ok: true`
+
+### 实际发送命令
+```bash
+lark-cli im +messages-send \
+  --as user \
+  --chat-id 'oc_b3c40399b83d73e55b604309e886796a' \
+  --text 'MT user-send real target test 2026-04-17 22:27'
+```
+
+### 返回结果
+- `ok: true`
+- `identity: user`
+- `message_id: om_x100b511060db94a4b2bcda2065da50a`
+
+### 回读验证
+用下面命令回读：
+```bash
+lark-cli im +chat-messages-list \
+  --as user \
+  --chat-id 'oc_b3c40399b83d73e55b604309e886796a' \
+  --page-size 5 \
+  --format json
+```
+
+回读结果确认：
+- 最新消息内容正确
+- `sender.sender_type = user`
+- `sender.name = 王贵平`
+
+也就是说，**消息确实以贵平的用户身份写进了 MT 的真实历史会话**。
+
+### 一条踩坑记录
+`lark-cli im +messages-send` **不支持** `--format`。如果误加这个参数，命令会直接报错，不是消息发送失败。
+
+## 后续待办（已收敛）
+
+这件事后续不再是“能不能发”的问题，而是三个工程化问题：
+- 如何把目标 `chat_id` / `open_id` 稳定沉淀到 agent 的技能和本地说明里
+- 如何把“发送 + 回读验证”固化成标准操作，而不是一次性试验
+- 如何让 MT / 其他 agent 也安装 `lark-cli`，反向给 Rook 发消息做对照验证
