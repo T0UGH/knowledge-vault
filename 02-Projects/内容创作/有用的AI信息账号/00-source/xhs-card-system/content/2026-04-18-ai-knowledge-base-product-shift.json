@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "topic": "AI 知识库正在从笔记流派变成产品流派",
+    "type": "trend-line",
+    "issue": "首发03",
+    "theme": "clean-news",
+    "date": "2026-04-18"
+  },
+  "cards": [
+    {
+      "slot": 1,
+      "template": "cover",
+      "title": "AI 知识库正在从笔记流派变成产品流派",
+      "subtitle": "这条线现在已经不是小众习惯，而是在往正式赛道长",
+      "tags": ["Knowledge Base", "Memory"]
+    },
+    {
+      "slot": 2,
+      "template": "info",
+      "eyebrow": "最近发生了什么",
+      "title": "这条线开始在不同地方一起冒头",
+      "summary": "知识库不再只是偶尔被提一下，而是在产品、社区和工作流里同时升温。",
+      "bullets": [
+        "Karpathy 在讲 LLM Knowledge Bases",
+        "Obsidian + agent memory 变成社区模式",
+        "claude-mem 这类项目冲上趋势榜"
+      ]
+    },
+    {
+      "slot": 3,
+      "template": "info",
+      "eyebrow": "变了什么",
+      "title": "真正变化的是使用主体",
+      "summary": "以前主要是人回看笔记，现在越来越是给 agent 持续拿上下文、写入和工作用。",
+      "before": "知识库更多是个人笔记系统",
+      "after": "知识库开始变成 agent 的工作前端 / 记忆层 / 检索层",
+      "bullets": [
+        "这不是旧话题翻红",
+        "而是知识库开始服务新的工作主体"
+      ]
+    },
+    {
+      "slot": 4,
+      "template": "quote",
+      "title": "原声 / 证据",
+      "source_name": "Karpathy / LLM Knowledge Bases",
+      "source_type": "official-post",
+      "quote": "原始资料先进 raw/，再让 LLM 持续把资料编译成 markdown wiki；问问题、做研究、做 slides、出图，又会把结果继续回写知识库。",
+      "interpretation": "这里最值钱的不是又一个 Obsidian workflow，而是知识库被抬成了一个能持续编译、查询、回写的工程对象。"
+    },
+    {
+      "slot": 5,
+      "template": "info",
+      "eyebrow": "为什么值得看",
+      "title": "它开始长出活记忆特征",
+      "summary": "这条线已经不满足于“存进去”，而是开始回答哪些记忆更可信、哪些需要回查。",
+      "bullets": [
+        "置信度评分",
+        "来源数量",
+        "最近确认时间"
+      ],
+      "footnote": "这比单纯塞上下文，更接近真实工作的长期记忆系统。"
+    },
+    {
+      "slot": 6,
+      "template": "case",
+      "title": "一个代表项目",
+      "case_name": "claude-mem",
+      "summary": "它已经不只是存聊天记录，而是在做 observation / summary 分层，并把相关上下文回注到未来 session。",
+      "points": [
+        "自动捕获 coding session 行为",
+        "压缩成更有用的记忆",
+        "目标是下次真的更接得上"
+      ]
+    },
+    {
+      "slot": 7,
+      "template": "case",
+      "title": "这条线最可能往哪边长",
+      "summary": "现在看到的信号，正在往几条更清楚的方向收束。",
+      "trend_name": "知识库赛道方向",
+      "points": [
+        "产品化",
+        "agent-friendly",
+        "工作流化"
+      ],
+      "footer": "看起来不是一回事，其实都在补长期工作的知识 / 记忆基础设施。"
+    },
+    {
+      "slot": 8,
+      "template": "closing",
+      "title": "我们的判断",
+      "thesis": "这条线短期最该盯的，不是谁又教你搭知识库，而是谁先把知识库真正做成 agent 的工作层。",
+      "bullets": [
+        "从“存下来”走向“知道什么更可信”",
+        "从“给人回看”走向“回到下一次任务里”"
+      ]
+    },
+    {
+      "slot": 9,
+      "template": "closing",
+      "title": "收口 / 收藏理由",
+      "closing": "如果你只记一件事，记住：这条线升温不是因为大家重新爱上记笔记，而是长期 AI 工作真的需要一层可持续的知识基础设施。",
+      "next_watch": [
+        "谁把知识库做成 agent 前端",
+        "谁把记忆做成可信度系统",
+        "谁能让知识库回到下一次任务里"
+      ]
+    }
+  ]
+}

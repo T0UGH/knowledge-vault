@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "topic": "Codex 现在能操作电脑了",
+    "type": "single-change",
+    "issue": "首发02",
+    "theme": "clean-news",
+    "date": "2026-04-18"
+  },
+  "cards": [
+    {
+      "slot": 1,
+      "template": "cover",
+      "title": "Codex 现在能操作电脑了",
+      "subtitle": "这次不只是编程助手升级，而是开始往直接执行任务走",
+      "tags": ["AI Agent", "Computer Use"]
+    },
+    {
+      "slot": 2,
+      "template": "info",
+      "eyebrow": "发生了什么",
+      "title": "这次更新碰到了电脑操作层",
+      "summary": "Codex 开始从“帮你写代码”往“能直接操作电脑完成任务”推进。",
+      "bullets": [
+        "能看屏幕、点鼠标、敲键盘",
+        "开始走真实应用流程",
+        "在 Mac 上可跑多个 agent 并行干活"
+      ]
+    },
+    {
+      "slot": 3,
+      "template": "info",
+      "eyebrow": "变了什么",
+      "title": "这次真正变化的是工作边界",
+      "summary": "以前主要是 coding tool，现在开始往更通用的工作 agent 靠。",
+      "before": "以前主要帮你写代码",
+      "after": "现在开始直接操作电脑",
+      "bullets": [
+        "变化不再只是 IDE 更顺一点",
+        "而是 agent 的可执行边界往外扩了"
+      ]
+    },
+    {
+      "slot": 4,
+      "template": "quote",
+      "title": "原声 / 证据",
+      "source_name": "公开功能描述与体验信息",
+      "source_type": "official+community",
+      "quote": "现在能看到的不是一句抽象的 computer use，而是它已经能看屏幕、点鼠标、敲键盘，而且不会抢占你正在用的其他窗口。",
+      "interpretation": "关键不是“会点一下”，而是很多没有 API 的软件重新有机会被 agent 接进工作流。"
+    },
+    {
+      "slot": 5,
+      "template": "info",
+      "eyebrow": "为什么值得看",
+      "title": "它在补连续工作流，不是补单点功能",
+      "summary": "这次值钱的地方，是代码、界面、图片、工具调用开始被接进同一条链路。",
+      "bullets": [
+        "桌面 App 内置浏览器",
+        "网页上可以圈点批注给 agent 下指令",
+        "图像生成也被接进同一流程"
+      ]
+    },
+    {
+      "slot": 6,
+      "template": "case",
+      "title": "一个更像真实工作的场景",
+      "case_name": "前端开发 / 游戏调试",
+      "summary": "公开信息里，这类场景已经被明确点名，因为它们天然需要代码、界面和反复操作同场出现。",
+      "points": [
+        "浏览页面后直接指出改哪",
+        "配合界面操作完成调试链路",
+        "产品概念图和 UI mock 也能进入同一流程"
+      ]
+    },
+    {
+      "slot": 7,
+      "template": "case",
+      "title": "接下来最可能往哪边长",
+      "summary": "真正该盯的不是一次演示，而是 computer-use 基建会不会继续补齐。",
+      "trend_name": "browser / computer-use 基建",
+      "points": [
+        "local browser session",
+        "self-repair browser workflow",
+        "跨时间持续推进任务的 agent"
+      ],
+      "footer": "如果记忆和自我排程继续往前长，后劲会比单次 computer use 更大。"
+    },
+    {
+      "slot": 8,
+      "template": "closing",
+      "title": "我们的判断",
+      "thesis": "这条新闻真正该盯的，不是 Codex 又强一点，而是哪个 agent 真能把整段工作接过去做完。",
+      "bullets": [
+        "记忆和偏好开始进入长期工作层",
+        "自我排程说明它在往跨时间 agent 靠"
+      ]
+    },
+    {
+      "slot": 9,
+      "template": "closing",
+      "title": "收口 / 收藏理由",
+      "closing": "如果你只记一件事，记住：现在变的不是模型更会说，而是 agent 开始真的获得执行电脑任务的手。",
+      "next_watch": [
+        "入口和 rollout 何时继续放开",
+        "memory / scheduling 会不会继续实装",
+        "browser 与 desktop 操作会不会合流"
+      ]
+    }
+  ]
+}

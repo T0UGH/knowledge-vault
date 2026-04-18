@@ -64,6 +64,11 @@ aliases:
 - [[2026-04-18-小红书9卡弹性字段协议-v1]]
 - [[2026-04-18-HTML图卡模板实现说明-v1]]
 
+## Included / 首批样板 JSON
+
+- `00-source/xhs-card-system/content/2026-04-18-codex-computer-use.json`
+- `00-source/xhs-card-system/content/2026-04-18-ai-knowledge-base-product-shift.json`
+
 ## 待补
 
 - 发布节奏与复盘表
