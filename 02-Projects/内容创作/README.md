@@ -56,6 +56,13 @@ aliases:
 - 不再让渠道目录（例如旧 `公众号创作`）长期持有第二套正文真身
 - 如果未来需要“作品总览”，优先做索引页，而不是重新建立一层正文目录
 
+## Research Inputs
+
+### 平台生态 / 选题参考
+- [[Inbox/Research/2026-04-18-小红书AI账号生态第一版盘点]]
+  - 用途：观察 AI 小红书账号生态、热点笔记、账号类型、选题分布与可切入方向
+  - 当前状态：已完成两轮关键词样本扫描（Claude Code / AI Agent / AI编程 / Cursor / MCP / Skills / vibe coding / AI工作流 / AI知识库）
+
 ## Next Cleanup Targets
 - 为每个主题补 `README.md`
 - 继续清理 `07-Posts/WeChat` 与主题目录的边界
