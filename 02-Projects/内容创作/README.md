@@ -51,6 +51,12 @@ aliases:
   - source：[[2026-04-02-Claude-Code-该改名叫-Claude-Agent-设计稿]]、[[2026-04-02-Claude-Code-该改名叫-Claude-Agent-选题思路]]
   - 微信稿：[[2026-04-02-Claude-Code-该改名叫-Claude-Agent-正文草稿-v1]]
 
+### 3. 有用的AI信息账号
+- 主题目录：[[有用的AI信息账号]]
+- 当前包含：
+  - source：[[2026-04-18-小红书AI信息账号定位稿-v1]]
+  - research input：[[Inbox/Research/2026-04-18-小红书AI账号生态第一版盘点]]
+
 ## Usage Rule
 - **一个主题只有一个长期真身目录**
 - 不再让渠道目录（例如旧 `公众号创作`）长期持有第二套正文真身
