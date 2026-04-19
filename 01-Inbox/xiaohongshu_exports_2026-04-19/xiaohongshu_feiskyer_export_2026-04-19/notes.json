@@ -1,0 +1,598 @@
+{
+  "export_info": {
+    "account_name": "Feiskyer",
+    "account_id": "feiskyer",
+    "exported_at": "2026-04-19 15:24:37 Asia/Shanghai",
+    "source_profile_url": "https://www.xiaohongshu.com/user/profile/57f639a982ec3901c59ebbab?channel_type=web_search_result_notes&parent_page_channel_type=web_profile_board&xsec_token=ABEdvFtvyZdaBFditIeUumZMq_c4GSEd8B4P1PJzewxbM=&xsec_source=pc_search",
+    "notes_visible_on_profile": 20,
+    "fully_exported_notes": 20,
+    "partial_notes": 0
+  },
+  "notes": [
+    {
+      "order": 1,
+      "status": "complete",
+      "note_id": "695ced0b000000001a0239f1",
+      "title": "这份 Vibe Coding 指南，把 AI 编程讲透了",
+      "description": "最近在 GitHub 上翻到这个 Vibe Coding 指南，6.2k stars，强烈推荐你也看看。\n它把 AI 编程这件事讲得特别系统。从最基础的网络环境配置、开发环境搭建，到进阶的胶水编程、白板驱动开发、AI蜂群协作，每一步都有详细文档。\n它的道·法·术方法论也很有意思，“道”讲思维原则，“法”讲拆解策略，“术”讲具体操作。三层递进，把AI编程从碰运气变成有章法。\n最值得收藏的是它的提示词库，分成元提示词、系统提示词、编程提示词三类，直接复制就能用。还有一个在线表格收录了几百个精选提示词，省得自己摸索了。\n这个教程适合已经用 ChatGPT 或 Claude 写过代码、但效率总上不去的朋友。零基础也能跟着入门教程一步步来。\n  \n你们还有什么好用的 AI 编程资源？评论区交换一下。\n#vibecoding[话题]#  #AI编程[话题]#  #GitHub开源[话题]#  #Claude[话题]#  #Cursor[话题]#  #程序员[话题]#  #效率工具[话题]#  #编程教程[话题]#",
+      "published_at": "2026-01-06 19:07:55 Asia/Shanghai",
+      "last_updated_at": "2026-01-06 19:12:30 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 3,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "vibecoding",
+        "AI编程",
+        "GitHub开源",
+        "Claude",
+        "Cursor",
+        "程序员",
+        "效率工具",
+        "编程教程"
+      ],
+      "interact": {
+        "likes": 4867,
+        "collects": 8229,
+        "comments": 44,
+        "shares": 1273
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/695ced0b000000001a0239f1?xsec_token=ABo4ex6JzIDg1ykqdLM4v6AWeKwy3QoWMyZqfD2yXhrr8=&xsec_source="
+    },
+    {
+      "order": 2,
+      "status": "complete",
+      "note_id": "68aee88a000000001b037778",
+      "title": "Claude Code 外接模型解锁高级规划模式",
+      "description": "分享个 Claude Code 技巧，离谱了！\nClaude Code的opusplan模式超香，但 Pro 用户用不了 Opus 模型。 而 Max 订阅又太贵了。还好还有诸如 GitHub Copilot 这样的平台，同样支持 Claude 4 的各个模型。\n  \n📚 配置方法\n  \n这里以 copilot-api 中转 Github Copilot 为 Anthropic API 为例，其实配置方法很简单，就是下面这三个环境变量：\n  \nANTHROPIC_MODEL=\"opusplan\"\nANTHROPIC_DEFAULT_SONNET_MODEL=\"claude-sonnet-4\"\nANTHROPIC_DEFAULT_OPUS_MODEL=\"claude-opus-4\"\n  \n外接模型瞬间获得 opusplan 能力！ 我用 GitHub Copilot 测试了，规划能力直接起飞。\n  \n🔔 避坑提醒\n  \n不同 API 平台的模型名称可能不同，要根据你所使用平台选对模型名称。\n  \n上述更新已同步到 https://github.com/feiskyer/claude-code-settings，更多 Claude Code 的配置可以参考这个开源项目。\n  \n﻿#claudecode[话题]#﻿  ﻿#Claude[话题]#﻿  ﻿#程序员工具[话题]#﻿  ﻿#省钱技巧[话题]#﻿  ﻿#AI编程[话题]#﻿  ﻿#代码助手[话题]#﻿  ﻿#Copilot[话题]#",
+      "published_at": "2025-08-27 19:14:18 Asia/Shanghai",
+      "last_updated_at": "2025-08-27 19:14:18 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 3,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "claudecode",
+        "Claude",
+        "程序员工具",
+        "省钱技巧",
+        "AI编程",
+        "代码助手",
+        "Copilot"
+      ],
+      "interact": {
+        "likes": 35,
+        "collects": 61,
+        "comments": 2,
+        "shares": 11
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68aee88a000000001b037778?xsec_token=AB3zI_1qbuUAymsTckyn1ITiBL8qx5AfiMxelXv8bdB7U=&xsec_source="
+    },
+    {
+      "order": 3,
+      "status": "complete",
+      "note_id": "6875c62c0000000017033720",
+      "title": "🔥开发者必看！ 免费Claude 4 AI IDE来了",
+      "description": "Anthropic 背后的金主——Amazon AWS 发布了一个全新的 AI IDE，即 Kiro，强烈推荐给所有的开发小伙伴。\n  \nKiro 目前是预览状态，所有功能都可以免费使用。来分享我的试用感受👇\n  \n🌟 1. 规范驱动开发\nKiro独有的specs（规范文档），让你只需一句需求，AI就能帮你拆解成用户故事、技术设计、任务清单，再也不需要手动整理需求规范！\n  \n🧩 2. 智能Hooks自动补全开发细节\n每次保存、创建、修改文件，Kiro的hooks会自动帮你补齐测试、刷新文档、做安全检查，开发流程更顺畅！\n  \n🛠 3. 开发全流程支持\n只需一句“为产品加评论系统”，Kiro就能自动生成接口、数据库、前端组件、测试用例，还能帮你排好开发顺序和依赖。\n  \n🔗 4. 兼容VS Code生态\n基于开源VS Code构建，Mac/Windows/Linux都能用，原有的配置和插件也可以一件迁移。\n  \n🚀 5. 免费体验，快速上手\n现在Kiro免费预览，支持Google/GitHub等多种登录方式，非常适合尝鲜！\n  \n很明显，Kiro 在 Claude Code 的基础上又往前走了一大步，把 CLI 的体验搬回了 VSCode IDE。趁着免费，赶紧用起来吧。\n  \n﻿#开发工具[话题]#﻿ ﻿#AI编程[话题]#﻿ ﻿#效率提升[话题]#﻿ ﻿#kiro[话题]#﻿ ﻿#ClaudeCode[话题]#﻿ ﻿#AWS[话题]#﻿ ﻿#开发者成长[话题]#",
+      "published_at": "2025-07-15 11:08:28 Asia/Shanghai",
+      "last_updated_at": "2025-07-15 11:10:51 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 1,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "开发工具",
+        "AI编程",
+        "效率提升",
+        "kiro",
+        "ClaudeCode",
+        "AWS",
+        "开发者成长"
+      ],
+      "interact": {
+        "likes": 67,
+        "collects": 81,
+        "comments": 29,
+        "shares": 20
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6875c62c0000000017033720?xsec_token=ABYMtUq7Be756AVWepIOXPQErjcuwQHSx-QZGojNAfE-M=&xsec_source="
+    },
+    {
+      "order": 4,
+      "status": "complete",
+      "note_id": "6911ce98000000000503bd88",
+      "title": "零基础看懂Agent！Google 50页入门白皮书",
+      "description": "Google 刚发的 50 页 Agent 白皮书，入门必看！从定义、架构到实战全讲透了，把 Agent 的 Model（大脑）、Tools（双手）、Orchestration（神经系统）三大件拆得特别清楚，并详细讲解了从POC到生成可部署的 Agent 到底该如何做。零基础也能看懂，强烈建议收藏！\n  \n📚 Agent 三大件：\n第一件是Model，也就是\"大脑\"，负责思考，决定下一步该干啥。\n第二件是Tools，也就是\"双手\"，可以调用各种API、查数据库、执行代码，真的能改变现实世界。\n第三件是Orchestration，也就是\"神经系统\"。这个最关键，负责把大脑和双手连起来，让Agent能不断循环\"思考-行动-观察\"这个过程。\n  \n💻 Agent的5个进化等级：\nLevel 0是\"只会背书的AI\"，就是普通语言模型，只能聊天。\nLevel 1是\"会用工具的AI\"，可以调用搜索、查数据库，能获取实时信息了。\nLevel 2是\"会规划策略的AI\"，能把复杂任务拆成多个步骤，还会自己优化执行路径。\nLevel 3是\"团队协作的多Agent系统\"，多个Agent分工合作。\nLevel 4是\"自我进化系统\"，Agent能根据结果优化自己的能力，甚至创建新工具，还在研究阶段。\n  \n#aiagent[话题]# #agent[话题]# #智能体[话题]# #人工智能[话题]# #AI编程[话题]# #大模型[话题]# #google[话题]# #agent入门[话题]#",
+      "published_at": "2025-11-10 19:38:00 Asia/Shanghai",
+      "last_updated_at": "2025-11-10 19:38:00 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "aiagent",
+        "agent",
+        "智能体",
+        "人工智能",
+        "AI编程",
+        "大模型",
+        "google",
+        "agent入门"
+      ],
+      "interact": {
+        "likes": 19,
+        "collects": 28,
+        "comments": null,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6911ce98000000000503bd88?xsec_token=AB_jKq1Cz_STA9Xu07mFugXqcgsX5bNIEoI4n5JtSYvHI=&xsec_source="
+    },
+    {
+      "order": 5,
+      "status": "complete",
+      "note_id": "683ef79f000000002300345f",
+      "title": "微软终于放大招了！直接将Sora视频生成免费",
+      "description": "OpenAI Sora 原本只提供给 Plus/Pro 订阅用户，现在微软在 Bing Video Creator 中直接把它给免费了。\n  \n生成说明：\n1️⃣ 支持9:16竖屏格式，完美适配手机观看\n2️⃣ 每次可排队生成3个视频，效率翻倍\n3️⃣ 初始赠送10次快速生成机会\n4️⃣ 作品自动保存90天，不怕丢失\n  \n核心功能：\n1️⃣ 文字描述即可生成5秒短视频\n2️⃣ 由Sora驱动，画质效果出色\n3️⃣ 支持详细场景、动作和风格描述\n4️⃣ 可下载分享，一键复制链接\n  \n目前支持必应移动应用使用，网页版即将上线。\n后续会陆续向外开放 1️⃣ 16:9横屏格式、2️⃣更长时长视频生成、3️⃣更多风格模板等AI视频创作功能。\n  \n感兴趣的来～\n#AI视频生成[话题]# #必应视频创作[话题]# #Sora技术[话题]# #免费AI工具[话题]# #AI视频[话题]# #AI工具[话题]# #微软[话题]# #openai[话题]# #sora[话题]#",
+      "published_at": "2025-06-03 21:24:47 Asia/Shanghai",
+      "last_updated_at": "2025-06-03 21:24:48 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 1,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI视频生成",
+        "必应视频创作",
+        "Sora技术",
+        "免费AI工具",
+        "AI视频",
+        "AI工具",
+        "微软",
+        "openai",
+        "sora"
+      ],
+      "interact": {
+        "likes": 11,
+        "collects": 15,
+        "comments": 6,
+        "shares": 3
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/683ef79f000000002300345f?xsec_token=ABTtM09lmqSbUb7bHPevtCRQNa1HYzc75SIqy_ckdjgSQ=&xsec_source="
+    },
+    {
+      "order": 6,
+      "status": "complete",
+      "note_id": "68ba2d85000000001c032f11",
+      "title": "OpenAI Codex 零基础入门指南",
+      "description": "经过这段时间的深度体验，说实话，Codex 确实有点东西。\n  \n特别是在 Claude Code “随便发挥”的对比下，GPT-5 的指令遵循能力简直是降维打击。你让它改个 CSS，它就只改 CSS；你让它写个测试，它就只写测试，不会顺手给你重构一遍代码。\n  \n所以就有了这个适合小白入门的 Codex 零基础入门指南，希望它可以帮你从 Claude Code 的“深渊”中拯救出来😊\n  \n#AI编程[话题]# #ClaudeCode[话题]# #编程[话题]# #人工智能[话题]# #openai[话题]# #codex[话题]# #开发工具[话题]# #ChatGPT[话题]#",
+      "published_at": "2025-09-05 08:23:33 Asia/Shanghai",
+      "last_updated_at": "2025-09-05 08:23:34 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 16,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI编程",
+        "ClaudeCode",
+        "编程",
+        "人工智能",
+        "openai",
+        "codex",
+        "开发工具",
+        "ChatGPT"
+      ],
+      "interact": {
+        "likes": 669,
+        "collects": 968,
+        "comments": 45,
+        "shares": 192
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68ba2d85000000001c032f11?xsec_token=ABjw7nGcIRn9Yk3nlcCrRHM9xMZuC-1j0tkLnNyxtf8vs=&xsec_source="
+    },
+    {
+      "order": 7,
+      "status": "complete",
+      "note_id": "68d2a571000000001101468d",
+      "title": "如何像 OpenAI 工程师一样用 AI 编程",
+      "description": "“我开了一天会，还是合并了 4 个 PR，因为有 Codex 在后台帮我干活。”—来自 OpenAI 的一位产品工程师。\n当我翻完 OpenAI 最新发布的《How OpenAI uses Codex》文档后，我才意识到，原来 OpenAI 工程师早就把 AI 编程玩出花来了：他们不仅是 Codex 写写 CRUD 那么简单，从处理生产事故到代码库重构，从性能优化到探索架构设计，Codex 已经深度渗透到 OpenAI 的日常开发流程中。安全、产品、前端、基础设施、性能工程——几乎每个技术团队都在用。\n  \n看完 OpenAI 内部工程团队的实践分享，我系统梳理了 Codex 在企业级软件开发中的七大核心应用场景，每个场景都配有 OpenAI 真实案例和具体 prompt。这些经过实战检验的方法论，不仅适用于 Codex，也可以直接应用到 Cursor、GitHub Copilot、Claude 等主流 AI 编程工具中，帮你真正实现效率提升。\n  \nOpenAI 的 Codex 实践证明，AI 辅助编程已经从概念验证进入生产环境规模化应用。通过系统化的最佳实践和标准化的使用流程，技术团队可以显著提升效率，同时保持或提升代码质量。\n  \n#AI编程[话题]# #codex[话题]# #ClaudeCode[话题]# #openai[话题]# #编程[话题]# #人工智能[话题]#",
+      "published_at": "2025-09-24 08:09:02 Asia/Shanghai",
+      "last_updated_at": "2025-09-25 22:35:08 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 13,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI编程",
+        "codex",
+        "ClaudeCode",
+        "openai",
+        "编程",
+        "人工智能"
+      ],
+      "interact": {
+        "likes": 7,
+        "collects": 12,
+        "comments": null,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68d2a571000000001101468d?xsec_token=ABU4ti55F-5pOo_J6nDejUoYK81lF_2tDhLrKZCCX7AL4=&xsec_source="
+    },
+    {
+      "order": 8,
+      "status": "complete",
+      "note_id": "6909c52e00000000040117a3",
+      "title": "📚 如何使用 Gemini 自动创建 PPT",
+      "description": "Google 家的 Gemini 支持通过 AI 创建 PPT 演示文档了，使用起来还是挺方便的，安利一下。\n  \n使用方法是开启 Canvas然后提示词中输入创建演示文档（图2-4），支持中文，支持直接导出到 Google Slides 中继续编辑。\n  \n比如图示是基于《Context Engineering 2.0: The Context of Context Engineering》生成的 PPT，还挺喜欢这种默认的简介风格的😊\n  \n用下来最大的问题是没法直接把原文中的图片嵌入到 PPT 中。当然解决起来也比较简单，导出到 Google 幻灯片中再编辑就是。\n  \n#AI工具[话题]# #ppt制作[话题]# #slide[话题]# #gemini[话题]# #powerpoint设计[话题]#",
+      "published_at": "2025-11-04 17:19:42 Asia/Shanghai",
+      "last_updated_at": "2025-11-04 17:19:42 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 6,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI工具",
+        "ppt制作",
+        "slide",
+        "gemini",
+        "powerpoint设计"
+      ],
+      "interact": {
+        "likes": 432,
+        "collects": 409,
+        "comments": 22,
+        "shares": 114
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6909c52e00000000040117a3?xsec_token=AB4q5qZf2Fp4CcnmytfQE3ui24_HmSNWNQ6uFQICslq_k=&xsec_source="
+    },
+    {
+      "order": 9,
+      "status": "complete",
+      "note_id": "680c7e6e000000001c032ed6",
+      "title": "看不懂Github项目？源码深度研究DeepWiki",
+      "description": "阅读源代码一直都是程序员最头疼的事情，特别是刚刚接手一个新的项目后更是需要看懂每个模块🤕\n  \n号称首个AI程序员的 Devin 创建了DeepWiki，一口气索引了3万多个Github仓库，并自动给它们生成了项目架构图、使用指南、子模块文档等，再加上源码级的深度研究功能，简直是程序员救星🚀\n  \n众所周知，大模型在理解局部代码时都还不错，但要理解代码库的全局结构就难了。DeepWiki 将代码库分解为高级系统的层次结构，然后为每个系统生成一个维基页面，从而就可以更好的全面理解代码。\n  \n更重要的是，对于开源项目，DeepWiki完全免费使用，无需注册！在任何 Github 代码库的URL中将github替换为deepwiki即可访问！\n  \n#大模型[话题]# #AI编程[话题]# #AI工具[话题]# #github[话题]# #效率神器[话题]#",
+      "published_at": "2025-04-26 14:34:22 Asia/Shanghai",
+      "last_updated_at": "2025-04-26 14:34:23 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "大模型",
+        "AI编程",
+        "AI工具",
+        "github",
+        "效率神器"
+      ],
+      "interact": {
+        "likes": 83,
+        "collects": 99,
+        "comments": 10,
+        "shares": 19
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/680c7e6e000000001c032ed6?xsec_token=AB0nbdYhgj9nuI7NeUrlyodUxPgrSRLUnBCIBteXBBuas=&xsec_source="
+    },
+    {
+      "order": 10,
+      "status": "complete",
+      "note_id": "682f1afe00000000120056f9",
+      "title": "🔥 OpenAI联手iPhone之父打造AI伴侣",
+      "description": "OpenAI宣布，将以65亿美元收购苹果前首席设计官“iPhone之父”Jony Ive参与成立的AI设备初创公司io，正式从从纯软件公司向硬件制造商迈步，计划推出1亿台“AI伴侣”设备，并有潜力为OpenAI增加1万亿美元的估值。\n  \n看了视频更期待了，这会是硬件设备的又一个 iPhone 时刻吗？\n  \n📝 省流版对谈要点\n  \n1️⃣OpenAI的Sam Altman与前苹果首席设计官Jony Ive宣布合作，两人的公司正在合并以开发革命性的AI设备。\n2️⃣他们的目标是完全重新定义人机交互方式，认为现有的笔记本电脑等设备已经过时，无法充分发挥AI的潜力。\n3️⃣ Jony Ive称这是他团队\"有史以来最好的作品\"，Sam试用后认为这是\"世界上最酷的技术产品\"。\n4️⃣ 他们希望让AI技术民主化，不再局限于少数技术专家，而是让任何有想法的普通人都能轻松使用AI创造。\n5️⃣ 两人都认为这标志着人类历史上最重大的技术革命之一，将开启一个让人类变得更好的新技术时代。\n  \n﻿#OpenAI[话题]#﻿ ﻿#iPhone[话题]#﻿ ﻿#人工智能[话题]#﻿ ﻿#智能硬件[话题]#﻿ ﻿#AI神器[话题]#﻿ ﻿#Apple[话题]#",
+      "published_at": "2025-05-22 20:39:26 Asia/Shanghai",
+      "last_updated_at": "2025-05-22 20:39:27 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "OpenAI",
+        "iPhone",
+        "人工智能",
+        "智能硬件",
+        "AI神器",
+        "Apple"
+      ],
+      "interact": {
+        "likes": 21,
+        "collects": 14,
+        "comments": 5,
+        "shares": 18
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/682f1afe00000000120056f9?xsec_token=ABr9EtyO6znb0JN_Dg_BpL3Sf4y9rK6elGDBw3-B0lMsI=&xsec_source="
+    },
+    {
+      "order": 11,
+      "status": "complete",
+      "note_id": "682fed2d000000001101e188",
+      "title": "绝了！Claude 4连肝7小时，程序员瑟瑟发抖",
+      "description": "Anthropic 正式发布 Claude Opus 4 和 Claude Sonnet 4 模型，分别定位为顶级代码模型和高效实用模型。\n  \nOpus 4 在复杂、长时间运行的任务和 AI 代理场景中表现卓越，成为目前全球最强的代码模型，能持续数小时高效工作。\nSonnet 4 则在性能与效率之间取得平衡，适合日常和企业级应用。\n  \n🚀 亮点\n  \n1️⃣ 工具使用与并行能力：支持“扩展思考”模式，可在推理过程中调用工具，并能并行使用多种工具。\n2️⃣ 记忆与持续性：模型在获得本地文件访问权限后，能提取并保存关键信息，提升长任务的连贯性和表现。\n3️⃣ Claude Code 正式上线：支持 VS Code、JetBrains 等主流 IDE，并可以集成到 Github Actions，帮你解决 Github 项目的各类问题。\n4️⃣ API 新功能：新增代码执行工具、MCP 连接器、Files API 及 Prompt 缓存（1小时）等。\n5️⃣ 安全与可靠性提升：模型在避免“走捷径”或利用漏洞方面比前代减少了 65%，并引入思考摘要功能。\n  \n📝 使用方法\n  \nClaude (Web/App)、Github Copilot、Cursor 等各类 AI 工具都已经支持 Claude 4 模型。\n  \n﻿#Anthropic[话题]#﻿ ﻿#Claude[话题]#﻿ ﻿#大模型[话题]#﻿ ﻿#AI工具[话题]#﻿ ﻿#AI编程[话题]#﻿ ﻿#人工智能[话题]#﻿ ﻿#agent[话题]#",
+      "published_at": "2025-05-23 11:36:13 Asia/Shanghai",
+      "last_updated_at": "2025-05-23 11:36:13 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 6,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "大模型",
+        "AI工具",
+        "AI编程",
+        "人工智能",
+        "agent"
+      ],
+      "interact": {
+        "likes": 14,
+        "collects": 13,
+        "comments": 2,
+        "shares": 12
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/682fed2d000000001101e188?xsec_token=ABr9EtyO6znb0JN_Dg_BpL3Q99mswBU610bNNC0N1wiAw=&xsec_source="
+    },
+    {
+      "order": 12,
+      "status": "complete",
+      "note_id": "685ccaf0000000000b02dc4a",
+      "title": "谷歌免费编程神器Gemini CLI 从0到1入门",
+      "description": "分享一些谷歌开源+免费的Gemini CLI使用在指南，已经用它开发了一个PR，初步用起来还不错，基本上是Claude Code的复刻。\n  \n#AI[话题]# #AI编程[话题]# #Gemini[话题]# #ClaudeCode[话题]# #AI工具[话题]# #编程[话题]# #开发[话题]#",
+      "published_at": "2025-06-26 12:22:08 Asia/Shanghai",
+      "last_updated_at": "2025-06-26 12:22:09 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 10,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI",
+        "AI编程",
+        "Gemini",
+        "ClaudeCode",
+        "AI工具",
+        "编程",
+        "开发"
+      ],
+      "interact": {
+        "likes": 554,
+        "collects": 901,
+        "comments": 22,
+        "shares": 167
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/685ccaf0000000000b02dc4a?xsec_token=ABA1J8xhjlTSl4OrrfwrV3uj8xTIZ1spZrsiYSGh_IGmw=&xsec_source="
+    },
+    {
+      "order": 13,
+      "status": "complete",
+      "note_id": "69a2ebb6000000000e03d0a3",
+      "title": "像 Agent 一样思考：Claude Code工具进化史",
+      "description": "本文编译自 Anthropic 工程师 @trq212 发表的技术长文《Lessons from Building Claude Code: Seeing like an Agent》，文章总结了构建 Claude Code 过程中积累的工具设计方法论，从 AskUserQuestion 工具的三次迭代、Todo 演化为 Task 的背后逻辑，到渐进式披露这个设计模式，信息密度很高。\n  \n#ClaudeCode[话题]# #AI编程[话题]# #人工智能[话题]# #Anthropic[话题]# #vibecoding大赏[话题]# #AI工具[话题]#",
+      "published_at": "2026-02-28 21:20:54 Asia/Shanghai",
+      "last_updated_at": "2026-02-28 21:20:54 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 11,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "ClaudeCode",
+        "AI编程",
+        "人工智能",
+        "Anthropic",
+        "vibecoding大赏",
+        "AI工具"
+      ],
+      "interact": {
+        "likes": 27,
+        "collects": 35,
+        "comments": 2,
+        "shares": 9
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69a2ebb6000000000e03d0a3?xsec_token=ABJu7gncG9KSEQoB2ssoW66by552X9dEG-lviVGb4kbiQ=&xsec_source="
+    },
+    {
+      "order": 14,
+      "status": "complete",
+      "note_id": "68371788000000000f0396bc",
+      "title": "DeepSeek R1小幅更新可以媲美Claude 3.7了",
+      "description": "DeepSeek R1做了个小幅更新，试了下对The Information上的“AI购物革命领导者”文章做总结卡片，看结果已经可以媲美Claude 3.7了。\n  \n有意思的是，Claude 3.7 和 DeepSeek R1 为了凑够 6 个人物方便对齐，都不约而同丢了一个高管，这种行为居然都有点一致了！\n  \n更新：新模型DeepSeek-R1-0528 已经在HuggingFace开源，LiveCodeBench测评超越了Claude 3.7和o4-mini(Low)。\n  \n﻿#DeepSeek[话题]#﻿ ﻿#大模型[话题]#﻿ ﻿#Claude[话题]#﻿ ﻿#科技资讯[话题]#",
+      "published_at": "2025-05-28 22:02:48 Asia/Shanghai",
+      "last_updated_at": "2025-05-29 05:50:23 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "DeepSeek",
+        "大模型",
+        "Claude",
+        "科技资讯"
+      ],
+      "interact": {
+        "likes": 16,
+        "collects": 3,
+        "comments": 10,
+        "shares": 7
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68371788000000000f0396bc?xsec_token=AB7W-gJHTdvHkqYGzzNkv47etXfRoJdbRtk72BM3y6Xhw=&xsec_source="
+    },
+    {
+      "order": 15,
+      "status": "complete",
+      "note_id": "689c0a9c000000001d03709a",
+      "title": "Sam又搞事了！GPT-5四模式上线，真的太离谱",
+      "description": "朋友们，今天早上刷到Sam Altman的更新，我人都麻了！\nGPT-5现在直接给你四个模式选择：Auto、Fast、Thinking mini 和 Thinking。这操作，简直是把AI当游戏角色在玩啊！\nThinking模式一周只能用3000条消息，用完了还给你个mini版本。\n  \n重点来了：\n1️⃣ 4o/4.1/o3/o4-mini模型竟然又回来了，配置里面开一下就能用（只有付费用户才可以解锁）；\n2️⃣ 4.5只给Pro用户，理由是\"太耗GPU\"\n3️⃣ Sam说要让GPT-5变得\"更温暖\"，但又不能像4o那样让人觉得烦。\n  \n我个人觉得，这次更新最大的亮点是给了用户选择权，一堆用习惯的旧模型都回来了。\n不过196k tokens的上下文限制，对于重度用户来说还是有点紧张啊。隔壁 Anthropic Claude 都支持 1M 了。\n  \n﻿#gpt5[话题]#﻿  ﻿#ChatGPT[话题]#﻿  ﻿#AI工具[话题]#﻿  ﻿#人工智能[话题]#﻿  ﻿#SamAltman[话题]#﻿  ﻿#AI[话题]#﻿  ﻿#科技圈[话题]#﻿  ﻿#效率工具[话题]#",
+      "published_at": "2025-08-13 11:46:36 Asia/Shanghai",
+      "last_updated_at": "2025-08-13 11:46:37 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "gpt5",
+        "ChatGPT",
+        "AI工具",
+        "人工智能",
+        "SamAltman",
+        "AI",
+        "科技圈",
+        "效率工具"
+      ],
+      "interact": {
+        "likes": 80,
+        "collects": 21,
+        "comments": 36,
+        "shares": 22
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/689c0a9c000000001d03709a?xsec_token=ABIRTQc_lTPFObxakYEeN3mcTchnlklAWWElv2eykXaTM=&xsec_source="
+    },
+    {
+      "order": 16,
+      "status": "complete",
+      "note_id": "685bc5a60000000015022b72",
+      "title": "AI+命令行=效率爆表？谷歌Gemini CLI来了",
+      "description": "🚀谷歌提前把即将发布的命令行 AI Agent 博客放出来了，直接把AI助手 Gemini CLI 搬进了开发者的终端！对于每天都在用命令行的程序员来说，简直是开发者的福音！\n  \n最惊喜的是完全开源+免费使用！个人Google账号登录就能用上Gemini 2.5 Pro，每分钟60次请求，日限额1000次，基本够日常开发用了。如果不够还能接API Key扩展。\n  \n✨亮点速览：\n  \n一贯的免费，个人Google账号登录就能用 Gemini 2.5 Pro  模型\n支持代码理解、文件操作、命令执行、自动化等多种开发场景\n可以接入Google搜索和MCP，实时获取外部信息\n支持扩展和自定义，适合个人和团队各种工作流\n代码完全开源（代码库google-gemini/gemini-cli）\n  \n💻使用方法\nnpm install -g @google/gemini-cli\ngemini\n然后根据提示登录即可。\n  \n之前一直在用 Claude Code 外接 LiteLLM，间接调用 Gemini 2.5 模型，现在这一步也可以免了。\n  \n对于常用命令行的小伙伴，真的值得一试！\n﻿#开发者工具[话题]#﻿ ﻿#AI助手[话题]#﻿ ﻿#效率工具[话题]#﻿ ﻿#AIAgent[话题]#﻿ ﻿#Gemini[话题]#﻿ ﻿#ClaudeCode[话题]#﻿ ﻿#AI编程[话题]#﻿ ﻿#效率神器[话题]#﻿#科技资讯早知道[话题]# #AI工具[话题]#",
+      "published_at": "2025-06-25 17:47:18 Asia/Shanghai",
+      "last_updated_at": "2025-06-25 22:33:28 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "开发者工具",
+        "AI助手",
+        "效率工具",
+        "AIAgent",
+        "Gemini",
+        "ClaudeCode",
+        "AI编程",
+        "效率神器",
+        "科技资讯早知道",
+        "AI工具"
+      ],
+      "interact": {
+        "likes": 40,
+        "collects": 33,
+        "comments": 7,
+        "shares": 11
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/685bc5a60000000015022b72?xsec_token=ABRF20fIPnaepOyZ22CjX2tBkShAkA96IW8kV9-Ki8LbM=&xsec_source="
+    },
+    {
+      "order": 17,
+      "status": "complete",
+      "note_id": "680dfca10000000023018a0f",
+      "title": "DeepSeek R2爆料盘点 | AI新王要来了❓",
+      "description": "今天网上关于DeepSeek R2的爆料实在太炸裂了，忍不住来和大家聊聊。\n  \n1️⃣ 可能提前发布！ 原本说5月初上线，但现在传言可能“五一”假期前就来。\nHuggingFace CEO 发推关注DeepSeek账户，暗示R2很快就要来了。\n  \n2️⃣ 性能飞跃，碾压同类？ 据说R2参数量1.2万亿，是R1的两倍，直接对标GPT-4。能看图、读表，还能帮你修Excel公式。文本处理上限10万字，复杂数学题正确率提升了47%。图像识别COCO基准92.4 mAP，医疗诊断胸片识别精度98.1%。\n  \n3️⃣ API成本“砍到骨头” 传说R2的API比GPT-4 Turbo便宜97.3%，输入百万token只要0.07美元！非高峰时段还有75%折扣，真是卷到极致。\n  \n4️⃣ 全面国产化硬件 R2全用华为Ascend 910B芯片，训练效率接近NVIDIA A100的91%。自研分布式框架，训练速度提升3倍。国产AI硬实力真的在崛起。\n  \n5️⃣ 开源社区期待爆棚 虽然R2是否开源还没官宣，但开发者社区已经在摩拳擦掌等着玩新模型。\n  \n⚠友情提示： 这些爆料大多来自X和社交媒体，官方还没正面回应。R2实际表现还有待验证。建议持续关注DeepSeek官方消息。\n  \n#大模型[话题]# #DeepSeek[话题]# #人工智能[话题]# #OpenAI[话题]# #ai[话题]#",
+      "published_at": "2025-04-27 17:45:05 Asia/Shanghai",
+      "last_updated_at": "2025-04-27 17:45:57 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 1,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "大模型",
+        "DeepSeek",
+        "人工智能",
+        "OpenAI",
+        "ai"
+      ],
+      "interact": {
+        "likes": 21,
+        "collects": 10,
+        "comments": 17,
+        "shares": 10
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/680dfca10000000023018a0f?xsec_token=ABkO0YbHHCmyC2aMIS9cDKOTO6OVbnoPNK1Mfs0v7-Zvs=&xsec_source="
+    },
+    {
+      "order": 18,
+      "status": "complete",
+      "note_id": "689a985800000000020038b3",
+      "title": "GPT-5效果差？这样提示才是王炸",
+      "description": "太多人都在吐槽GPT-5效果差，甚至不如GPT-4o！我也一度怀疑🤔\n  \n花了几天时间，阅读官方提示词指南，测试了30+不同场景，终于找到真相了！\n  \nGPT-5 引入了新的推理机制和参数控制，对提示词结构的敏感度显著高于前代模型。\n  \n本文基于 OpenAI 官方指南和 Cursor、SWE-Bench 等实践经验，整理出适配 GPT-5 的提示词策略。完整避坑指南都在图片里。\n  \n﻿#AI编程[话题]#﻿ ﻿#gpt5[话题]#﻿ ﻿#提示词[话题]#﻿ ﻿#程序员[话题]#﻿ ﻿#agent[话题]#﻿ ﻿#ai[话题]#﻿   ﻿#prompt[话题]#﻿ ﻿#人工智能[话题]#﻿ ﻿#chatgpt[话题]#",
+      "published_at": "2025-08-12 09:26:48 Asia/Shanghai",
+      "last_updated_at": "2025-08-27 12:59:55 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 17,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI编程",
+        "gpt5",
+        "提示词",
+        "程序员",
+        "agent",
+        "ai",
+        "prompt",
+        "人工智能",
+        "chatgpt"
+      ],
+      "interact": {
+        "likes": 17,
+        "collects": 20,
+        "comments": 3,
+        "shares": 8
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/689a985800000000020038b3?xsec_token=AB3I3EsXSiqWpBlE_PhEdcY10x1HH82N8GxxlFw0trW94=&xsec_source="
+    },
+    {
+      "order": 19,
+      "status": "complete",
+      "note_id": "698341af000000001a01cf1d",
+      "title": "OpenClaw Kubernetes部署完全指南",
+      "description": "Kubernetes 部署 OpenClaw 指南\n  \n#AI助手[话题]# #agent[话题]# #智能体[话题]# #openclaw[话题]# #moltbot[话题]# #clawdbot[话题]# #aiagent[话题]# #教程[话题]# #人工智能[话题]# #kubernetes[话题]#",
+      "published_at": "2026-02-04 20:55:11 Asia/Shanghai",
+      "last_updated_at": "2026-03-02 22:36:13 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI助手",
+        "agent",
+        "智能体",
+        "openclaw",
+        "moltbot",
+        "clawdbot",
+        "aiagent",
+        "教程",
+        "人工智能",
+        "kubernetes"
+      ],
+      "interact": {
+        "likes": 13,
+        "collects": 14,
+        "comments": 3,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/698341af000000001a01cf1d?xsec_token=ABzzIfXHZs39gfgIYJjuBLvrUda_WwDqV0D1ZDh0yLkVI=&xsec_source="
+    },
+    {
+      "order": 20,
+      "status": "complete",
+      "note_id": "6979f91d000000001a035297",
+      "title": "OpenAI放大招！免费科研写作神器Prism来了",
+      "description": "OpenAI 今天发了个新产品，推出了一个叫 Prism 的 AI 科研写作神器，还是免费的。\nPrism是一个云端科研写作工具，提供 LaTeX 编辑器，并内置了 GPT-5.2。\n写论文的时候可以直接让 AI 帮你润色、找文献、甚至把手写的公式草图转成 LaTeX 代码。\n  \n🔧 核心卖点\n1️⃣ Prism 是一个专为严谨科研写作设计的云端 LaTeX 编辑器，但内置了 GPT-5.2，这是 OpenAI 数学和科学推理能力最强的模型。\n2️⃣ 可以直接在写论文的时候让 AI 帮你澄清思路、检查推理、优化结构、查找文献、甚至把手绘草图转成 LaTeX 代码。重点是 AI 能读懂你整篇论文的上下文，不会无端胡编乱造。\n  \n💡 亮点功能\n1️⃣ 协作人数不限。以前 Overleaf 免费版只能两个人协作，现在 Prism 直接不设上限。\n2️⃣ 支持语音编辑。边想边说，AI 帮你转成文字和公式。\n3️⃣ 支持 Zotero 同步。文献管理这块终于不用来回倒腾了。\n4️⃣ 最关键的是，这玩意儿完全免费，只要有 ChatGPT 账号登录就能直接使用。\n  \n#AI写作[话题]# #OpenAI[话题]# #Prism[话题]# #科研工具[话题]# #latex[话题]# #论文写作[话题]# #学术研究[话题]# #gpt5[话题]# #研究生必备[话题]# #效率工具[话题]#",
+      "published_at": "2026-01-28 19:55:09 Asia/Shanghai",
+      "last_updated_at": "2026-01-29 21:23:32 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "Feiskyer",
+      "user_id": "57f639a982ec3901c59ebbab",
+      "tags": [
+        "AI写作",
+        "OpenAI",
+        "Prism",
+        "科研工具",
+        "latex",
+        "论文写作",
+        "学术研究",
+        "gpt5",
+        "研究生必备",
+        "效率工具"
+      ],
+      "interact": {
+        "likes": 20,
+        "collects": 12,
+        "comments": null,
+        "shares": 27
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6979f91d000000001a035297?xsec_token=ABWcPSlKTAySynG0K1PuEz-fOHVQGOzrXxBGt3IYsFO5c=&xsec_source="
+    }
+  ]
+}

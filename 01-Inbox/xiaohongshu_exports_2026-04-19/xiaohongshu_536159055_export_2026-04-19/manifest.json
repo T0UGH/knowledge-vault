@@ -1,0 +1,167 @@
+{
+  "account_name": "万有引力AI",
+  "account_id": "536159055",
+  "source_profile_url": "https://www.xiaohongshu.com/user/profile/5bed1046b490ef00017ee36f?xsec_token=ABAqI0OqpduZ9Ixz5YUnL92hr8_uUzAoeMAwNCtlTct9w%3D&xsec_source=pc_search",
+  "notes": [
+    {
+      "order": 1,
+      "url": "https://www.xiaohongshu.com/search_result/69d9196b000000001a02beea?xsec_token=ABrmsxx5-CHC769P-wZTYmMEWl0sgj_k0xgMGOoJcPr5Q=&xsec_source=",
+      "title_hint": "Hermes Agent如何做的记忆，一篇就够了"
+    },
+    {
+      "order": 2,
+      "url": "https://www.xiaohongshu.com/search_result/69e428f5000000002102fa29?xsec_token=ABkLmckpJa3fj3X3uNf_IV9HbymhyF5021rxnFcB6Ogl4=&xsec_source=",
+      "title_hint": "Harness 工程的过去，现在，未来"
+    },
+    {
+      "order": 3,
+      "url": "https://www.xiaohongshu.com/search_result/69d90682000000002103be38?xsec_token=ABrmsxx5-CHC769P-wZTYmMChR52EYHE6MSFDGSzT8SHs=&xsec_source=",
+      "title_hint": "看懂Karpathy的LLM Wiki，构建你的AI知识库"
+    },
+    {
+      "order": 4,
+      "url": "https://www.xiaohongshu.com/search_result/69bdf00e000000001a02367b?xsec_token=ABZ-8gkbif2KZu9lqcKX6Wr21wasdl9KNBqeRwdqfAvII=&xsec_source=",
+      "title_hint": "Claude的两种Multi-Agent架构，一篇讲明白"
+    },
+    {
+      "order": 5,
+      "url": "https://www.xiaohongshu.com/search_result/69d03fda0000000022001803?xsec_token=ABav9XsXFiLERanJQPAFEe_rvRvcb4OIWO5l1ulU8X528=&xsec_source=",
+      "title_hint": "从源代码看Claude Code 如何做 Memory"
+    },
+    {
+      "order": 6,
+      "url": "https://www.xiaohongshu.com/search_result/697ea8cf000000002103c938?xsec_token=ABEAW_WTsJofzDWIU66emCCsHXx3W9AW2iUaZSKFKwY4s=&xsec_source=",
+      "title_hint": "Vibe Coding 数据可视化 📊 「含提示词」"
+    },
+    {
+      "order": 7,
+      "url": "https://www.xiaohongshu.com/search_result/69a641dd000000001600a21e?xsec_token=ABb3chgSbk646NM4_b0ioBVmIR_sNqzhB1JrJtD8zcCZc=&xsec_source=",
+      "title_hint": "Claude skills最佳实践，强烈推荐你试试"
+    },
+    {
+      "order": 8,
+      "url": "https://www.xiaohongshu.com/search_result/69bf8ded000000002102fd23?xsec_token=ABKQ5endGYD1iTcJTTahLBhA0BpuTCFU-P76cq8i0ixlM=&xsec_source=",
+      "title_hint": "最近超火的ASCII风格动效一招搞定！"
+    },
+    {
+      "order": 9,
+      "url": "https://www.xiaohongshu.com/search_result/69cd114c000000001a028c7c?xsec_token=AButA8cPO9BXe2K92zXdtQE0dzvX65A7O1g-ks-wV8oKs=&xsec_source=",
+      "title_hint": "设计神器分享｜ASCII+故障艺术一招搞定"
+    },
+    {
+      "order": 10,
+      "url": "https://www.xiaohongshu.com/search_result/69b4bd72000000002301c0be?xsec_token=ABHGbbQ4rQkoWv3ay7uXOCtiR9OegfrhnRaG7aSVDNBQs=&xsec_source=",
+      "title_hint": "这6个Claude Code设置，强烈推荐你试试"
+    },
+    {
+      "order": 11,
+      "url": "https://www.xiaohongshu.com/search_result/69aeec07000000002603076a?xsec_token=AB3r-DmxhrVPYUpacXS3XMg-bBoafoUtlEfHvvF-8ooJY=&xsec_source=",
+      "title_hint": "Vibe Coding一个可交互小票（提示词）"
+    },
+    {
+      "order": 12,
+      "url": "https://www.xiaohongshu.com/search_result/6998b9eb000000001503b61b?xsec_token=ABjKE15qxy5nuFcfozlanLE_n9WEQRUFgBRcxkp5q2ckI=&xsec_source=",
+      "title_hint": "Claude Code to Figma完美闭环！保姆级教程"
+    },
+    {
+      "order": 13,
+      "url": "https://www.xiaohongshu.com/search_result/69ded7c50000000021013cde?xsec_token=ABxYBS9du05KUBw9y4ansg1oGjeN8dlC0SSuZG4wFHAYM=&xsec_source=",
+      "title_hint": "Claude Code MCP最佳实践，强烈建议你试试"
+    },
+    {
+      "order": 14,
+      "url": "https://www.xiaohongshu.com/search_result/69b6356d000000001a023d6e?xsec_token=ABU6JGAs6RQLvzof_QNkYKG12ooUSpN_T-p6WUL23cM74=&xsec_source=",
+      "title_hint": "AutoResearch原理，一次讲清楚"
+    },
+    {
+      "order": 15,
+      "url": "https://www.xiaohongshu.com/search_result/69c1e9440000000022001c2a?xsec_token=ABVQyjnSYawhUUSkFBmrg950-aE7g7sEzo-Rfb0Xbhj2U=&xsec_source=",
+      "title_hint": "Agent Harness，一篇就够了"
+    },
+    {
+      "order": 16,
+      "url": "https://www.xiaohongshu.com/search_result/698c2b36000000001d0248f4?xsec_token=ABJekAtiL21FDZY7u_SVDnZkopvBNdrxo7YRo-YbXt3bc=&xsec_source=",
+      "title_hint": "Claude Skills，一篇就够了"
+    },
+    {
+      "order": 17,
+      "url": "https://www.xiaohongshu.com/search_result/69879191000000001b01504e?xsec_token=AB19t1ZlFVFMrfpX5bb9gHqHHISjj3XP359nMKh5zjRq0=&xsec_source=",
+      "title_hint": "我的Vibe Coding最佳实践 & 技术栈"
+    },
+    {
+      "order": 18,
+      "url": "https://www.xiaohongshu.com/search_result/69ac3370000000001b01f78d?xsec_token=AByT2U8Ihq2Rpm7qFPy58RDSXlRNjsysMdcp1_VIxFNqE=&xsec_source=",
+      "title_hint": "一篇讲明白 OpenClaw 原理和Agent架构"
+    },
+    {
+      "order": 19,
+      "url": "https://www.xiaohongshu.com/search_result/69a30fb700000000160093d3?xsec_token=ABbDwm_Gbu7IbOusH1SwA8IAiJVMYTXunH82Gm5E5S50o=&xsec_source=",
+      "title_hint": "Codex和Claude Code怎么选，一篇就够了"
+    },
+    {
+      "order": 20,
+      "url": "https://www.xiaohongshu.com/search_result/6988e1a2000000001b014df1?xsec_token=ABZLw7ABUAPFB5yvF7kJXCHMnSzhJ9fhRtG0l7EZpp8CA=&xsec_source=",
+      "title_hint": "聊聊两个模型在Vibe Coding中的表现"
+    },
+    {
+      "order": 21,
+      "url": "https://www.xiaohongshu.com/search_result/699f1c7a000000001b01c086?xsec_token=ABjbBowg8Y5U7yfZ0u_ac1JdKEVb4H4g-WYtm_-4KIeWY=&xsec_source=",
+      "title_hint": "一个方法将优秀博主内容，变成你的知识库"
+    },
+    {
+      "order": 22,
+      "url": "https://www.xiaohongshu.com/search_result/696be2e00000000021031cd6?xsec_token=AB1qIWjr5e4CK6NAPy8pxIWnRXZqLVSHy1hCkQGp7RmtU=&xsec_source=",
+      "title_hint": "我的Vibe Coding最佳实践 & 工作流"
+    },
+    {
+      "order": 23,
+      "url": "https://www.xiaohongshu.com/search_result/69acc79d000000001503a57f?xsec_token=AByT2U8Ihq2Rpm7qFPy58RDTKlBcU4WY57gwdlAOAyixU=&xsec_source=",
+      "title_hint": "这8个CLAUDE.md太有用了，强烈推荐你试试"
+    },
+    {
+      "order": 24,
+      "url": "https://www.xiaohongshu.com/search_result/69cba004000000001a021bba?xsec_token=ABrHJ_79G1uqCV1fh9fKORUq560z2uAW4QYxl23V1DAMc=&xsec_source=",
+      "title_hint": "superpowers 还是 gstack，我的最佳实践"
+    },
+    {
+      "order": 25,
+      "url": "https://www.xiaohongshu.com/search_result/6984c6b200000000210337eb?xsec_token=ABpSe5r9zMF-tJJwA0TZcyG5JlHGehCxl6mRReQGTPjkc=&xsec_source=",
+      "title_hint": "Claude Code 新版本这个功能绝了"
+    },
+    {
+      "order": 26,
+      "url": "https://www.xiaohongshu.com/search_result/69941b93000000001d025566?xsec_token=ABMhiXzQgGmm6kclruqLNGf0hIEoo24Ku5iWBuV_MEBl4=&xsec_source=",
+      "title_hint": "一文图解：13种主流AI模型"
+    },
+    {
+      "order": 27,
+      "url": "https://www.xiaohongshu.com/search_result/694f4546000000002103fe55?xsec_token=AB2B-M7j_2HriH8OhojK-0gSn26QFCiQbCYFOzYovcoYY=&xsec_source=",
+      "title_hint": "逆向工程 Claude-4.5 如何做的Memory？"
+    },
+    {
+      "order": 28,
+      "url": "https://www.xiaohongshu.com/search_result/69c90dea000000002103a65a?xsec_token=ABZ6pMfWDuN9C-eyKoIi3PWkQZv2_8ViLpbYyS_lBY0wQ=&xsec_source=",
+      "title_hint": "究竟是什么在塑造 AI 的人格？"
+    },
+    {
+      "order": 29,
+      "url": "https://www.xiaohongshu.com/search_result/6978eee4000000001a0316bc?xsec_token=AB8chD8S1IJbHkxgRQJTtf7HJCDgPESW2qVgjDQT2Z-ac=&xsec_source=",
+      "title_hint": "Clawdbot🦞如何做的Memory"
+    },
+    {
+      "order": 30,
+      "url": "https://www.xiaohongshu.com/search_result/697557c80000000021033d60?xsec_token=ABeUPsp8C9CZhvz0uFPcI5kBQ03Td3j2jvD9KrE4d9ErI=&xsec_source=",
+      "title_hint": "拯救你的Vibe Coding产品灵感"
+    },
+    {
+      "order": 31,
+      "url": "https://www.xiaohongshu.com/search_result/6947e901000000001b026b61?xsec_token=ABoud6-I7eOUzi7MPUnGHDkAMu4UtsOH7eHLPyZG4vSmY=&xsec_source=",
+      "title_hint": "逆向工程 GPT-5.2 如何做的Memory？"
+    },
+    {
+      "order": 32,
+      "url": "https://www.xiaohongshu.com/search_result/698af0f3000000001b0157af?xsec_token=AB0JO_IeIsdjLNYkhmUzy41J-2dcYGLLXFJe4HYszhhy4=&xsec_source=",
+      "title_hint": "总结一下4种 Agent 的架构模式"
+    }
+  ]
+}

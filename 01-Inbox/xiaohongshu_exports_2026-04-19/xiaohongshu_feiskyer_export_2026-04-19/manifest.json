@@ -1,0 +1,107 @@
+{
+  "account_name": "Feiskyer",
+  "account_id": "feiskyer",
+  "source_profile_url": "https://www.xiaohongshu.com/user/profile/57f639a982ec3901c59ebbab?channel_type=web_search_result_notes&parent_page_channel_type=web_profile_board&xsec_token=ABEdvFtvyZdaBFditIeUumZMq_c4GSEd8B4P1PJzewxbM=&xsec_source=pc_search",
+  "notes": [
+    {
+      "order": 1,
+      "url": "https://www.xiaohongshu.com/search_result/695ced0b000000001a0239f1?xsec_token=ABo4ex6JzIDg1ykqdLM4v6AWeKwy3QoWMyZqfD2yXhrr8=&xsec_source=",
+      "title_hint": "这份 Vibe Coding 指南，把 AI 编程讲透了"
+    },
+    {
+      "order": 2,
+      "url": "https://www.xiaohongshu.com/search_result/68aee88a000000001b037778?xsec_token=AB3zI_1qbuUAymsTckyn1ITiBL8qx5AfiMxelXv8bdB7U=&xsec_source=",
+      "title_hint": "Claude Code 外接模型解锁高级规划模式"
+    },
+    {
+      "order": 3,
+      "url": "https://www.xiaohongshu.com/search_result/6875c62c0000000017033720?xsec_token=ABYMtUq7Be756AVWepIOXPQErjcuwQHSx-QZGojNAfE-M=&xsec_source=",
+      "title_hint": "🔥开发者必看！ 免费Claude 4 AI IDE来了"
+    },
+    {
+      "order": 4,
+      "url": "https://www.xiaohongshu.com/search_result/6911ce98000000000503bd88?xsec_token=AB_jKq1Cz_STA9Xu07mFugXqcgsX5bNIEoI4n5JtSYvHI=&xsec_source=",
+      "title_hint": "零基础看懂Agent！Google 50页入门白皮书"
+    },
+    {
+      "order": 5,
+      "url": "https://www.xiaohongshu.com/search_result/683ef79f000000002300345f?xsec_token=ABTtM09lmqSbUb7bHPevtCRQNa1HYzc75SIqy_ckdjgSQ=&xsec_source=",
+      "title_hint": "微软终于放大招了！直接将Sora视频生成免费"
+    },
+    {
+      "order": 6,
+      "url": "https://www.xiaohongshu.com/search_result/68ba2d85000000001c032f11?xsec_token=ABjw7nGcIRn9Yk3nlcCrRHM9xMZuC-1j0tkLnNyxtf8vs=&xsec_source=",
+      "title_hint": "OpenAI Codex 零基础入门指南"
+    },
+    {
+      "order": 7,
+      "url": "https://www.xiaohongshu.com/search_result/68d2a571000000001101468d?xsec_token=ABU4ti55F-5pOo_J6nDejUoYK81lF_2tDhLrKZCCX7AL4=&xsec_source=",
+      "title_hint": "如何像 OpenAI 工程师一样用 AI 编程"
+    },
+    {
+      "order": 8,
+      "url": "https://www.xiaohongshu.com/search_result/6909c52e00000000040117a3?xsec_token=AB4q5qZf2Fp4CcnmytfQE3ui24_HmSNWNQ6uFQICslq_k=&xsec_source=",
+      "title_hint": "📚 如何使用 Gemini 自动创建 PPT"
+    },
+    {
+      "order": 9,
+      "url": "https://www.xiaohongshu.com/search_result/680c7e6e000000001c032ed6?xsec_token=AB0nbdYhgj9nuI7NeUrlyodUxPgrSRLUnBCIBteXBBuas=&xsec_source=",
+      "title_hint": "看不懂Github项目？源码深度研究DeepWiki"
+    },
+    {
+      "order": 10,
+      "url": "https://www.xiaohongshu.com/search_result/682f1afe00000000120056f9?xsec_token=ABr9EtyO6znb0JN_Dg_BpL3Sf4y9rK6elGDBw3-B0lMsI=&xsec_source=",
+      "title_hint": "🔥 OpenAI联手iPhone之父打造AI伴侣"
+    },
+    {
+      "order": 11,
+      "url": "https://www.xiaohongshu.com/search_result/682fed2d000000001101e188?xsec_token=ABr9EtyO6znb0JN_Dg_BpL3Q99mswBU610bNNC0N1wiAw=&xsec_source=",
+      "title_hint": "绝了！Claude 4连肝7小时，程序员瑟瑟发抖"
+    },
+    {
+      "order": 12,
+      "url": "https://www.xiaohongshu.com/search_result/685ccaf0000000000b02dc4a?xsec_token=ABA1J8xhjlTSl4OrrfwrV3uj8xTIZ1spZrsiYSGh_IGmw=&xsec_source=",
+      "title_hint": "谷歌免费编程神器Gemini CLI 从0到1入门"
+    },
+    {
+      "order": 13,
+      "url": "https://www.xiaohongshu.com/search_result/69a2ebb6000000000e03d0a3?xsec_token=ABJu7gncG9KSEQoB2ssoW66by552X9dEG-lviVGb4kbiQ=&xsec_source=",
+      "title_hint": "像 Agent 一样思考：Claude Code工具进化史"
+    },
+    {
+      "order": 14,
+      "url": "https://www.xiaohongshu.com/search_result/68371788000000000f0396bc?xsec_token=AB7W-gJHTdvHkqYGzzNkv47etXfRoJdbRtk72BM3y6Xhw=&xsec_source=",
+      "title_hint": "DeepSeek R1小幅更新可以媲美Claude 3.7了"
+    },
+    {
+      "order": 15,
+      "url": "https://www.xiaohongshu.com/search_result/689c0a9c000000001d03709a?xsec_token=ABIRTQc_lTPFObxakYEeN3mcTchnlklAWWElv2eykXaTM=&xsec_source=",
+      "title_hint": "Sam又搞事了！GPT-5四模式上线，真的太离谱"
+    },
+    {
+      "order": 16,
+      "url": "https://www.xiaohongshu.com/search_result/685bc5a60000000015022b72?xsec_token=ABRF20fIPnaepOyZ22CjX2tBkShAkA96IW8kV9-Ki8LbM=&xsec_source=",
+      "title_hint": "AI+命令行=效率爆表？谷歌Gemini CLI来了"
+    },
+    {
+      "order": 17,
+      "url": "https://www.xiaohongshu.com/search_result/680dfca10000000023018a0f?xsec_token=ABkO0YbHHCmyC2aMIS9cDKOTO6OVbnoPNK1Mfs0v7-Zvs=&xsec_source=",
+      "title_hint": "DeepSeek R2爆料盘点 | AI新王要来了❓"
+    },
+    {
+      "order": 18,
+      "url": "https://www.xiaohongshu.com/search_result/689a985800000000020038b3?xsec_token=AB3I3EsXSiqWpBlE_PhEdcY10x1HH82N8GxxlFw0trW94=&xsec_source=",
+      "title_hint": "GPT-5效果差？这样提示才是王炸"
+    },
+    {
+      "order": 19,
+      "url": "https://www.xiaohongshu.com/search_result/698341af000000001a01cf1d?xsec_token=ABzzIfXHZs39gfgIYJjuBLvrUda_WwDqV0D1ZDh0yLkVI=&xsec_source=",
+      "title_hint": "OpenClaw Kubernetes部署完全指南"
+    },
+    {
+      "order": 20,
+      "url": "https://www.xiaohongshu.com/search_result/6979f91d000000001a035297?xsec_token=ABWcPSlKTAySynG0K1PuEz-fOHVQGOzrXxBGt3IYsFO5c=&xsec_source=",
+      "title_hint": "OpenAI放大招！免费科研写作神器Prism来了"
+    }
+  ]
+}

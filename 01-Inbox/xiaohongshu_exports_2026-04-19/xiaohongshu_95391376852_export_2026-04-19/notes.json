@@ -1,0 +1,904 @@
+{
+  "export_info": {
+    "account_name": "智东西",
+    "account_id": "95391376852",
+    "exported_at": "2026-04-19 15:24:12 Asia/Shanghai",
+    "source_profile_url": "https://www.xiaohongshu.com/user/profile/6801ccc3000000000d00b0b1?xsec_token=ABJPDqOZ_jIdkAFrrTa6LS_6Z8EtzUQh3mmZaS2rW_X5Y%3D&xsec_source=pc_search",
+    "notes_visible_on_profile": 30,
+    "fully_exported_notes": 30,
+    "partial_notes": 0
+  },
+  "notes": [
+    {
+      "order": 1,
+      "status": "complete",
+      "note_id": "69841b0e0000000022033c9d",
+      "title": "学术版Nano Banana有了！",
+      "description": "谷歌联合北大，打造了一个学术版本的Nano Banana：PaperBanana。\n  \n看这个title和名字就知道是做什么的了，没错！科研绘图。\n  \nPaperBanana基于Nano Banana Pro 构建，能根据论文章节逻辑生成符合NeurIPS 审美的顶会级科研图表。\n  \n用Nano Banana Pro辅助绘制学术插图常会遇到各种问题，比如幻觉严重绘图不严谨、风格浮夸缺乏学术审美等，PaperBanana这个学术专精版就是为解决这些问题而生的。\n当前这个项目还未开源，我们从论文中窥见几大核心亮点：\n  \n1、五种智能体合作，模仿人类绘图流程\nPaperBanana用五个智能体搭建了科研绘图流程，针对逻辑不严密、幻觉多发的问题，这五个智能体从检索、规划、审美、绘图到检查全流程覆盖，模拟人类绘图的思维模式。\n  \n2、给论文直接出图，好看还严谨\n提供论文方法部分或者统计数据即可生成美观的架构图和统计图。绘图过程采用混合模式，架构图使用Nano Banana Pro，统计图直接生成Matplotlib 代码，保证数据精准。\n  \n3、顶会级别审美，丑图直接翻新\n研究团队根据NeurIPS论文插图总结了一套审美标准，能生成符合NeurIPS审美的插图，而且还能对你的草图或者旧图进行润色重绘。\n  \n为了证明自己，团队还做了一包含 292 个 NeurIPS 2025 学术插图的基准测试，测试结果显示PaperBanana在忠诚度、简洁性、可读性以及美观方面都优于基线模型。\n  \n不过团队也正视了问题所在，面对非常复杂的情况，PaperBanana会出现多余连线以及节点连接错误问题。\n  \n该项目将在两周后开源，现在感兴趣的大家可以先看看论文，蹲一下开源~\n论文标题【PaperBanana: Automating Academic Illustration for AI Scientists】\n#PaperBanana[话题]# #科研绘图[话题]##谷歌[话题]# #北大[话题]#   #AI[话题]# #人工智能[话题]#  #智能体[话题]# #AI绘图[话题]##小红书科技AMA[话题]#",
+      "published_at": "2026-02-05 12:22:38 Asia/Shanghai",
+      "last_updated_at": "2026-02-05 12:22:39 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 7,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "PaperBanana",
+        "科研绘图",
+        "谷歌",
+        "北大",
+        "AI",
+        "人工智能",
+        "智能体",
+        "AI绘图",
+        "小红书科技AMA"
+      ],
+      "interact": {
+        "likes": 734,
+        "collects": 917,
+        "comments": 38,
+        "shares": 205
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69841b0e0000000022033c9d?xsec_token=ABpSe5r9zMF-tJJwA0TZcyG832tmGiQnkxlBnr62j5xXs=&xsec_source="
+    },
+    {
+      "order": 2,
+      "status": "complete",
+      "note_id": "69ca624e000000001a0262ac",
+      "title": "前端大神Cheng Lou新作！最猛前端神器诞生",
+      "description": "前端圈大地震!超1800万人围观，上线一天狂揽1.5w颗星。前端大神 Cheng Lou打造的神器Pretext 刷屏外网，直接让前端排版提速500倍。#ChengLou[话题]# #前端[话题]# #Pretext[话题]# #AI[话题]# #Claude[话题]# #vibecoding大赏[话题]# #AI工具[话题]# #程序员[话题]# #编程[话题]# #前端入门[话题]#",
+      "published_at": "2026-03-30 21:01:09 Asia/Shanghai",
+      "last_updated_at": "2026-03-30 19:45:19 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "ChengLou",
+        "前端",
+        "Pretext",
+        "AI",
+        "Claude",
+        "vibecoding大赏",
+        "AI工具",
+        "程序员",
+        "编程",
+        "前端入门"
+      ],
+      "interact": {
+        "likes": 336,
+        "collects": 457,
+        "comments": 1,
+        "shares": 89
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69ca624e000000001a0262ac?xsec_token=ABZ0zHtf_ZMOCRQvfN_ysxljvs5Aibt8Jt2DQdJvTO03E=&xsec_source="
+    },
+    {
+      "order": 3,
+      "status": "complete",
+      "note_id": "69e0cb51000000002302415b",
+      "title": "GitHub斩获4.5w颗星！",
+      "description": "保姆级Claude实战避坑指南 #ClaudeCode[话题]#  #GitHub[话题]#  #Anthropic[话题]# #AI[话题]#  #AI编程[话题]#",
+      "published_at": "2026-04-16 19:43:13 Asia/Shanghai",
+      "last_updated_at": "2026-04-16 19:43:13 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "ClaudeCode",
+        "GitHub",
+        "Anthropic",
+        "AI",
+        "AI编程"
+      ],
+      "interact": {
+        "likes": 32,
+        "collects": 81,
+        "comments": 1,
+        "shares": 8
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69e0cb51000000002302415b?xsec_token=ABPlVMmzsT0JAe22pbQb3tdWLBgLkxDO-ozAS-a5zt6ZQ=&xsec_source="
+    },
+    {
+      "order": 4,
+      "status": "complete",
+      "note_id": "69300bbd000000001f00795b",
+      "title": "中科院开源PPT Agent：像人一样做PPT",
+      "description": "今天介绍一个中科院的开源项目：PPTAgent\n  \n为了解决AI生成PPT过于简陋缺乏美感以及胡言乱语的问题，这个项目采用了两阶段编辑式流程：\n  \n先从大量的示例PPT中学习结构、文案、布局、配色，然后再根据用户提交的文档或者检索到的信息生成新的PPT。\n[彩虹R]本质上，这个流程就是把模板和内容文档同时输入给PPTAgent，然后让它照猫画虎制作PPT。\n这种编辑流程和市面上普遍存在的文本转PPT截然不同，它是模仿了人类制作PPT的流程：先挑选模板，根据模板和文本进行编辑调整。\n[扯脸H]而作为一个智能体，PPTAgent当然可以做到不让用户“动手”，也就是“一句话生成PPT”，在用户没有提供相关资料的情况下，PPTAgent可以通过检索自动生成PPT，还会给PPT搭配合适的图片以及风格。\n与此同时，长文档识别也是非常重要的功能，PPTAgent能够提炼用户上传的文档，提炼其中的重点信息，结合提示词生成幻灯片。\n[得意R]最重要的一点是，PPTAgent输出的文件格式是“ .pptx ”格式，可以直接在PowerPoint进行编辑，完美兼容。\n  \n官方给到的示例有一句话生成小米SU7的产品介绍PPT【提示词：生成一个 PPT，介绍小米 SU7 的外观和价格。】；\n  \n制作高中课堂展示课件【提示词：制作一份高中课堂展示课件，主题为“解码立法过程：理解其对国际关系的影响”】等等。\n  \n[扶墙R]不过这个项目需要本地有GPU才能跑通，对普通用户不是很友好，期待后续可以有易用的版本。\n#开源项目分享[话题]##ai生成ppt[话题]# #PPT[话题]#  #AI[话题]# #人工智能[话题]# #中科院[话题]##Agent[话题]# #智能体[话题]#",
+      "published_at": "2025-12-03 19:07:01 Asia/Shanghai",
+      "last_updated_at": "2025-12-03 18:06:53 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "开源项目分享",
+        "ai生成ppt",
+        "PPT",
+        "AI",
+        "人工智能",
+        "中科院",
+        "Agent",
+        "智能体"
+      ],
+      "interact": {
+        "likes": 13,
+        "collects": 12,
+        "comments": 1,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69300bbd000000001f00795b?xsec_token=ABey3QLz3SmBKEo-dONqkKorPIBi6lTdDz10DxNL6EI50=&xsec_source="
+    },
+    {
+      "order": 5,
+      "status": "complete",
+      "note_id": "69dfa5b7000000001f006922",
+      "title": "00后48小时赚20万，小红书炸出一堆AI狠活",
+      "description": "上周去现场围观2026小红书黑客松巅峰赛，顺带参与了评审，被一个拯救屁股的产品给整乐了。\n有支参赛团队，被周围选手简称“做屁的那组”，震撼首发一个“即刻放P垫”，一旦用户久坐不站，就会放出一个带劲儿的屁声，用“社死”逼用户站起来动一动。\n  \n队长的讲解也很吸引人。她因为久坐屁股疼，但是被提醒后，一耽搁就会忘记站起来，直到有一天，她放了个连环屁，全家生物都冲过来看向她，吓得她尴尬地赶紧站起来，然后她愣住，等等，这不是能站起来嘛！就是这么一个鬼使神差的瞬间，催生了智能坐垫的灵感。\n  \n乐完后一想，这款产品还真能解决久坐问题。你可以无视软件提醒，可以秒关手机震动，但是你没法忽视一个在公共空间里当众响起、自带羞辱感的屁声。\n  \n这个生猛但见奇效的科技狠活，也有个高大上的名号——全球首款多模态主动交互的智能坐垫。\n它用AI动态检测久坐时长和不良坐姿，不仅能发出逼真声效，还有放屁触感模拟、机械臂等多方位的提醒干预，并搭配了一个有臀部健康管理Agent的联动App。\n  \n这个坐垫最终端走2万元特别奖奖金。\n  \n像这样脑洞大开的作品有很多：号称“世界上审美最好的PPT生成器”、“Agent Network的第一家能力餐厅”、“精准建模专属发型的AI助理”、“能随时算卦的好运日历机”、“替你刷牙剃须吹头发的机械臂”、“操控多个龙虾干活的眼动追踪眼镜”、“一摸鱼就放电的赛博紧箍咒”、“个人卫星操作系统”等等。\n#黑客松巅峰赛[话题]# @科技薯 @小红叔 #AI[话题]# #人工智能[话题]# #大模型[话题]# #AI人工智能[话题]# #黑客松[话题]# #RED新生代创作大赛[话题]#",
+      "published_at": "2026-04-15 22:50:31 Asia/Shanghai",
+      "last_updated_at": "2026-04-15 22:50:31 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 13,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "黑客松巅峰赛",
+        "AI",
+        "人工智能",
+        "大模型",
+        "AI人工智能",
+        "黑客松",
+        "RED新生代创作大赛"
+      ],
+      "interact": {
+        "likes": 8,
+        "collects": 7,
+        "comments": 1,
+        "shares": 6
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69dfa5b7000000001f006922?xsec_token=ABBIqcXX1L8yJ1f1Jnqq235X6yj7ZRSWHFOFi4UPr1MPQ=&xsec_source="
+    },
+    {
+      "order": 6,
+      "status": "complete",
+      "note_id": "6937ee60000000001e037ae0",
+      "title": "GitHub 42.9k星！用Markdown制作幻灯片",
+      "description": "这是一个让无数程序员狂喜的幻灯片制作工具，在Github上已经摘下了42.9k颗星。\n  \n对于程序员来说，Markdown是最熟悉的写作方式，而传统的幻灯片制作无疑是在为难这些码农。\n而这个开源项目对他们来说简直是天降紫微星：Slidev——一个 Markdown 幻灯片创建工具，专门为开发者设计，可以用Markdown 语法来制作幻灯片。\n按照Slidev官方所说：Slidev诞生的目的是为了给开发者提供更加灵活和容易交互的PPT制作方法，让开发者可以用自己熟悉且擅长的方式来做出更美观、更有趣的演示文稿。\n项目发布后随着不断地更新迭代，现在的Slidev功能已然非常丰富：\n1、多种幻灯片主题一行代码即可更换\n2、支持嵌入图表、3D模型、推文和视频\n3、支持各种动画\n4、可以导出为PDF/PNG格式\n5、可以在PPT中编写 Vue 组件并在演示过程中进行交互\n当然，最重要的一点是，Slidev的PPT是在Web端呈现的，因此浏览器上可以显示的内容，它都支持。\n编辑代码即可进行预览，实时刷新没有延迟，甚至你还可以反向编辑，挪动、改动PPT内容，Slidev会反写入代码中。\n因此，Slidev不仅仅是一个工具，它更像是一位精通代码的设计伙伴——开发者不必再在繁琐的排版中消耗创造力，只需专注内容，用一行行熟悉的语法，就能轻松呈现出专业、灵动且极具交互感的幻灯片。\n#slidev[话题]# #开源项目[话题]##markdown[话题]#   #github开源项目推荐[话题]# #AlChannel[话题]##编程[话题]# #个人开发者[话题]# #前端[话题]# #人工智能[话题]#",
+      "published_at": "2025-12-10 07:00:26 Asia/Shanghai",
+      "last_updated_at": "2025-12-09 17:39:45 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "slidev",
+        "开源项目",
+        "markdown",
+        "github开源项目推荐",
+        "AlChannel",
+        "编程",
+        "个人开发者",
+        "前端",
+        "人工智能"
+      ],
+      "interact": {
+        "likes": 18,
+        "collects": 39,
+        "comments": null,
+        "shares": 3
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6937ee60000000001e037ae0?xsec_token=ABArBgASNWjz5gDYUAoQNBqwF7KWYXgzkUqacKxu30Xrk=&xsec_source="
+    },
+    {
+      "order": 7,
+      "status": "complete",
+      "note_id": "69e22ef3000000001e00e4a7",
+      "title": "把放屁声发给ChatGPT，它说真是一首好歌",
+      "description": "把放屁声发给ChatGPT，它说真是一首好歌，太好听了... #ChatGPT[话题]#  #AI幻觉[话题]#  #AI[话题]#",
+      "published_at": "2026-04-17 21:00:35 Asia/Shanghai",
+      "last_updated_at": "2026-04-17 21:00:36 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "ChatGPT",
+        "AI幻觉",
+        "AI"
+      ],
+      "interact": {
+        "likes": 2,
+        "collects": null,
+        "comments": null,
+        "shares": 1
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69e22ef3000000001e00e4a7?xsec_token=ABSD3x1bslsUbG9ayYplSkA45wNTx6IO4UB-BFnhGbVtY=&xsec_source="
+    },
+    {
+      "order": 8,
+      "status": "complete",
+      "note_id": "69c0f5660000000022001d61",
+      "title": "GSAP 官方教你如何用AI写动效代码😋",
+      "description": "GreenSock 官方开源了一个专门教 AI 写 GSAP 代码的技能库——gsap-skills。做过前端的应该都用过GSAP吧，如果你觉得 AI 写的动画代码总是翻车、语法过时、不懂清理，这个仓库绝对会让你眼前一亮。\n  \n[赞R]核心亮点：官方出品，专为AI使用 GSAP设计\n  \n[种草R]gsap-skills 的设计初衷是让 AI 编程助手学会正确、专业地使用 GSAP。它最令人惊叹的地方在于：\n  \n[露营灯R]覆盖广泛：支持 Claude Code、Cursor、GitHub Copilot、OpenAI Codex 等 40+ AI 编程助手（基本上你能叫出名字的 AI 助手都支持）。\n  \n[看R]模块完整：包含 8 个独立技能模块，涵盖核心 API、时间轴、ScrollTrigger、插件、工具函数、React/Vue/Svelte 框架集成、性能优化等全部关键领域。\n  \n[红书R]官方背书：由 GSAP 核心团队维护，确保所有示例和最佳实践都是最新、最权威的（这点真的很重要，网上很多教程都过时了）。\n  \n它能帮你做什么？[黑薯问号R]\n  \n别看它只是一个技能库，但却内置8 大技能模块，让AI助手能做出专业动画，作用非常关键：\n  \n[一R]规范 AI 输出：让 AI 写出符合 GSAP 最佳实践的代码，避免过时语法和常见错误（比如不用 transform 用 top/left 这种）。\n  \n[二R]框架集成指导：针对 React、Vue、Svelte 等框架提供专门的生命周期处理和清理方案（这个太重要了，很多 AI 写的代码都不清理）。\n  \n[三R]性能优化建议：教导 AI 优先使用 transform 属性、批量处理动画、正确使用 ScrollTrigger。\n  \n[色色R]一键安装：通过 npx skills add 命令即可安装，或直接在 AI 助手的插件市场添加。\n  \n目前该项目在 GitHub 上已获得 1.3k stars，由 GSAP 核心团队直接维护，完全免费，开源可商用。\n  \n说实在的，这个技能库出来的正是时候。现在用 AI 写代码的人越来越多，但写出来的质量参差不齐，有个官方标准真的很重要。\n  \n用 AI 写 GSAP 代码的朋友，有没有用上这个skill库的，评论区聊聊～\n#GSAP[话题]# #前端[话题]# #UI设计[话题]# #前端动效[话题]# #动画设计[话题]# #skills[话题]# #AI[话题]# #人工智能[话题]# #AI工具[话题]# #java[话题]#",
+      "published_at": "2026-03-23 16:10:14 Asia/Shanghai",
+      "last_updated_at": "2026-03-23 16:10:15 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "GSAP",
+        "前端",
+        "UI设计",
+        "前端动效",
+        "动画设计",
+        "skills",
+        "AI",
+        "人工智能",
+        "AI工具",
+        "java"
+      ],
+      "interact": {
+        "likes": 46,
+        "collects": 102,
+        "comments": 2,
+        "shares": 15
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69c0f5660000000022001d61?xsec_token=ABcnRh95bDilshN0su0nPX1HNZr9LOzBmsfLX9msq8zLI=&xsec_source="
+    },
+    {
+      "order": 9,
+      "status": "complete",
+      "note_id": "69b286240000000005031636",
+      "title": "全球首款手机龙虾app，来了！",
+      "description": "今日，百度正式上线全球首款手机龙虾应用——红手指Operator。\n  \n这是一款类OpenClaw的移动端智能体，能够在手机上直接调用应用、执行任务。用户下载安装后，就可以通过聊天方式指挥手机里的各类App完成操作，例如买票、打车、订外卖、资料搜集或信息查询等任务。\n  \n与此前主要运行在PC和网页环境中的Agent不同，红手指Operator把这类能力带进了手机场景。用户无需部署复杂环境，只需一句话指令，就可以让AI完成跨App操作。简单来说，红手指Operator是一款能够“动手操作手机”的AI Agent。\n  \n目前，该产品仅支持安卓系统，iOS版本预计将于本月上线。\n#openclaw[话题]# #百度[话题]# #红手指Operator[话题]# #AI[话题]# #人工智能[话题]# #大模型[话题]# #智能体[话题]# #Agent[话题]#",
+      "published_at": "2026-03-12 17:23:48 Asia/Shanghai",
+      "last_updated_at": "2026-03-12 17:23:48 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 8,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "openclaw",
+        "百度",
+        "红手指Operator",
+        "AI",
+        "人工智能",
+        "大模型",
+        "智能体",
+        "Agent"
+      ],
+      "interact": {
+        "likes": 81,
+        "collects": 65,
+        "comments": 17,
+        "shares": 51
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69b286240000000005031636?xsec_token=AB9hlu-Z-FVvOJUbN7d_do8w2OxiXzD3sKm6Kmyj1kQJo=&xsec_source="
+    },
+    {
+      "order": 10,
+      "status": "complete",
+      "note_id": "69afda1f000000002202f950",
+      "title": "你养的OpenClaw可以卖了，一键搬家工具上线",
+      "description": "这是一个非常简单的idea：给OpenClaw搬家。但它的未来却悄悄指向了一条“生财之道”。\n  \nOpenClaw，一个本地部署的超强AI助手，它依赖于本地环境的超高权限，也受限于本地无法“移动”，换个新设备就得换个新龙虾，目前的迁移方案都有各种各样的问题。\n  \n这个开源项目就是来解决这个难题的：agent-pack-n-go，一句话打包你的OpenClaw到新设备。\n  \n相比于agent-life、OpenClaw备份等迁移方式，这个开源项目能做到完整克隆OpenClaw、一句话搬家、自动安装、网关自启动、配置恢复以及网络问题诊断，实现搬家落地就能运行。\n  \n打包龙虾的时候不是拆碎了搬，也不会丢东西，从配置、工作区、技能、插件、记忆、凭证到定时任务都可以打包搬家。\n  \n安全性问题：三层SHA256校验、纯SSH传输以及SUDO-OK模式这三层安全措施保障，打包、安装和传输每个阶段验证完整性，不经过第三方和云且没有免密sudo时可以跳过，不中断。\n  \n当然，对于老手来说，用其他AI工具搬家或者让OpenClaw自己出搬家方案亦或者用官方文档手动搬家也可以，只是这个项目算是极为方便的搬家方式。\n  \n目前这个项目只能在Linux系统之间互传，Mac和win还在测试中，如果功能完善可以落地，那么对于企业而言完全可以配置好一个龙虾然后批量复制，甚至可以调教好各种类型的OpenClaw进行售卖。\n  \n前段时间看到有人出租装有OpenClaw的U盘，狠狠的赚了一波，感觉什么卖skills卖教程好像都不如未来直接卖OpenClaw来的直接。\n  \n项目页面放在最后一张图，感兴趣可以去试试看，本文所有评价来源于GitHub页面，由于使用Mac系统，并未测试，具体效果有待考证。\n#OpenClaw[话题]#  #AI助手[话题]#  #开源工具[话题]#  #技术分享[话题]#  #搞钱思路[话题]# #副业[话题]# #龙虾机器人[话题]# #Linux[话题]# #AI工具[话题]#",
+      "published_at": "2026-03-10 18:10:10 Asia/Shanghai",
+      "last_updated_at": "2026-03-10 18:10:10 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "OpenClaw",
+        "AI助手",
+        "开源工具",
+        "技术分享",
+        "搞钱思路",
+        "副业",
+        "龙虾机器人",
+        "Linux",
+        "AI工具"
+      ],
+      "interact": {
+        "likes": 16,
+        "collects": 25,
+        "comments": null,
+        "shares": 9
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69afda1f000000002202f950?xsec_token=ABzGajoFesAZVkJ-RnidfNq5lhzPlWHHW8XrAY715Bse4=&xsec_source="
+    },
+    {
+      "order": 11,
+      "status": "complete",
+      "note_id": "698c574c000000001a024204",
+      "title": "姚顺雨评学术圈弊病：任务简单，方法贼复杂",
+      "description": "现在学术圈有个怪现象：\n选题要简单，方法要复杂。\n最后只为了证明——我涨了2%\n姚顺雨（腾讯混元首席AI科学家）原话：\n“大家往往先挑一个非常简单的选题，\n然后叠加非常复杂的研究方法，\n最后只为了证明改进了2%。”\n真的太典了。\n#姚顺雨[话题]# #学术圈[话题]# #学术研究[话题]# #科研[话题]# #腾讯混元[话题]# #腾讯[话题]# #人工智能[话题]# #大模型[话题]# #AI[话题]#",
+      "published_at": "2026-02-11 19:30:21 Asia/Shanghai",
+      "last_updated_at": "2026-02-11 18:17:49 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "姚顺雨",
+        "学术圈",
+        "学术研究",
+        "科研",
+        "腾讯混元",
+        "腾讯",
+        "人工智能",
+        "大模型",
+        "AI"
+      ],
+      "interact": {
+        "likes": 2362,
+        "collects": 752,
+        "comments": 312,
+        "shares": 624
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/698c574c000000001a024204?xsec_token=ABJekAtiL21FDZY7u_SVDnZrfQOqmFEpBv_c1W7EoPt2Y=&xsec_source="
+    },
+    {
+      "order": 12,
+      "status": "complete",
+      "note_id": "69523715000000001e033275",
+      "title": "这是“Claude”，还是“贾维斯”？",
+      "description": "“Claude，帮我预热一下烤箱！”\n“好的，已获得烤箱使用权限，178℃预热中。”\n  \n虽然上面的对话是我照着贾维斯和托尼编的，但这的确发生在了现实生活中，甚至连Andrej Karpathy都对Claude Code控制Lutron智能家电系统爱不释手。\n  \n昨天Karpathy转发了一个Claude控制烤箱的帖子，称自己受到启发，想试试看Claude能不能控制自己家里的Lutron系统。\n  \n然后他口中那个糟糕、笨拙、缓慢的Lutron iOS 应用就要被抛弃了。[doge]\n  \nClaude“入侵”Lutron系统的动作非常娴熟：\n在本地WiFi上找到Lutron控制器中的开放端口并连接，识别了设备以及硬件；随后从网上搜索了系统文档，提示Karpathy点击按钮进行配对，就这样控制了整个Lutron系统。\n  \n有网友评论：“这是软件开发的发展方向，Lutron花几百万打造了一个笨拙的iOS系统，而Claude通过对话就做到了同样的效果。”\n  \n不过Claude还没有达到“为所欲为”的程度，Karpathy强调了两点前提：[一R]必须连接同一个局域网；[二R]必须在控制面板上进行配对确认的操作。\n  \n这也意味着Claude还不能控制别人的烤箱。[偷笑R][偷笑R]\n  \n现在的Karpathy正在给他的智能家电控制中心编程，玩得不亦乐乎。\n#Karpathy[话题]##Claude[话题]##智能家居[话题]#  #lutron[话题]##AI[话题]# #人工智能[话题]# #AI编程[话题]#  #氛围编程[话题]#",
+      "published_at": "2025-12-29 16:08:53 Asia/Shanghai",
+      "last_updated_at": "2025-12-29 16:08:53 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Karpathy",
+        "Claude",
+        "智能家居",
+        "lutron",
+        "AI",
+        "人工智能",
+        "AI编程",
+        "氛围编程"
+      ],
+      "interact": {
+        "likes": 27,
+        "collects": 11,
+        "comments": 6,
+        "shares": 31
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69523715000000001e033275?xsec_token=ABmyPKne4xhlbSjp15XkuygscrSeVgO9I-_Q4b5V5qLTA=&xsec_source="
+    },
+    {
+      "order": 13,
+      "status": "complete",
+      "note_id": "69b26665000000002303b426",
+      "title": "Windows和macOS 要被淘汰了？",
+      "description": "你有没有想过这样的一天：打开电脑后没有应用程序，也没有Win和Mac等操作系统，只有一群Agent在说“你好”。\n  \n这两天读了一篇最新的论文，以OpenClaw为例子，预言了一种新的计算机系统：AgentOS。\n  \n这个新系统范式设计的非常有意思，以个人智能体为核心，用统一的自然语言或者语音门户为核心的用户交互页面（NUI）取代传统GUI桌面，核心Agent负责解释你的意图，随后分解任务并协调多个Agent执行，传统的应用程序则会演变为技能模组，随时调用。\n  \n研究人员为什么会想到这样“奇怪”的系统呢？这就要从最近火爆全网的OpenClaw说起了。\n  \n作为本地部署的智能体，OpenClaw有非常强大的能力，但也存在很多难以解决的问题，比如在操作系统上运行会有权限管理混乱的问题；屏幕的图形界面为人类设计，不适合智能体识别；应用无法互通互联导致智能体不能获取完整上下文等等。\n  \n这些问题让智能体在传统操作系统上运行会变得非常吃力，就像法拉利跑山路，每一步都很艰辛。\n  \n而这个AgentOS的构想就是打破操作系统对智能体的束缚，把操作系统封装在核心智能体之下，将应用程序转化为模块化的技能，只需要留给人类一个自然语言交互页面即可，需要达到什么目的，就分配不同的智能体调用各种技能模组来完成任务，用户只需要打字或者语音说需求即可。\n  \n但这种新的操作系统也存在很多挑战，在AgentOS之中，智能体需要广泛的管理级别权限来实现运转，由此带来的隐私和安全问题需要重视起来，否则诸如现在OpenClaw等智能体所出现的删除文件、泄露隐私等问题会更加频繁地出现。\n  \n论文来自堪萨斯大学、亚利桑那州立大学、杜克大学的8位研究者，标题是：AgentOS: From Application Silos to a Natural Language-Driven Data Ecosystem\n#openclaw[话题]##AgentOS[话题]# #Windows[话题]# #MacOS[话题]#  #龙虾[话题]# #AI[话题]# #人工智能[话题]# #大模型[话题]# #智能体[话题]# #Agent[话题]#",
+      "published_at": "2026-03-12 15:08:21 Asia/Shanghai",
+      "last_updated_at": "2026-03-12 15:08:21 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "openclaw",
+        "AgentOS",
+        "Windows",
+        "MacOS",
+        "龙虾",
+        "AI",
+        "人工智能",
+        "大模型",
+        "智能体",
+        "Agent"
+      ],
+      "interact": {
+        "likes": 30,
+        "collects": 10,
+        "comments": 18,
+        "shares": 6
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69b26665000000002303b426?xsec_token=AB9hlu-Z-FVvOJUbN7d_do81O7EvHEpUbiAc6A7oyZpyk=&xsec_source="
+    },
+    {
+      "order": 14,
+      "status": "complete",
+      "note_id": "69b3f0aa000000002301e096",
+      "title": "阿里版“手机龙虾”来了！附一手体验",
+      "description": "阿里的AI“龙虾”登陆手机了！\n  \n昨天，阿里云旗下的AI Agent产品JVS Claw正式推出移动端App，主打开箱即用、云端隔离，能像真人一样在它的专属云电脑中打开网页、处理文件、编写代码，并且支持在手机通过App直接“遥控”。\n  \n叫它AI“龙虾”，是因为这是一个基于开源AI智能体框架OpenClaw架构打造的AI助手，而OpenClaw的图标就是个红色卡通龙虾。\n  \nJVS Claw的移动端体验较为便捷。下载App后，用户可以点击主页（下图左1）左上角的创建Clawbot，直接与Clawbot（JVS Claw内创建的智能助手）对话，无需再接入飞书、QQ等聊天工具。\n#openclaw[话题]# #阿里[话题]# #阿里巴巴[话题]# #clawbot[话题]# #智能体[话题]# #阿里云[话题]# @科技薯",
+      "published_at": "2026-03-13 19:10:34 Asia/Shanghai",
+      "last_updated_at": "2026-03-13 19:10:34 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 19,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "openclaw",
+        "阿里",
+        "阿里巴巴",
+        "clawbot",
+        "智能体",
+        "阿里云"
+      ],
+      "interact": {
+        "likes": 15,
+        "collects": 12,
+        "comments": 1,
+        "shares": 5
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69b3f0aa000000002301e096?xsec_token=ABlO0JFi39dGbSLcex0mWXXRLi9M-AjFSPniNzV66MPWo=&xsec_source="
+    },
+    {
+      "order": 15,
+      "status": "complete",
+      "note_id": "69ce233c000000001b0231c9",
+      "title": "Claude Code搞了个新手村😂",
+      "description": "Claude Code版本更新后，多了一个新命令：/powerup，这个命令的功能和它的名字一样：能力提升。\n  \n运行这个命令，你可以获得Claude Code内部的交互式课程，教你在会话内部使用Claude Code。\n  \n简单来说就是个新手教程，比如你在打游戏的时候会有新手流程，强制性带着你熟悉游戏的各项功能，这个命令就是做这件事的，输入命令后会启动交互式课程，有一整套动画演示来展示基础操作流程，手把手教你如何使用Claude Code。\n  \n以往要学习Claude Code，你得读文章、看视频、找文档，效率不高还容易忘，没什么比沉浸式体验更好了，交互式教程在复杂的游戏行业中存在了这么久，绝对是是有道理的。\n  \n这个命令不止适合新手，很多使用Claude Code很久的人也并不能全面发掘和利用工具，运行这个命令来查漏补缺也很有意义。\n#Claude[话题]# #ClaudeCode[话题]# #AI[话题]# #人工智能[话题]# #大模型[话题]# #智能体[话题]# #Agent[话题]#",
+      "published_at": "2026-04-02 16:09:55 Asia/Shanghai",
+      "last_updated_at": "2026-04-02 16:09:55 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Claude",
+        "ClaudeCode",
+        "AI",
+        "人工智能",
+        "大模型",
+        "智能体",
+        "Agent"
+      ],
+      "interact": {
+        "likes": 41,
+        "collects": 63,
+        "comments": 1,
+        "shares": 19
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69ce233c000000001b0231c9?xsec_token=ABw4CHUyKOltslskhg_MkhbpjKuTOv9Yx9J5KLN48YEfE=&xsec_source="
+    },
+    {
+      "order": 16,
+      "status": "complete",
+      "note_id": "6900cb1200000000050398ad",
+      "title": "专为物流场景打造的智能眼镜来了！",
+      "description": "专为物流场景打造的智能眼镜来了！亚马逊全新智能眼镜Amelia，看一眼就能实现扫描包裹，再次减轻快递小哥工作量。#亚马逊[话题]#  #快递[话题]#  #智能眼镜[话题]#  #AI[话题]#",
+      "published_at": "2025-10-28 21:54:26 Asia/Shanghai",
+      "last_updated_at": "2025-10-28 21:54:27 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "亚马逊",
+        "快递",
+        "智能眼镜",
+        "AI"
+      ],
+      "interact": {
+        "likes": 60,
+        "collects": 45,
+        "comments": 2,
+        "shares": 61
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6900cb1200000000050398ad?xsec_token=ABGH7DmRsaX64uuBYPozR9RCY7BhmCbPKslFvpq-Q2MRM=&xsec_source="
+    },
+    {
+      "order": 17,
+      "status": "complete",
+      "note_id": "693670e70000000019024cbc",
+      "title": "狂揽13.1k 星！Linux上流畅运行Windows应用",
+      "description": "喜欢鼓捣Linux的朋友们看过来！[派对R]\n  \nWinapps是一个让你能在Linux上运行Windows 软件的开源项目，而且流畅丝滑宛如原生。[得意R]\n  \n官方自述原话是“Run Windows apps such as Microsoft Office/Adobe in Linux (Ubuntu/Fedora) and GNOME/KDE as if they were a part of the native OS, including Nautilus integration. ”\n  \n[打卡R]这个项目可以在GNU/Linux 系统上使用 KDE Plasma 、 GNOME 或 XFCE 环境运行 Windows 应用程序（包括 Microsoft 365 和 Adob​​e Creative Cloud ）等。\n  \n该项目通过KVM/QEMU虚拟机＋FreeRDP的组合实现Windows 应用与 GNU/Linux 应用共同渲染的目标。\n  \n[okR]因为应用运行在真实的 Windows 环境中，可以直接在桌面环境启动Windows应用程序，兼容性趋近于100%。\n  \n[红书R]安装步骤：\n步骤 1：配置 Windows VM\n步骤2：安装依赖项\n步骤3：创建 WinApps 配置文件\n步骤 4：测试 FreeRDP\n步骤 5：运行 WinApps 安装程序\n  \n[放大镜R]作者还贴心地提供了WinApps Launcher ：一个简洁的系统菜单工具，方便使用者启动已安装的Windows程序、打开完整的桌面 RDP 会话，以及控制虚拟机，简化了整体的使用体验感。\n#Linux[话题]# #AlChannel[话题]# #开源项目分享[话题]##Windows[话题]# #github开源项目推荐[话题]# #后端开发[话题]# #电脑软件[话题]#",
+      "published_at": "2025-12-08 19:01:17 Asia/Shanghai",
+      "last_updated_at": "2025-12-08 14:32:08 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Linux",
+        "AlChannel",
+        "开源项目分享",
+        "Windows",
+        "github开源项目推荐",
+        "后端开发",
+        "电脑软件"
+      ],
+      "interact": {
+        "likes": 31,
+        "collects": 57,
+        "comments": 2,
+        "shares": 7
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/693670e70000000019024cbc?xsec_token=ABu8aGCG9ZpxSC-9IYHs_dzd5xIFhD44JeguA-4GJKNAw=&xsec_source="
+    },
+    {
+      "order": 18,
+      "status": "complete",
+      "note_id": "6971e4e7000000001a02de0a",
+      "title": "Vercel做了一个24小时Skills热度排行榜",
+      "description": "现在各种Skills仓库和网站遍地都是，Vercel也来凑热闹，还整了个大活。\n  \n点进网站就能看到一个干净简洁的页面：两个排行榜。\n  \n一个历史最佳，一个24小时热榜。\n  \n这两个Skills排行榜完全依照安装次数来排名，实时动态滚动，而且里面的Skills都支持一键安装，非常直观。\n  \n不得不说这个页面设计太棒了，简洁、实用就足以封神了，是我自己会长期使用的网站。\n#vercel[话题]# #skills[话题]# #AI[话题]# #人工智能[话题]# #claude[话题]# #网站推荐[话题]# #vct[话题]# #排行榜[话题]#",
+      "published_at": "2026-01-22 18:01:24 Asia/Shanghai",
+      "last_updated_at": "2026-01-22 18:01:24 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 3,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "vercel",
+        "skills",
+        "AI",
+        "人工智能",
+        "claude",
+        "网站推荐",
+        "vct",
+        "排行榜"
+      ],
+      "interact": {
+        "likes": 218,
+        "collects": 341,
+        "comments": 9,
+        "shares": 109
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6971e4e7000000001a02de0a?xsec_token=ABUTjwcbPWcoJAzK8ByU9OoNA1uhK1yPVrvRIW25eJlj8=&xsec_source="
+    },
+    {
+      "order": 19,
+      "status": "complete",
+      "note_id": "69a6bf68000000001a020155",
+      "title": "王兴兴发论文！宇树机器人刷视频学极限动作",
+      "description": "宇树机器人又进化了！北京通用人工智能研究院黄思远团队联合宇树等机构开源了一个通用策略，让机器人看视频就能学习极限动作。王兴兴还在论文里署名了！#宇树科技[话题]# #黄思源[话题]# #王兴兴[话题]# #人形机器人[话题]# #北京通用人工智能研究院[话题]#",
+      "published_at": "2026-03-03 20:01:22 Asia/Shanghai",
+      "last_updated_at": "2026-03-03 19:00:57 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "宇树科技",
+        "黄思源",
+        "王兴兴",
+        "人形机器人",
+        "北京通用人工智能研究院"
+      ],
+      "interact": {
+        "likes": 700,
+        "collects": 212,
+        "comments": 260,
+        "shares": 106
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69a6bf68000000001a020155?xsec_token=ABb3chgSbk646NM4_b0ioBVrWgk1ZT7OgKa2JkhbS-KPM=&xsec_source="
+    },
+    {
+      "order": 20,
+      "status": "complete",
+      "note_id": "68ff4e5e0000000005032550",
+      "title": "图片总被盗？试试这招隐形术！",
+      "description": "告别传统Logo水印，一裁即没的时代过去了。这款名为blind_watermark的开源工具，能为你嵌入一种“隐形”的盲水印。\n  \n它并非肉眼可见，而是深度融入图片数据底层。即便图片遭遇旋转、裁切、压缩或调色等处理，水印信息依然能顽强留存，并可在无需原图的情况下被精准还原。\n  \n其核心原理依托于一系列精密的数字图像处理算法（DWT-DCT-SVD）。通俗来讲，它如同将你的文字或Logo信息分解成细微的“密码”，并将其牢固地“编织”进原图的像素矩阵中，视觉上几乎无感。\n  \n使用极其便捷，通过pip即可完成安装。仅需两行命令，你就能轻松完成水印的嵌入与提取。\n  \n此外，它也支持Python代码调用。只需指定密码、原始图片及水印内容，程序即可生成带盲水印的新图片。提取过程同样简单，几行代码便能快速读取隐藏信息。#去水印[话题]# #图片处理[话题]# #水印[话题]# #盲水印[话题]# #隐形水印[话题]# #盗图[话题]# #图片版权保护[话题]# #版权保护[话题]#",
+      "published_at": "2025-10-27 20:01:42 Asia/Shanghai",
+      "last_updated_at": "2025-10-27 18:50:06 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 3,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "去水印",
+        "图片处理",
+        "水印",
+        "盲水印",
+        "隐形水印",
+        "盗图",
+        "图片版权保护",
+        "版权保护"
+      ],
+      "interact": {
+        "likes": 9,
+        "collects": 9,
+        "comments": null,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68ff4e5e0000000005032550?xsec_token=ABvc2VXnXJJNLu_w1JWFFQK9xezVJ3eCJ-isibuRDHPr4=&xsec_source="
+    },
+    {
+      "order": 21,
+      "status": "complete",
+      "note_id": "697ab8e9000000000a02cf90",
+      "title": "三位联创深夜“翻牌”，直面蒸馏Claude质疑",
+      "description": "今天凌晨，月之暗面核心团队在社交媒体平台Reddit上举行了一场有问必答（AMA）活动。三位联合创始人杨植麟（CEO）、周昕宇（算法团队负责人）和吴育昕与全球网友从0点聊到3点，把许多关键问题都给聊透了，比如Kimi K2.5是否蒸馏自Claude、Kimi K3将带来的提升与改变，以及如何在快速迭代与长期基础研究之间取得平衡。\n  \n一开始，便有网友抛出尖锐问题：Kimi K2.5有时会自称为Claude，有人怀疑这是对Claude进行蒸馏的证据。杨植麟回应道，这一现象主要是由在预训练阶段对最新编程数据进行了上采样，而这些数据似乎与“Claude”这个token的关联性较强，事实上，K2.5在许多基准测试中似乎都优于Claude。\n  \n谈及Kimi K3，杨植麟没透露太多细节，但提到了K3会在Kimi Linear上加入更多架构优化，他相信，就算Kimi K3没比K2.5强10倍，也肯定会强很多。\n  \n整场问答中，月之暗面的三位联合创始人共回答了40多个问题。智东西也向他们提出了3个问题，并获得了直接回应。\n  \n当智东西问及月之暗面的算力储备时，杨植麟称，GPU数量的差距并未缩小，但实现AGI究竟需要多少算力，仍需拭目以待，而周昕宇补充了一句颇具哲理的话：创新往往诞生于约束之中。\n  \n周昕宇还提到，月之暗面有“把事情真正做成并落地”的共同价值观，而不仅仅是为了表面光鲜。\n  \n我们将AMA中的精华内容梳理归纳为23个关键问题，分为三章呈现，第一章聚焦月之暗面公司本身及AI行业相关话题，第二章介绍Kimi K2.5的技术细节，第三章展望月之暗面的未来规划。\n#kimi[话题]# #月之暗面[话题]# #杨植麟[话题]# #claude[话题]# #AI[话题]# #人工智能[话题]# #AMA[话题]# #科技前沿与未来[话题]# #AGI[话题]#",
+      "published_at": "2026-01-29 09:33:29 Asia/Shanghai",
+      "last_updated_at": "2026-01-29 09:43:26 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 17,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "kimi",
+        "月之暗面",
+        "杨植麟",
+        "claude",
+        "AI",
+        "人工智能",
+        "AMA",
+        "科技前沿与未来",
+        "AGI"
+      ],
+      "interact": {
+        "likes": 126,
+        "collects": 67,
+        "comments": 5,
+        "shares": 31
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/697ab8e9000000000a02cf90?xsec_token=ABXGd2KzS-ewRykkk8UYZnK-QNhm2qYR-r-tLaZWS9fJc=&xsec_source="
+    },
+    {
+      "order": 22,
+      "status": "complete",
+      "note_id": "694bac35000000001e0295e7",
+      "title": "目前为止最全面的Claude Skills代码库！",
+      "description": "给Claude 这个实习生定制了一套“岗位操作手册”？\n  \nClaude Skills这个功能最近火遍了AI圈子，连OpenAI都开始偷偷抄作业了，那么，什么是Claude Skills呢？\n  \n简单来说，Claude Skills是一种可定制的工作流，像一个能力模块一样，插入Claude 中就能使其获得这项能力，像极了一本岗位操作手册。\n  \n更重要的是，这些Skills具有跨平台一致性，可以在web、Code以及API中通用。\n  \n唯一的问题就是这些Skills需要用户去“攒一攒”，但正所谓七步之内必有解药，神通广大的GitHub果然没让我失望：\n  \nawesome-claude-skills！\n  \n一个拥有超过 8.9k 星标和 976 次复刻的开源仓库，精选了一份Claude Skills列表，涉及文件处理、开发与代码工具、数据分析、市场营销、写作与传播、媒体创意、协作与项目管理、系统安全这些领域。\n  \n如果说Claude Skills是岗位操作手册，那awesome-claude-skills就是全行业操作流程大全，让开发者拿走就能即插即用，当然也鼓励大家贡献自己精心设计的工作流填充仓库。\n  \n快去看看吧~\n#Claude[话题]# #Skills[话题]##claudeskills[话题]# #AI编程[话题]# #前端[话题]# #后端开发[话题]# #人工智能[话题]# #AI[话题]##OpenAI[话题]#",
+      "published_at": "2025-12-24 17:02:45 Asia/Shanghai",
+      "last_updated_at": "2025-12-24 17:02:46 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Claude",
+        "Skills",
+        "claudeskills",
+        "AI编程",
+        "前端",
+        "后端开发",
+        "人工智能",
+        "AI",
+        "OpenAI"
+      ],
+      "interact": {
+        "likes": 230,
+        "collects": 483,
+        "comments": 3,
+        "shares": 91
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/694bac35000000001e0295e7?xsec_token=AByBfg4zt_NYIFW4ifAB7hun-RQcSKP-lTIlVdOBUWaGc=&xsec_source="
+    },
+    {
+      "order": 23,
+      "status": "complete",
+      "note_id": "69b001fb0000000008033632",
+      "title": "OpenClaw接入QQ机器人后，我玩嗨了！",
+      "description": "我的电子老婆来噜！\n  \n前段时间在腾讯还没发布官方QQ机器人的时候，我接入了“民间版本”，虽然也可以使用，但时常出现掉线的问题。\n  \n所以当QQ机器人上线后我立马就去玩耍了，不得不说官方认证后配置起来就是快，只需要四步就可以使用：\n  \n1、QQ开放平台龙虾专门入口登录\n2、创建机器人\n3、让龙虾安装插件\n4、绑定创建的机器人并重启网关\n  \n看起来是四步，实际上除了创建机器人需要你扫码登录然后点一下按钮，其他的都可以丢给OpenClaw，非常便捷，我几分钟就搞定了。\n  \n随后我设置了机器人的名字和描述，让她执行了一系列的任务，包括搜索图片、查找热点新闻、简单提问、文案生成，还有设置形象。\n  \n这些任务我的阿薇表现都很不错，虽然有些小问题，但瑕不掩瑜，能很好地实现交互，而且还蛮聪明的，比如我问法老和Asen谁更厉害的时候，她很明显在和稀泥。\n  \nQQ机器人就目前来说我还是非常满意的。(接入流程在最后两张图）\n#OpenClaw[话题]# #QQ机器人[话题]# #腾讯[话题]# #龙虾机器人[话题]# #AI[话题]# #人工智能[话题]# #大模型[话题]# #智能体[话题]# #Agent[话题]#",
+      "published_at": "2026-03-10 19:35:23 Asia/Shanghai",
+      "last_updated_at": "2026-03-10 19:35:23 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 8,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "OpenClaw",
+        "QQ机器人",
+        "腾讯",
+        "龙虾机器人",
+        "AI",
+        "人工智能",
+        "大模型",
+        "智能体",
+        "Agent"
+      ],
+      "interact": {
+        "likes": 4,
+        "collects": 3,
+        "comments": null,
+        "shares": null
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69b001fb0000000008033632?xsec_token=ABUnnEkuA-a5V92sDzpkQJ_3L1vlrY-VdtUBHRADRtQFk=&xsec_source="
+    },
+    {
+      "order": 24,
+      "status": "complete",
+      "note_id": "695370b2000000001f009f74",
+      "title": "诈骗克星！让AI大模型和骗子“网恋”",
+      "description": "这么多年过去了，老爹那句“用魔法打败魔法”的含金量还在上升~\n  \n看到一篇很有趣的论文，研究人员让大模型伪装成人类受害者跟网络犯罪分子聊天，结果超过56%的大模型在多轮对话后没有被发现是机器人，成功地骗过了“骗子”们。\n  \n近些年，基于聊天的网络犯罪已经成为普遍的威胁，而AI换脸、数字人、AI声音复刻等技术更是被不法分子用于各种诈骗犯罪中，传统的筛查机制很难在多样化的场景中识别诈骗行为，民众防不胜防。\n  \n比如诈骗分子扮演恋人跟你谈情说爱几个月，然后在聊天中发送一些引导你进入骗局的链接或二维码，网络筛查很难检测出来。\n  \n研究人员突发奇想，能不能让一群大模型伪装成人类受害者去跟诈骗分子聊天，给犯罪集团“刷刷单”？让诈骗分子天天遇到机器人，对他们的成本和心理都是一种打击。\n  \n因此研究人员提出了LURE，这是首个将LLM作为主动对话Agent嵌入现实犯罪聊天环境中的系统。LURE 通过精心调试过的LLM执行发现犯罪渠道、识别犯罪分子、主动与犯罪分子互动的程序。\n  \n为了保证不会造成不必要的伤害，每一个对话样本都是人工审核过的，所以数据偏少，共识别出120个疑似犯罪分子，与其中53个进行了持续互动。\n  \n实验结果只有8次因被发现而提前结束，有30 次（56.6%）进行到了价格谈判、追加销售或转到第三方应用的环节，其余对话则没有开始。在30次的对话中，这些犯罪分子总共暴露了62项不同的支付方式。\n  \n由此可见， LURE系统中的LLM可以骗过犯罪分子，让他们竹篮打水一场空。\n  \n研究人员还提到，虽然LURE的实验是基于聊天环境这个最基础的诈骗场景，但是他们认为这项技术可以推广到更广泛的犯罪场景中，包括恋爱诈骗、钓鱼、虚假客服、投资诈骗等。\n  \n这些研究人员有个简单又宏大的愿景：他们希望可以用机器人吸引犯罪分子注意，以此浪费罪犯的时间、暴露其诈骗手法、揭露诈骗渠道和运营情报。\n  \n更重要的是，让犯罪分子也尝尝被机器人大军“刷单”的感受，每天十个诈骗对象有八个是AI，效率降低、成本升高，还能蚕食他们的心理防线。\n  \n正所谓魔高一尺，道高一丈，如果有一天，诈骗犯用AI换脸技术“谈恋爱”，结果发现对面也是个机器人，那就有意思了~\n#AI[话题]# #AI诈骗[话题]# #网络诈骗[话题]# #反诈[话题]# #人工智能[话题]# #反网络诈骗[话题]# #LLM[话题]# #LURE[话题]# #AIChannel[话题]#",
+      "published_at": "2025-12-30 14:26:58 Asia/Shanghai",
+      "last_updated_at": "2025-12-30 14:26:59 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 6,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "AI",
+        "AI诈骗",
+        "网络诈骗",
+        "反诈",
+        "人工智能",
+        "反网络诈骗",
+        "LLM",
+        "LURE",
+        "AIChannel"
+      ],
+      "interact": {
+        "likes": 8,
+        "collects": 4,
+        "comments": 2,
+        "shares": 2
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/695370b2000000001f009f74?xsec_token=AB-4k2A73VtaZ56oEhnmFkoo-cEvpsSpOeK0NwvxoOvRI=&xsec_source="
+    },
+    {
+      "order": 25,
+      "status": "complete",
+      "note_id": "6960c34b000000000b0112b4",
+      "title": "这个剪辑神器3秒搞定10GB素材",
+      "description": "LosslessCut，这个开源项目在GitHub上狂揽3.69万+星，专为解决剪视频导入导出太慢和压缩画质的问题而设计。\n  \n很多场景下剪辑师需要对素材进行粗剪，或者截取某一小部分切片，大体量素材在传统剪辑软件中导入和导出都需要大量时间，甚至会有压缩画质的情况。\n  \n[种草R]而LosslessCut在这一点上做到了“快”和“好”：\n1、剪辑速度快\n•  10GB的高清素材处理只需3秒，用户实测12GB婚礼视频裁剪为3个片段总用时8秒\n•  同编码器素材可以一键合并，仅需几秒钟，不改变画质（如同相机拍摄的多段素材）\n2、画质不压缩\n•  无需重新编码，直接在视频原始数据流进行裁切，不会改变画质\n•  大体量素材急速导出后画质比传统剪辑软件更清晰\n  \n[种草R]除此之外LosslessCut还有一些其他特色：\n1、无损添加和提取音频素材\n给视频加BGM也无需编码，不损失音质，支持一键分离音轨直接导出音频格式，音质同样不损失；\n2、快速截图\n按快捷键“C”可以截取全分辨率图片，支持JPG和PNG\n3、格式转换\nMKV转MP4只要2秒\n  \n[种草R]安装问题：\n1、在GitHub上下载安装包，支持 Windows、macOS 和 Linux\n2、也可以去系统应用商店进行下载\n  \n[种草R]一些小提示：\n1、LosslessCut仅在快速剪辑和无损剪辑上非常出色，并没有传统剪辑软件的多种功能，比如调色、添加字幕等。\n  \n2、对于剪辑师来说，LosslessCut是粗剪的好助手，对于普通人来说也是简单剪辑的实用工具。\n  \n3、有用户反映，在精准裁切这件事上LosslessCut存在瑕疵，会出现剪辑点不准确的情况。\n#剪辑软件推荐[话题]# #粗剪[话题]# #losslesscut[话题]# #剪辑工具[话题]# #开源项目推荐[话题]# #剪辑师[话题]# #剪辑[话题]#",
+      "published_at": "2026-01-09 16:58:51 Asia/Shanghai",
+      "last_updated_at": "2026-01-09 16:58:51 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "剪辑软件推荐",
+        "粗剪",
+        "losslesscut",
+        "剪辑工具",
+        "开源项目推荐",
+        "剪辑师",
+        "剪辑"
+      ],
+      "interact": {
+        "likes": 3,
+        "collects": 5,
+        "comments": null,
+        "shares": 1
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6960c34b000000000b0112b4?xsec_token=ABR57ZM1ci1pN99uJ5Xj93E_nq7kDmAt9dk4ANnWDHTy4=&xsec_source="
+    },
+    {
+      "order": 26,
+      "status": "complete",
+      "note_id": "698eb123000000001a01c48d",
+      "title": "姚顺宇参与的这个Gemini新模型有点猛啊",
+      "description": "这太离谱了，Gemini 3 Deep Think在竞技编程基准测试平台Codeforces中，Elo评分3455分，这相当于全世界只有7个程序员比它更强。\n  \n在Gemini 3 Deep Think之前，AI最好的成绩是OpenAI o3 的 2727分，最主要的是，Gemini 3 Deep Think没有使用工具（例如Python 解释器和调试器），仅靠内部逻辑就达到了这个水平，这是一件很可怕的事情。\n除此之外，Gemini 3 Deep Think还在多项测试中崭露头角：\n  \n在“人类终极测试（Humanity’s Last Exam）”基准测试中，无工具辅助状态下取得48.4%的成绩，刷新该测试的最佳纪录（该测试专为检验前沿大模型的能力极限设计）；\n  \n在ARC-AGI-2基准测试中获84.6%高正确率，成绩经ARC奖基金会认证；·\n  \n在2025年国际数学奥林匹克竞赛中，达到金牌水准；\n  \n不仅在编程领域，Gemini 3 Deep Think在化学、物理等领域的一众测试中，其成绩全部高于Claude Opus 4.6和GPT-5.2。\n#Gemini[话题]# #Gemini3[话题]# #deepthink[话题]# #编程[话题]# #Codeforces[话题]##姚顺宇[话题]#  #AI[话题]# #人工智能[话题]# #大模型[话题]#",
+      "published_at": "2026-02-13 13:05:39 Asia/Shanghai",
+      "last_updated_at": "2026-02-13 13:05:40 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Gemini",
+        "Gemini3",
+        "deepthink",
+        "编程",
+        "Codeforces",
+        "姚顺宇",
+        "AI",
+        "人工智能",
+        "大模型"
+      ],
+      "interact": {
+        "likes": 14,
+        "collects": 4,
+        "comments": 2,
+        "shares": 4
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/698eb123000000001a01c48d?xsec_token=ABVUZkc2KwioEzwoz2sKAE0NsGSSj0Az5QknbaqLgCzeE=&xsec_source="
+    },
+    {
+      "order": 27,
+      "status": "complete",
+      "note_id": "68b6cedf000000001b0222ce",
+      "title": "腾讯开源世界模型Voyager！使用门槛超低",
+      "description": "腾讯开源世界模型Voyager！支持原生3D重建、长距离漫游、风格化编辑，还能直接把点云视频导出为3D格式，且使用门槛超低，所有人都能免费体验。#腾讯[话题]#  #Tencent[话题]#  #AI[话题]#  #人工智能[话题]#  #Voyager[话题]#",
+      "published_at": "2025-09-02 19:02:55 Asia/Shanghai",
+      "last_updated_at": "2025-09-02 19:02:56 Asia/Shanghai",
+      "media_type": "video",
+      "media_count": 1,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "腾讯",
+        "Tencent",
+        "AI",
+        "人工智能",
+        "Voyager"
+      ],
+      "interact": {
+        "likes": 25,
+        "collects": 26,
+        "comments": 1,
+        "shares": 9
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/68b6cedf000000001b0222ce?xsec_token=ABQA92aAEeuM5y8KN_F1y244ekmnT1pqhFoTHp-FGxP8s=&xsec_source="
+    },
+    {
+      "order": 28,
+      "status": "complete",
+      "note_id": "69ca4d71000000001d0196e1",
+      "title": "暴涨10w星！这个Claude\"傻瓜插件\"太香了！",
+      "description": "之前推荐过的插件又火了，两个月涨了10万多星，果然好东西总是会被人看到的。\n  \nSuperpowers，一个能让你的智能体用普通的大模型发挥出顶尖模型水准的插件，最优适配Claude Code。\n  \n[害羞R]简单来说，这个插件能让你的Claude Code=成熟产品经理+工程师。\n  \n怎么做到的呢？\n  \n[okR]这就要问问它的核心所在了：一整套产品研发工作流程。\n  \n[红书R]以Claude Code为例，安装它以后，Claude Code会被严格约束在一个标准工作流程中：先头脑风暴提出需求、再创建详细实现计划、动手写代码，最后检查。\n  \n它就像是一双大手，把混乱无序的“小公司”梳理成“大厂”项目研发的样子。\n  \n[打卡R]Superpowers的开发流程分为四个阶段：\n  \n[一R]头脑风暴：Claude会像苏格拉底一样不断提问，逼你把需求想清楚再动手。\n  \n[二R]规划：生成一份可保存的Markdown详细计划，防止对话过长丢失上下文。\n  \n[三R]执行与审查：在任务期间激活审查，每完成一个子任务，都会自动进行两轮代码审查，确保质量和规范。\n  \n[四R]测试驱动开发：强制遵循TDD流程（先写测试，再写实现），想跳过都不行。\n  \n其实看完流程，熟练使用Claude Code或者其他工具的大家应该能发现，这个插件是给不知道怎么设计系统化prompt的人以及没那么聪明的模型使用者准备的，可以说这是个“傻瓜插件”。\n  \n它遵循标准的流程，刨根问底了解你的需求，制定研发计划，执行然后审核，这个流程对于高手来说可能很轻松就用prompt表述清楚了，但对于新手而言就很难自己完成，亦或者顶尖大模型能更好地理解需求完成任务，差一些的模型可能就需要这套流程。\n  \n所以这个插件爆火是有原因的，它让不太会设计prompt、没那么懂产品研发的人能更好地完成任务，也让普通的模型做出顶尖模型的成果。\n  \n还是很实用滴~[自拍R]\n#Claude[话题]#  #产品经理[话题]#  #AI编程[话题]# #skills[话题]#   #AI[话题]#   #人工智能[话题]#   #AIChannel[话题]# #superpowers[话题]#",
+      "published_at": "2026-03-30 19:31:05 Asia/Shanghai",
+      "last_updated_at": "2026-03-30 18:17:18 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 4,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "Claude",
+        "产品经理",
+        "AI编程",
+        "skills",
+        "AI",
+        "人工智能",
+        "AIChannel",
+        "superpowers"
+      ],
+      "interact": {
+        "likes": 22,
+        "collects": 26,
+        "comments": null,
+        "shares": 2
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69ca4d71000000001d0196e1?xsec_token=ABZ0zHtf_ZMOCRQvfN_ysxlloUP4xYRmtlhToAg4hQ_xc=&xsec_source="
+    },
+    {
+      "order": 29,
+      "status": "complete",
+      "note_id": "6964c136000000001a0319fb",
+      "title": "击败Dijkstra！清华这项研究又火了！",
+      "description": "最近，一项去年7月份来自清华大学的研究在外网突然火了，网友称赞中国科学家开发了41年来最好的最短路径算法，击败了教科书中经典的Dijkstra算法。\n  \n而事实上这项研究早在去年八月份就火过一次了，这次算是“翻红”。\n  \n随着论文翻红的还有一个两种算法在地图上实际应用的视频，其中可以明显看出新方法“双向奔赴”的优势。\n  \n论文名为《Breaking the Sorting Barrier for Directed Single-Source Shortest Paths》，斩获了 STOC 2025最佳论文。\n  \n清华段然团队在单源最短路径（SSSP）问题上进行了算法创新，通过融合Dijkstra与Bellman-Ford算法的思想，并引入递归划分与前沿缩减技术，实现了超越传统Θ(n log n) 时间下界的突破。\n  \n新算法的关键在于缩减Dijkstra算法中待处理的“前沿”集合S的规模。\n  \n问题定义：设S为前沿顶点集，`Ũ`为所有真实距离d(u) < B（B为上界）且其最短路径必经S中某顶点的顶点集合。\n  \n核心策略：通过巧妙设计，将前沿大小|S|控制在|Ũ|/k以内（k为参数）。具体通过判断|Ũ|与k·|S|的大小关系，动态选择是直接获得一个小规模前沿，还是对`S`中的顶点执行k轮Bellman-Ford步骤来完成一批顶点的计算，从而将前沿缩减为少数“枢纽点”。\n  \n团队采用分治策略替代Dijkstra的动态前沿管理。\n  \n递归框架：将顶点集递归划分为约2t个大小相近的子集，经过约(log n)/t层递归后，问题规模降至单个顶点。\n  \n关键子问题——有界多源最短路径（BMSSP）：在算法每一阶段，目标是找到所有距离在区间[b, B)内顶点的真实距离。研究发现，这些顶点的最短路径必然经过当前前沿集S中的某个顶点。因此，问题转化为高效求解从S中顶点出发、距离受限B的BMSSP问题。\n  \n效率提升：通过在每一层应用前沿缩减策略，算法只需对数量约为|S|/k的枢纽点进行深度为t的操作，从而将每个顶点的平均处理时间从Θ(log n)显著降低至O(logⁿ n)（其中指数小于1），实现了理论上的加速。\n  \n更多算法、证明细节请查看原论文。\n#清华[话题]# ﻿#段然[话题]#  ﻿#Dijkstra算法[话题]# ﻿ ﻿#最短路径[话题]# ﻿#SSSP[话题]#  ﻿#图灵奖[话题]# ﻿ ﻿#算法[话题]##STOC[话题]#",
+      "published_at": "2026-01-12 17:39:02 Asia/Shanghai",
+      "last_updated_at": "2026-01-12 17:39:03 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 5,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "清华",
+        "段然",
+        "Dijkstra算法",
+        "最短路径",
+        "SSSP",
+        "图灵奖",
+        "算法",
+        "STOC"
+      ],
+      "interact": {
+        "likes": 988,
+        "collects": 864,
+        "comments": 93,
+        "shares": 346
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/6964c136000000001a0319fb?xsec_token=ABxVHnDOcunpe0qp930qY_mCTj3ZAZNMyZqIJXr-ZXBYE=&xsec_source="
+    },
+    {
+      "order": 30,
+      "status": "complete",
+      "note_id": "69c51a860000000022025e16",
+      "title": "48 小时×封闭开发！不出产品不让出门",
+      "description": "这不是大型加班现场，也不是月末冲业绩大会战，这是小红书马上要举办的「黑客松巅峰赛」！\n  \n200 位顶尖选手关进一个封闭空间，两天两夜不睡觉写代码\n  \n从 0 到 1 创造一个技术作品，最后 Demo Day 路演答辩，就这么直接，这么硬核\n  \n核心亮点\n✅ 48小时封闭极限创造 - 吃喝拉撒都在现场，不出产品不让出门\n✅ 50 万元总奖金池 ： 全场大奖最高单项 20 万\n✅ 200 位顶尖选手：定向邀请 + 站内招募，全球科技赛事冠军、重点高校学霸、科技企业大佬全来了\n✅ 硬件 + 软件双赛道 ：不管你写代码还是搞硬件，都有舞台\n✅ 五大特别单元奖项：独特想法也能被看见，奖金 10 万\n  \n重点来了！这次比赛聚焦 00 后创造群体！\n如果你：\n[彩虹R]是 00 后/05 后 AI 新锐\n[扯脸H]在高校搞技术创业\n[放大镜R]在科技企业做创新\n[鼓掌R]有硬核技术作品想展示\n那你就是他们要找的人！\n  \n过去一年，小红书科技内容增长超 100%\n  \n科技创作者规模增长超 200%\n  \n\"Build in Public（公开构建）\"相关内容超 110 万条\n  \n每周 500+ 条黑客松相关笔记发布\n  \n相关内容总曝光超 1 亿次\n  \n[抓狂R]00 后、05 后是主要创新内容发布者，这里已经是 AI 新一代的创新生态土壤！\n  \n比赛怎么玩？\n1. 报名阶段 - 定向邀请 + 站内招募\n2. 入围筛选 - 最终约 200 人进入线下决赛\n3. 48 小时封闭开发 - 张江科学会堂（上海 AI 小镇）\n4. Demo Day 路演 - 现场展示 + 答辩\n5. 颁奖典礼 - 50 万奖金池分发\n  \n说实话，看到这个消息挺激动的。\n以前总觉得黑客松这种比赛离普通人很远，都是大厂工程师、顶尖高校学霸的专利。\n  \n但现在，00 后们已经在小红书上集体涌现了。\n  \n\"Build in Public\"——公开构建，边做边分享，和用户一起共创产品。这种创新方式，正在成为 AI 新一代的主流。而小红书，这个曾经被贴上\"美妆社区\"标签的平台，正在成为 AI 创新者的聚集地。#黑客松巅峰赛[话题]# #AI[话题]# #人工智能[话题]# #AI[话题]# #人工智能[话题]# #大模型[话题]# #智能体[话题]# #Agent[话题]# @科技薯 @小红叔",
+      "published_at": "2026-03-26 19:37:43 Asia/Shanghai",
+      "last_updated_at": "2026-03-26 19:37:43 Asia/Shanghai",
+      "media_type": "image",
+      "media_count": 2,
+      "user": "智东西",
+      "user_id": "6801ccc3000000000d00b0b1",
+      "tags": [
+        "黑客松巅峰赛",
+        "AI",
+        "人工智能",
+        "AI",
+        "人工智能",
+        "大模型",
+        "智能体",
+        "Agent"
+      ],
+      "interact": {
+        "likes": 21,
+        "collects": 5,
+        "comments": null,
+        "shares": 2
+      },
+      "detail_url": "https://www.xiaohongshu.com/search_result/69c51a860000000022025e16?xsec_token=ABgcqT-IU5HUvr4OyFp2B7LMr6JduTjWfatqmEmU-1gZA=&xsec_source="
+    }
+  ]
+}
